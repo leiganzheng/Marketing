@@ -124,13 +124,13 @@
 		BB643BB01C30EE4C00BE6790 /* Marketing */ = {
 			isa = PBXGroup;
 			children = (
-				BB643BD31C30EF0E00BE6790 /* Base */,
 				BB643BD51C30EF0E00BE6790 /* Constents.swift */,
+				BB643BDF1C30EF0E00BE6790 /* QNStyleAttribute.swift */,
+				BB643BD31C30EF0E00BE6790 /* Base */,
 				BB643BD61C30EF0E00BE6790 /* DataModule */,
 				BB643BD81C30EF0E00BE6790 /* Extension */,
 				BB643BDD1C30EF0E00BE6790 /* Librarys */,
 				BB643BDE1C30EF0E00BE6790 /* Login */,
-				BB643BDF1C30EF0E00BE6790 /* QNStyleAttribute.swift */,
 				BB643BE01C30EF0E00BE6790 /* Resources */,
 				BB643BE11C30EF0E00BE6790 /* Tools */,
 				BB643BB11C30EE4C00BE6790 /* AppDelegate.swift */,
@@ -502,6 +502,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Marketing/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ddd.Marketing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -514,6 +515,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Marketing/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ddd.Marketing;
 				PRODUCT_NAME = "$(TARGET_NAME)";

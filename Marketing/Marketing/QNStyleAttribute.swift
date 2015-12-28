@@ -16,7 +16,7 @@ let COEFFICIENT_OF_HEIGHT_ZOOM = screenHeight/568.0
 let COEFFICIENT_OF_WIDTH_ZOOM = screenWidth/320.0
 
 //MARK:- App主色
-let appThemeColor = UIColor(red: 0/255.0, green: 97/255.0, blue: 165/255.0, alpha: 1.0)
+let appThemeColor = UIColor(red: 255/255.0, green: 102/255.0, blue: 0/255.0, alpha: 1.0)
 
 //MARK:- 导航栏
 //MARK: 导航栏文本颜色

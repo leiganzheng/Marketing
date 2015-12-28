@@ -8,17 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		4593F54EBD719CB1A6930695 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E2F1119F1545FD344AD0A5 /* Pods.framework */; };
-		71C3A4111C3175980042F851 /* area.txt in Resources */ = {isa = PBXBuildFile; fileRef = 71C3A4071C3175980042F851 /* area.txt */; };
-		71C3A4121C3175980042F851 /* EditInfoAreaSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A4081C3175980042F851 /* EditInfoAreaSelectViewController.swift */; };
-		71C3A4131C3175980042F851 /* EditInfoEpartmentSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A4091C3175980042F851 /* EditInfoEpartmentSelectViewController.swift */; };
-		71C3A4141C3175980042F851 /* EditInfoHospitalSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A40A1C3175980042F851 /* EditInfoHospitalSelectViewController.swift */; };
-		71C3A4151C3175980042F851 /* EditInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A40B1C3175980042F851 /* EditInformationViewController.swift */; };
-		71C3A4161C3175980042F851 /* EditInfoSelectLeveOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A40C1C3175980042F851 /* EditInfoSelectLeveOneViewController.swift */; };
 		71C3A4171C3175980042F851 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A40D1C3175980042F851 /* ForgetPasswordViewController.swift */; };
 		71C3A4181C3175980042F851 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A40E1C3175980042F851 /* LoginViewController.swift */; };
 		71C3A4191C3175980042F851 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A40F1C3175980042F851 /* RegisterViewController.swift */; };
-		71C3A41A1C3175980042F851 /* UserAgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A4101C3175980042F851 /* UserAgreementViewController.swift */; };
 		71C3A41D1C3175B50042F851 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71C3A41B1C3175B50042F851 /* Login.storyboard */; };
+		71C3A41F1C31771E0042F851 /* QNInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A41E1C31771E0042F851 /* QNInterceptor.swift */; };
+		71C3A4251C3185000042F851 /* NearbyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A4241C3185000042F851 /* NearbyViewController.swift */; };
+		71C3A4271C3185100042F851 /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A4261C3185100042F851 /* MarketViewController.swift */; };
+		71C3A4291C31851E0042F851 /* PromotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A4281C31851E0042F851 /* PromotionViewController.swift */; };
+		71C3A42B1C3185300042F851 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A42A1C3185300042F851 /* UserViewController.swift */; };
 		BB643BB21C30EE4C00BE6790 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB643BB11C30EE4C00BE6790 /* AppDelegate.swift */; };
 		BB643BB41C30EE4C00BE6790 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB643BB31C30EE4C00BE6790 /* ViewController.swift */; };
 		BB643BB71C30EE4C00BE6790 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB643BB51C30EE4C00BE6790 /* Main.storyboard */; };
@@ -49,17 +47,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		71C3A4071C3175980042F851 /* area.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = area.txt; sourceTree = "<group>"; };
-		71C3A4081C3175980042F851 /* EditInfoAreaSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditInfoAreaSelectViewController.swift; sourceTree = "<group>"; };
-		71C3A4091C3175980042F851 /* EditInfoEpartmentSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditInfoEpartmentSelectViewController.swift; sourceTree = "<group>"; };
-		71C3A40A1C3175980042F851 /* EditInfoHospitalSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditInfoHospitalSelectViewController.swift; sourceTree = "<group>"; };
-		71C3A40B1C3175980042F851 /* EditInformationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditInformationViewController.swift; sourceTree = "<group>"; };
-		71C3A40C1C3175980042F851 /* EditInfoSelectLeveOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditInfoSelectLeveOneViewController.swift; sourceTree = "<group>"; };
 		71C3A40D1C3175980042F851 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		71C3A40E1C3175980042F851 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		71C3A40F1C3175980042F851 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		71C3A4101C3175980042F851 /* UserAgreementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAgreementViewController.swift; sourceTree = "<group>"; };
 		71C3A41C1C3175B50042F851 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
+		71C3A41E1C31771E0042F851 /* QNInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNInterceptor.swift; sourceTree = "<group>"; };
+		71C3A4241C3185000042F851 /* NearbyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyViewController.swift; sourceTree = "<group>"; };
+		71C3A4261C3185100042F851 /* MarketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketViewController.swift; sourceTree = "<group>"; };
+		71C3A4281C31851E0042F851 /* PromotionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionViewController.swift; sourceTree = "<group>"; };
+		71C3A42A1C3185300042F851 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		87E2F1119F1545FD344AD0A5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB643BAE1C30EE4C00BE6790 /* Marketing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marketing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB643BB11C30EE4C00BE6790 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +109,38 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		71C3A4201C3184BC0042F851 /* Market */ = {
+			isa = PBXGroup;
+			children = (
+				71C3A4261C3185100042F851 /* MarketViewController.swift */,
+			);
+			path = Market;
+			sourceTree = "<group>";
+		};
+		71C3A4211C3184BC0042F851 /* Nearby */ = {
+			isa = PBXGroup;
+			children = (
+				71C3A4241C3185000042F851 /* NearbyViewController.swift */,
+			);
+			path = Nearby;
+			sourceTree = "<group>";
+		};
+		71C3A4221C3184BC0042F851 /* Promotion */ = {
+			isa = PBXGroup;
+			children = (
+				71C3A4281C31851E0042F851 /* PromotionViewController.swift */,
+			);
+			path = Promotion;
+			sourceTree = "<group>";
+		};
+		71C3A4231C3184BC0042F851 /* UserCenter */ = {
+			isa = PBXGroup;
+			children = (
+				71C3A42A1C3185300042F851 /* UserViewController.swift */,
+			);
+			path = UserCenter;
+			sourceTree = "<group>";
+		};
 		93392BDEC5AD4A60222FC056 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +176,10 @@
 			children = (
 				BB643BD51C30EF0E00BE6790 /* Constents.swift */,
 				BB643BDF1C30EF0E00BE6790 /* QNStyleAttribute.swift */,
+				71C3A4201C3184BC0042F851 /* Market */,
+				71C3A4211C3184BC0042F851 /* Nearby */,
+				71C3A4221C3184BC0042F851 /* Promotion */,
+				71C3A4231C3184BC0042F851 /* UserCenter */,
 				BB643BD31C30EF0E00BE6790 /* Base */,
 				BB643BD61C30EF0E00BE6790 /* DataModule */,
 				BB643BD81C30EF0E00BE6790 /* Extension */,
@@ -212,16 +244,9 @@
 		BB643BDE1C30EF0E00BE6790 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				71C3A4071C3175980042F851 /* area.txt */,
-				71C3A4081C3175980042F851 /* EditInfoAreaSelectViewController.swift */,
-				71C3A4091C3175980042F851 /* EditInfoEpartmentSelectViewController.swift */,
-				71C3A40A1C3175980042F851 /* EditInfoHospitalSelectViewController.swift */,
-				71C3A40B1C3175980042F851 /* EditInformationViewController.swift */,
-				71C3A40C1C3175980042F851 /* EditInfoSelectLeveOneViewController.swift */,
 				71C3A40D1C3175980042F851 /* ForgetPasswordViewController.swift */,
 				71C3A40E1C3175980042F851 /* LoginViewController.swift */,
 				71C3A40F1C3175980042F851 /* RegisterViewController.swift */,
-				71C3A4101C3175980042F851 /* UserAgreementViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -236,6 +261,7 @@
 		BB643BE11C30EF0E00BE6790 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				71C3A41E1C31771E0042F851 /* QNInterceptor.swift */,
 				BB643BE21C30EF0E00BE6790 /* QNNetworkTool.swift */,
 				BB643BE31C30EF0E00BE6790 /* QNTool.swift */,
 			);
@@ -331,7 +357,6 @@
 				71C3A41D1C3175B50042F851 /* Login.storyboard in Resources */,
 				BB643BD21C30EEFE00BE6790 /* readme.txt in Resources */,
 				BB643BB71C30EE4C00BE6790 /* Main.storyboard in Resources */,
-				71C3A4111C3175980042F851 /* area.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,26 +423,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB643BE61C30EF0E00BE6790 /* QN_Base.swift in Sources */,
-				71C3A4151C3175980042F851 /* EditInformationViewController.swift in Sources */,
+				71C3A42B1C3185300042F851 /* UserViewController.swift in Sources */,
 				BB643BB41C30EE4C00BE6790 /* ViewController.swift in Sources */,
-				71C3A41A1C3175980042F851 /* UserAgreementViewController.swift in Sources */,
 				BB643BEC1C30EF0E00BE6790 /* QNNetworkTool.swift in Sources */,
 				71C3A4181C3175980042F851 /* LoginViewController.swift in Sources */,
 				71C3A4171C3175980042F851 /* ForgetPasswordViewController.swift in Sources */,
-				71C3A4161C3175980042F851 /* EditInfoSelectLeveOneViewController.swift in Sources */,
 				BB643BE81C30EF0E00BE6790 /* UIImageExtension.swift in Sources */,
 				BB643BEB1C30EF0E00BE6790 /* QNStyleAttribute.swift in Sources */,
 				BB643BE71C30EF0E00BE6790 /* StringExtension.swift in Sources */,
 				BB643BE91C30EF0E00BE6790 /* UIViewControllerExtension.swift in Sources */,
 				71C3A4191C3175980042F851 /* RegisterViewController.swift in Sources */,
-				71C3A4131C3175980042F851 /* EditInfoEpartmentSelectViewController.swift in Sources */,
 				BB643BB21C30EE4C00BE6790 /* AppDelegate.swift in Sources */,
 				BB643BED1C30EF0E00BE6790 /* QNTool.swift in Sources */,
+				71C3A4251C3185000042F851 /* NearbyViewController.swift in Sources */,
 				BB643BEA1C30EF0E00BE6790 /* UIViewExtension.swift in Sources */,
 				BB643BE41C30EF0E00BE6790 /* QNTabBarController.swift in Sources */,
-				71C3A4141C3175980042F851 /* EditInfoHospitalSelectViewController.swift in Sources */,
 				BB643BE51C30EF0E00BE6790 /* Constents.swift in Sources */,
-				71C3A4121C3175980042F851 /* EditInfoAreaSelectViewController.swift in Sources */,
+				71C3A4271C3185100042F851 /* MarketViewController.swift in Sources */,
+				71C3A4291C31851E0042F851 /* PromotionViewController.swift in Sources */,
+				71C3A41F1C31771E0042F851 /* QNInterceptor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

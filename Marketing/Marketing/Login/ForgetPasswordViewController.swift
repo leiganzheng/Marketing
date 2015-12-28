@@ -39,7 +39,7 @@ class ForgetPasswordViewController: UIViewController, QNInterceptorNavigationBar
             if let strongSelf = self {
                 RegisterViewController.fetchAuthCode(strongSelf, phone: { () -> String? in
                     if !QNTool.stringCheck(strongSelf.textField1.text) {
-                        QNTool.showPromptView("请填写手机号码")
+//                        QNTool.showPromptView("请填写手机号码")
                         strongSelf.textField1.text = nil; strongSelf.textField1.becomeFirstResponder()
                         return nil
                     }
@@ -66,37 +66,37 @@ class ForgetPasswordViewController: UIViewController, QNInterceptorNavigationBar
     // MARK: 重置密码
     @IBAction func resetPassword(sender: UIButton!){
         if self.check() {
-            QNNetworkTool.resetPassword(self.textField1.text!, authcode: self.textField2.text!, password: self.textField3.text!, completion: { [weak self](succeed, error, errorMsg) -> Void in
-                if let strongSelf = self {
-                    if succeed {
-                        QNTool.showPromptView("密码修改成功，请登录")
-                        self?.navigationController?.popViewControllerAnimated(true)
-                    }
-                    else {
-                        QNTool.showErrorPromptView(nil, error: error, errorMsg: errorMsg)
-                    }
-                }
-            })
+//            QNNetworkTool.resetPassword(self.textField1.text!, authcode: self.textField2.text!, password: self.textField3.text!, completion: { [weak self](succeed, error, errorMsg) -> Void in
+//                if let strongSelf = self {
+//                    if succeed {
+//                        QNTool.showPromptView("密码修改成功，请登录")
+//                        self?.navigationController?.popViewControllerAnimated(true)
+//                    }
+//                    else {
+//                        QNTool.showErrorPromptView(nil, error: error, errorMsg: errorMsg)
+//                    }
+//                }
+//            })
         }
     }
     
     // 判断输入的合法性
     private func check() -> Bool {
         if !QNTool.stringCheck(self.textField1.text) {
-            QNTool.showPromptView("请填写手机号码")
+//            QNTool.showPromptView("请填写手机号码")
             self.textField1.text = nil; self.textField1.becomeFirstResponder()
             return false
         }
         
         
         if !QNTool.stringCheck(self.textField2.text) {
-            QNTool.showPromptView("请填写验证码")
+//            QNTool.showPromptView("请填写验证码")
             self.textField2.text = nil; self.textField2.becomeFirstResponder()
             return false
         }
         
         if !QNTool.stringCheck(self.textField3.text, allowAllSpace: true, allowLength: 5) {
-            QNTool.showPromptView("请设置6位及以上的密码！")
+//            QNTool.showPromptView("请设置6位及以上的密码！")
             self.textField3.becomeFirstResponder()
             return false
         }

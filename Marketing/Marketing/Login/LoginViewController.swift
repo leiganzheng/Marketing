@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import ReactiveCocoa
 /**
 *  @author LiuYu, 15-05-15 10:05:27
 *
@@ -32,7 +32,7 @@ class LoginViewController: UIViewController, QNInterceptorNavigationBarHiddenPro
         self.imageView.tintAdjustmentMode = .Normal
         
         RegisterViewController.configTextField(self.accountTextField)
-        self.accountTextField.text = g_Account
+//        self.accountTextField.text = g_Account
         let accountImageView = UIImageView(frame: CGRectMake(10, 0, 40, 20))
         accountImageView.contentMode = UIViewContentMode.Center
         accountImageView.image = UIImage(named: "Login_Account")
@@ -55,11 +55,11 @@ class LoginViewController: UIViewController, QNInterceptorNavigationBarHiddenPro
         self.autoLogin()
     }
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
-        UIApplication.sharedApplication().statusBarHidden = false
-    }
+//    override func viewWillAppear(animated: Bool) {
+//        super.viewWillAppear(animated)
+//        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
+//        UIApplication.sharedApplication().statusBarHidden = false
+//    }
     
     // MARK: UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -78,39 +78,43 @@ class LoginViewController: UIViewController, QNInterceptorNavigationBarHiddenPro
     }
     
     func login() {
-        if !self.checkAccountPassWord() {return}
-        if let id = self.accountTextField.text, let password = self.passwordTextField.text {
-            QNTool.showActivityView("正在登录...")
-            QNNetworkTool.login(Id: id, Password: password) { (doctor, error, errorMsg) -> Void in
-                QNTool.hiddenActivityView()
-                if doctor != nil {
-                    if self.checkRegisterEditInfo(doctor!) {
-                        //进入主界面
-                        let vc = (UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController())!
-                        QNTool.enterRootViewController(vc, animated: true)
-                    } else {
-                        // 未填写注册信息
-                        let vc = EditInformationViewController.CreateFromStoryboard("Login") as! EditInformationViewController
-                        vc.finished = { () -> Void in
-                            QNNetworkTool.login(Id: id, Password: password) { (doctor, error, errorMsg) -> Void in
-                                QNTool.hiddenActivityView()
-                                if doctor != nil {
-                                    let vc = (UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController())!
-                                    QNTool.enterRootViewController(vc, animated: true)
-                                }
-                                else {
-                                    QNTool.showErrorPromptView(nil, error: error, errorMsg: errorMsg)
-                                }
-                            }
-                        }
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                }
-                else {
-                    QNTool.showErrorPromptView(nil, error: error, errorMsg: errorMsg)
-                }
-            }
-        }
+        //进入主界面
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+        QNTool.enterRootViewController(vc!, animated: true)
+
+//        if !self.checkAccountPassWord() {return}
+//        if let id = self.accountTextField.text, let password = self.passwordTextField.text {
+//            QNTool.showActivityView("正在登录...")
+//            QNNetworkTool.login(Id: id, Password: password) { (doctor, error, errorMsg) -> Void in
+//                QNTool.hiddenActivityView()
+//                if doctor != nil {
+//                    if self.checkRegisterEditInfo(doctor!) {
+//                        //进入主界面
+//                        let vc = (UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController())!
+//                        QNTool.enterRootViewController(vc, animated: true)
+//                    } else {
+//                        // 未填写注册信息
+//                        let vc = EditInformationViewController.CreateFromStoryboard("Login") as! EditInformationViewController
+//                        vc.finished = { () -> Void in
+//                            QNNetworkTool.login(Id: id, Password: password) { (doctor, error, errorMsg) -> Void in
+//                                QNTool.hiddenActivityView()
+//                                if doctor != nil {
+//                                    let vc = (UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController())!
+//                                    QNTool.enterRootViewController(vc, animated: true)
+//                                }
+//                                else {
+//                                    QNTool.showErrorPromptView(nil, error: error, errorMsg: errorMsg)
+//                                }
+//                            }
+//                        }
+//                        self.navigationController?.pushViewController(vc, animated: true)
+//                    }
+//                }
+//                else {
+//                    QNTool.showErrorPromptView(nil, error: error, errorMsg: errorMsg)
+//                }
+//            }
+//        }
     }
     
     // MARK: 登录，并把accoutn和password写入的页面上
@@ -122,9 +126,9 @@ class LoginViewController: UIViewController, QNInterceptorNavigationBarHiddenPro
     
     // MARK: 自动登录，获取本机保存的账号密码进行登录
     func autoLogin() {
-        if let account = g_Account, password = g_Password {
-            self.login(account, password: password)
-        }
+//        if let account = g_Account, password = g_Password {
+//            self.login(account, password: password)
+//        }
     }
     
     // 判断输入的合法性
@@ -132,31 +136,20 @@ class LoginViewController: UIViewController, QNInterceptorNavigationBarHiddenPro
     private func checkAccountPassWord() -> Bool {
         
         if (self.accountTextField.text?.characters.count == 0 && self.passwordTextField.text?.characters.count == 0) {
-            QNTool.showPromptView("请输入账号与密码")
+//            QNTool.showPromptView("请输入账号与密码")
             self.accountTextField.becomeFirstResponder()
             return false
         }else if(self.accountTextField.text?.characters.count == 0) {
-            QNTool.showPromptView("请输入密码")
+//            QNTool.showPromptView("请输入密码")
             self.passwordTextField.becomeFirstResponder()
             return false
 
         }else if (self.passwordTextField.text?.characters.count == 0){
-            QNTool.showPromptView("请输入账号")
+//            QNTool.showPromptView("请输入账号")
             self.accountTextField.becomeFirstResponder()
             return false
         }
         return true
         
     }
-    // 判断注册时是否填写信息
-    func checkRegisterEditInfo(doctor : QD_Doctor) -> Bool {
-        if doctor.jobTitle == nil || doctor.jobTitle == "" {
-            return false
-        } else if doctor.belongHospital == nil || doctor.belongHospital == "" {
-            return false
-        } else if doctor.department_hospital == nil || doctor.department_hospital == "" {
-            return false
-        }
-        return true
-    }
-}
+   }

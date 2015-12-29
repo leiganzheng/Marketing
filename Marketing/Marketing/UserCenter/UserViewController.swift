@@ -8,28 +8,75 @@
 
 import UIKit
 
-class UserViewController: UIViewController {
+class UserViewController: UIViewController , UITableViewDataSource, UITableViewDelegate{
 
+    var titles: NSArray!
+    var icons: NSArray!
+    var moneyLbl : UILabel!
+    @IBOutlet weak var customTableView: UITableView!
+    var usrName : UILabel!
+    var imgV : UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "个人中心"
-        // Do any additional setup after loading the view.
+        self.titles = [[""],["我的订单","我的收藏"],["修改密码","退出登录"]]
+        self.icons = [[""],["",""],["",""]]
+        self.navigationController?.navigationBar.translucent = false // 关闭透明度效果
+        // 让导航栏支持向右滑动手势
+        QNTool.addInteractive(self.navigationController)
     }
-
-    override func didReceiveMemoryWarning() {
+       override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: UITableViewDataSource, UITableViewDelegate
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return titles[section].count
     }
-    */
-
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return self.titles.count
+    }
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 112
+        }else {
+            return 48
+        }
+    }
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10.0*COEFFICIENT_OF_HEIGHT_ZOOM
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.01*COEFFICIENT_OF_HEIGHT_ZOOM
+    }
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cellId = "cell0"
+            var cell: UITableViewCell! = self.customTableView.dequeueReusableCellWithIdentifier(cellId)
+            if cell == nil {
+                cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
+            }
+            return cell
+        }else {
+            let cellId = "cell1"
+            var cell: UITableViewCell! = self.customTableView.dequeueReusableCellWithIdentifier(cellId)
+            if cell == nil {
+                cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
+                cell.accessoryType = .DisclosureIndicator
+            }
+            let titleArray = self.titles[indexPath.section] as! NSArray
+            let iconsArray = self.icons[indexPath.section] as! NSArray
+            cell.textLabel?.text = titleArray[indexPath.row] as? String
+            cell.imageView?.image = UIImage(named: (iconsArray[indexPath.row] as? String)!)
+            return cell
+        }
+    }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if indexPath.section == 2 && indexPath.row == 1 {
+            QNTool.enterLoginViewController()
+        }
+    }
+    
 }

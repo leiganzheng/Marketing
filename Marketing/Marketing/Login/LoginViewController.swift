@@ -23,7 +23,7 @@ class LoginViewController: UIViewController, QNInterceptorNavigationBarHiddenPro
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBar.translucent = false // 关闭透明度效果
+//        self.navigationController?.navigationBar.translucent = false // 关闭透明度效果
         // 让导航栏支持向右滑动手势
         QNTool.addInteractive(self.navigationController)
         
@@ -55,12 +55,6 @@ class LoginViewController: UIViewController, QNInterceptorNavigationBarHiddenPro
         self.autoLogin()
     }
 
-//    override func viewWillAppear(animated: Bool) {
-//        super.viewWillAppear(animated)
-//        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
-//        UIApplication.sharedApplication().statusBarHidden = false
-//    }
-    
     // MARK: UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if textField.returnKeyType == .Next {

@@ -15,27 +15,16 @@ import UIKit
 */
 class RegisterViewController: UIViewController, QNInterceptorNavigationBarHiddenProtocol, QNInterceptorKeyboardProtocol, UITextFieldDelegate {
     
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var textField0: UITextField!
     @IBOutlet weak var textField1: UITextField!
     @IBOutlet weak var textField2: UITextField!
     @IBOutlet weak var textField3: UITextField!
-
-    @IBOutlet weak var agreeBtn: UIButton!
-    @IBOutlet weak var markLbl: UILabel! //提示反馈信息LBL
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        RegisterViewController.configTextField(self.textField0)
         RegisterViewController.configTextField(self.textField1)
         RegisterViewController.configTextField(self.textField2)
         RegisterViewController.configTextField(self.textField3)
-        
-        self.agreeBtn.selected = true
-        self.imageView.image = UIImage(named: "Login_Logo.png")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-        self.imageView.tintColor = appThemeColor
-        self.imageView.tintAdjustmentMode = .Normal
         
         // 获取验证码的按钮
         let authCodeButton = UIButton(frame: CGRect(x: 0, y: 0, width: 90*COEFFICIENT_OF_WIDTH_ZOOM, height: self.textField2.bounds.height*COEFFICIENT_OF_HEIGHT_ZOOM))
@@ -86,10 +75,6 @@ class RegisterViewController: UIViewController, QNInterceptorNavigationBarHidden
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    @IBAction func userAgreeBtnCli(sender: UIButton) {
-      self.agreeBtn.selected = !self.agreeBtn.selected
-    }
     // 提交
     @IBAction func done(sender: UIButton!) {
 //        if self.check() {
@@ -126,22 +111,10 @@ class RegisterViewController: UIViewController, QNInterceptorNavigationBarHidden
     
     // 判断输入的合法性
     private func check() -> Bool {
-        if !QNTool.stringCheck(self.textField0.text) {
-//            QNTool.showPromptView("请填写姓名")
-            self.textField0.text = nil; self.textField0.becomeFirstResponder()
-            return false
-        }
-        if (self.textField0.text! as NSString).length > 8 {
-            self.markLbl.text = "姓名最长8个字，请重新输入"
-            self.textField0.textColor = UIColor.redColor()
-            return false
-        }
-
-        if !self.textField0.text!.checkStingIsName() {
-            self.markLbl.text = "姓名中包含特殊符号，请重新填写"
-            self.textField0.textColor = UIColor.redColor()
-            return false
-        }
+//        if !self.textField0.text!.checkStingIsName() {
+//            self.markLbl.text = "姓名中包含特殊符号，请重新填写"
+//            return false
+//        }
         if !QNTool.stringCheck(self.textField1.text, allowLength: 4) {
 //            QNTool.showPromptView("请填写手机号码")
             self.textField1.text = nil; self.textField1.becomeFirstResponder()
@@ -159,19 +132,12 @@ class RegisterViewController: UIViewController, QNInterceptorNavigationBarHidden
             self.textField3.becomeFirstResponder()
             return false
         }
-        if !self.agreeBtn.selected {
-//            QNTool.showPromptView("请阅读并接受用户协议")
-            return false
-        }
         return true
     }
     
     // MARK: UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        if textField == self.textField0 {
-            self.textField1.becomeFirstResponder()
-        }
-        else if textField == self.textField1 {
+        if textField == self.textField1 {
             self.textField2.becomeFirstResponder()
         }
         else if textField == self.textField2 {
@@ -184,13 +150,13 @@ class RegisterViewController: UIViewController, QNInterceptorNavigationBarHidden
         
         return true
     }
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool  {
-        if textField == self.textField0 {
-            self.markLbl.text = ""
-            textField.textColor = UIColor.blackColor()
-        }
-        return true
-    }
+//    func textFieldShouldBeginEditing(textField: UITextField) -> Bool  {
+//        if textField == self.textField0 {
+//            self.markLbl.text = ""
+//            textField.textColor = UIColor.blackColor()
+//        }
+//        return true
+//    }
     
 }
 

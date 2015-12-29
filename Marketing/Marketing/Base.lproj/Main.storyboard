@@ -107,7 +107,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell1" rowHeight="150" id="dQk-u0-BJV">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="CollectionTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell1" rowHeight="150" id="dQk-u0-BJV" customClass="CollectionTableViewCell" customModule="Marketing" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="320" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dQk-u0-BJV" id="xCp-1n-qbN">
@@ -171,7 +171,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TEs-tk-4Oq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="39" y="1904"/>
+            <point key="canvasLocation" x="-84" y="1908"/>
         </scene>
         <!--商城-->
         <scene sceneID="2sM-w8-VYy">
@@ -331,7 +331,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell1" rowHeight="150" id="aJD-PS-Ka0">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="OrderTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell1" rowHeight="150" id="aJD-PS-Ka0" customClass="OrderTableViewCell" customModule="Marketing" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="92" width="320" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aJD-PS-Ka0" id="Dqy-l4-MgL">
@@ -395,7 +395,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHX-vU-TeM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="455" y="1883"/>
+            <point key="canvasLocation" x="520" y="1661"/>
         </scene>
         <!--ChangePWD View Controller-->
         <scene sceneID="5gw-F6-jjt">

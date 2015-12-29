@@ -34,6 +34,9 @@
 		BB643BEB1C30EF0E00BE6790 /* QNStyleAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB643BDF1C30EF0E00BE6790 /* QNStyleAttribute.swift */; };
 		BB643BEC1C30EF0E00BE6790 /* QNNetworkTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB643BE21C30EF0E00BE6790 /* QNNetworkTool.swift */; };
 		BB643BED1C30EF0E00BE6790 /* QNTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB643BE31C30EF0E00BE6790 /* QNTool.swift */; };
+		BBE32FC31C3227CE0095BA88 /* MyCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE32FC21C3227CE0095BA88 /* MyCollectionViewController.swift */; };
+		BBE32FC51C3227EE0095BA88 /* MyOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE32FC41C3227EE0095BA88 /* MyOrderViewController.swift */; };
+		BBE32FC71C3228000095BA88 /* ChangePWDViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE32FC61C3228000095BA88 /* ChangePWDViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +81,9 @@
 		BB643BDF1C30EF0E00BE6790 /* QNStyleAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNStyleAttribute.swift; sourceTree = "<group>"; };
 		BB643BE21C30EF0E00BE6790 /* QNNetworkTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNNetworkTool.swift; sourceTree = "<group>"; };
 		BB643BE31C30EF0E00BE6790 /* QNTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNTool.swift; sourceTree = "<group>"; };
+		BBE32FC21C3227CE0095BA88 /* MyCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCollectionViewController.swift; sourceTree = "<group>"; };
+		BBE32FC41C3227EE0095BA88 /* MyOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyOrderViewController.swift; sourceTree = "<group>"; };
+		BBE32FC61C3228000095BA88 /* ChangePWDViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePWDViewController.swift; sourceTree = "<group>"; };
 		F372F1E61691C173103A6F51 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F85F8EDCC90C6F5369D98E8A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,6 +143,9 @@
 			isa = PBXGroup;
 			children = (
 				71C3A42A1C3185300042F851 /* UserViewController.swift */,
+				BBE32FC21C3227CE0095BA88 /* MyCollectionViewController.swift */,
+				BBE32FC41C3227EE0095BA88 /* MyOrderViewController.swift */,
+				BBE32FC61C3228000095BA88 /* ChangePWDViewController.swift */,
 			);
 			path = UserCenter;
 			sourceTree = "<group>";
@@ -424,6 +433,7 @@
 			files = (
 				BB643BE61C30EF0E00BE6790 /* QN_Base.swift in Sources */,
 				71C3A42B1C3185300042F851 /* UserViewController.swift in Sources */,
+				BBE32FC31C3227CE0095BA88 /* MyCollectionViewController.swift in Sources */,
 				BB643BB41C30EE4C00BE6790 /* ViewController.swift in Sources */,
 				BB643BEC1C30EF0E00BE6790 /* QNNetworkTool.swift in Sources */,
 				71C3A4181C3175980042F851 /* LoginViewController.swift in Sources */,
@@ -439,9 +449,11 @@
 				BB643BEA1C30EF0E00BE6790 /* UIViewExtension.swift in Sources */,
 				BB643BE41C30EF0E00BE6790 /* QNTabBarController.swift in Sources */,
 				BB643BE51C30EF0E00BE6790 /* Constents.swift in Sources */,
+				BBE32FC71C3228000095BA88 /* ChangePWDViewController.swift in Sources */,
 				71C3A4271C3185100042F851 /* MarketViewController.swift in Sources */,
 				71C3A4291C31851E0042F851 /* PromotionViewController.swift in Sources */,
 				71C3A41F1C31771E0042F851 /* QNInterceptor.swift in Sources */,
+				BBE32FC51C3227EE0095BA88 /* MyOrderViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

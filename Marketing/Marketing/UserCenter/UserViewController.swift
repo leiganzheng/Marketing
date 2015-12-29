@@ -74,9 +74,25 @@ class UserViewController: UIViewController , UITableViewDataSource, UITableViewD
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if indexPath.section == 2 && indexPath.row == 1 {
+        if indexPath.section == 1 && indexPath.row == 0 {
+            let vc = MyOrderViewController.CreateFromStoryboard("Main") as! MyOrderViewController
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }else if (indexPath.section == 1 && indexPath.row == 1){
+            let vc = MyCollectionViewController.CreateFromStoryboard("Main") as! MyCollectionViewController
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }else if (indexPath.section == 2 && indexPath.row == 0){
+            let vc = ChangePWDViewController.CreateFromStoryboard("Main") as! ChangePWDViewController
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }else if (indexPath.section == 2 && indexPath.row == 1){
             QNTool.enterLoginViewController()
         }
+
     }
     
 }

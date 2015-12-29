@@ -19,9 +19,9 @@ extension UIViewController {
     //MARK: 从 storyboardName.storyboard 初始化一个当前类
     // 从 storyboardName.storyboard 中创建一个使用了当前类作为 StoryboardID 的类
     public class func CreateFromStoryboard(name: String) -> AnyObject! {
-        var classFullName = NSStringFromClass(self.classForCoder())
-        var className = classFullName.componentsSeparatedByString(".").last as String! 
-        var mainStoryboard = UIStoryboard(name: name, bundle:nil)
+        let classFullName = NSStringFromClass(self.classForCoder())
+        let className = classFullName.componentsSeparatedByString(".").last as String!
+        let mainStoryboard = UIStoryboard(name: name, bundle:nil)
         return mainStoryboard.instantiateViewControllerWithIdentifier(className)
     }
     
@@ -48,7 +48,7 @@ extension UIViewController {
         fixedSpace.width = -15;
         
         let button = UIButton(frame: CGRectMake(0, 0, 50, 44))
-        button.setImage(UIImage(named: "navigation_back_icon")!.imageWithColor(appThemeColor), forState: .Normal)
+        button.setImage(UIImage(named: "navigation_back_icon")!.imageWithColor(UIColor.whiteColor()), forState: .Normal)
         button.addTarget(self, action: "back", forControlEvents: UIControlEvents.TouchUpInside)
         
         self.navigationItem.leftBarButtonItems = [fixedSpace, UIBarButtonItem(customView: button)]

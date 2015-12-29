@@ -30,7 +30,7 @@ class MyCollectionViewController: UIViewController , UITableViewDataSource, UITa
     }
 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 112
+        return 150
     }
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10.0*COEFFICIENT_OF_HEIGHT_ZOOM

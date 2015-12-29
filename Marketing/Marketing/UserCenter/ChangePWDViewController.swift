@@ -15,7 +15,7 @@ class ChangePWDViewController: UIViewController , UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "修改密码"
-        self.titles = ["我的订单","我的收藏","修改密码","退出登录"]
+        self.titles = [["输入密码"],["输入新密码","确认密码"],["提交"]]
         // Do any additional setup after loading the view.
     }
     
@@ -26,11 +26,13 @@ class ChangePWDViewController: UIViewController , UITableViewDataSource, UITable
     
     // MARK: UITableViewDataSource, UITableViewDelegate
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return titles[section].count
+    }
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return titles.count
     }
-    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 112
+        return 44
     }
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10.0*COEFFICIENT_OF_HEIGHT_ZOOM
@@ -40,17 +42,20 @@ class ChangePWDViewController: UIViewController , UITableViewDataSource, UITable
         return 0.01*COEFFICIENT_OF_HEIGHT_ZOOM
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cellId = "cell1"
-        var cell: UITableViewCell! = self.customTableView.dequeueReusableCellWithIdentifier(cellId)
-        if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
-            cell.accessoryType = .DisclosureIndicator
-        }
-        //            let titleArray = self.titles[indexPath.section] as! NSArray
-        //            let iconsArray = self.icons[indexPath.section] as! NSArray
-        //            cell.textLabel?.text = titleArray[indexPath.row] as? String
-        //            cell.imageView?.image = UIImage(named: (iconsArray[indexPath.row] as? String)!)
-        return cell
+            let cellId = "cell"
+            var cell: UITableViewCell! = self.customTableView.dequeueReusableCellWithIdentifier(cellId)
+            if cell == nil {
+                cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
+                let lb = UILabel(frame: CGRectMake(8,7,200, 30))
+                lb.backgroundColor = UIColor.clearColor()
+                lb.textColor = tableViewCellDefaultTextColor
+                lb.textAlignment = NSTextAlignment.Left
+                lb.font = UIFont.systemFontOfSize(15)
+                let titleArray = self.titles[indexPath.section] as! NSArray
+                lb.text = titleArray[indexPath.row] as? String
+                cell.addSubview(lb)
+            }
+            return cell
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)

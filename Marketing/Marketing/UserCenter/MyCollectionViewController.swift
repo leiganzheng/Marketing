@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReactiveCocoa
 
 class MyCollectionViewController: UIViewController , UITableViewDataSource, UITableViewDelegate {
 
@@ -40,17 +41,19 @@ class MyCollectionViewController: UIViewController , UITableViewDataSource, UITa
         return 0.01*COEFFICIENT_OF_HEIGHT_ZOOM
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-            let cellId = "cell1"
-            var cell: UITableViewCell! = self.customTableView.dequeueReusableCellWithIdentifier(cellId)
-            if cell == nil {
-                cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
-                cell.accessoryType = .DisclosureIndicator
-            }
-//            let titleArray = self.titles[indexPath.section] as! NSArray
-//            let iconsArray = self.icons[indexPath.section] as! NSArray
-//            cell.textLabel?.text = titleArray[indexPath.row] as? String
-//            cell.imageView?.image = UIImage(named: (iconsArray[indexPath.row] as? String)!)
-            return cell
+        let cellId = "CollectionTableViewCell"
+        var cell = self.customTableView.dequeueReusableCellWithIdentifier(cellId) as! CollectionTableViewCell!
+        if cell == nil {
+            cell = (NSBundle.mainBundle().loadNibNamed(cellId, owner: self, options: nil) as NSArray).objectAtIndex(0) as! CollectionTableViewCell
+            cell.accessoryType = .DisclosureIndicator
+        }
+        let btn = cell.deleteBtn as UIButton
+        btn.rac_command = RACCommand(signalBlock: { (sender) -> RACSignal! in
+            
+            return RACSignal.empty()
+        })
+        
+        return cell
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)

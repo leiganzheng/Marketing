@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReactiveCocoa
 
 class MyOrderViewController: UIViewController , UITableViewDataSource, UITableViewDelegate {
     
@@ -40,16 +41,18 @@ class MyOrderViewController: UIViewController , UITableViewDataSource, UITableVi
         return 0.01*COEFFICIENT_OF_HEIGHT_ZOOM
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cellId = "cell1"
-        var cell: UITableViewCell! = self.customTableView.dequeueReusableCellWithIdentifier(cellId)
+        let cellId = "OrderTableViewCell"
+        var cell = self.customTableView.dequeueReusableCellWithIdentifier(cellId) as! OrderTableViewCell!
         if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
-            cell.accessoryType = .DisclosureIndicator
+            cell = OrderTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
         }
-        //            let titleArray = self.titles[indexPath.section] as! NSArray
-        //            let iconsArray = self.icons[indexPath.section] as! NSArray
-        //            cell.textLabel?.text = titleArray[indexPath.row] as? String
-        //            cell.imageView?.image = UIImage(named: (iconsArray[indexPath.row] as? String)!)
+//        let btn = cell.payBtn
+//        btn.rac_command = RACCommand(signalBlock: { (sender) -> RACSignal! in
+//            let vc = PayOrderViewController.CreateFromStoryboard("Main") as! ChangePWDViewController
+//            self.navigationController?.pushViewController(vc, animated: true)
+//            return RACSignal.empty()
+//            })
+
         return cell
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

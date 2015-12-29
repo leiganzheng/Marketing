@@ -10,6 +10,12 @@ import UIKit
 
 class CollectionTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var deleteBtn: UIButton!
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var imageV: UIImageView!
+    @IBOutlet weak var name1: UILabel!
+    @IBOutlet weak var detail: UILabel!
+    @IBOutlet weak var time: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

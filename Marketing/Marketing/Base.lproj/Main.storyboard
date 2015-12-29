@@ -154,6 +154,14 @@
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="deleteBtn" destination="q1H-eN-j1S" id="3EE-Hl-ETJ"/>
+                                            <outlet property="detail" destination="uxk-AI-R4B" id="tYR-rp-m9A"/>
+                                            <outlet property="imageV" destination="AAy-tR-dbN" id="rdu-pg-Uc3"/>
+                                            <outlet property="name" destination="ngZ-gM-8XG" id="CNO-Bb-Lqq"/>
+                                            <outlet property="name1" destination="QRj-VV-F4b" id="YrM-Ul-Xc6"/>
+                                            <outlet property="time" destination="xxN-A7-WCJ" id="m9x-o0-D9Q"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -360,12 +368,6 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqP-dW-w6V">
-                                                    <rect key="frame" x="8" y="8" width="127" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <button opaque="NO" tag="100" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ujt-NX-n2n">
                                                     <rect key="frame" x="260" y="4" width="45" height="30"/>
                                                     <state key="normal" title="请支付"/>
@@ -376,8 +378,22 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqP-dW-w6V">
+                                                    <rect key="frame" x="8" y="8" width="127" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="detail" destination="QIU-3U-Wie" id="A6i-NG-Oyo"/>
+                                            <outlet property="imageV" destination="aVa-jK-PfK" id="mMF-fg-MD3"/>
+                                            <outlet property="name" destination="eqP-dW-w6V" id="2Sy-QC-Wqc"/>
+                                            <outlet property="name1" destination="tyy-sa-WVf" id="E0k-Hs-2pL"/>
+                                            <outlet property="payBtn" destination="ujt-NX-n2n" id="7dU-ib-NXg"/>
+                                            <outlet property="time" destination="usn-wA-biv" id="PTo-ug-sG3"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -395,7 +411,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hHX-vU-TeM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="520" y="1661"/>
+            <point key="canvasLocation" x="423" y="1566"/>
         </scene>
         <!--ChangePWD View Controller-->
         <scene sceneID="5gw-F6-jjt">

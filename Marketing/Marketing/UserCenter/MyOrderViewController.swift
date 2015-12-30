@@ -33,25 +33,24 @@ class MyOrderViewController: UIViewController , UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 150
     }
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10.0*COEFFICIENT_OF_HEIGHT_ZOOM
-    }
-    
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.01*COEFFICIENT_OF_HEIGHT_ZOOM
-    }
+//    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 10.0*COEFFICIENT_OF_HEIGHT_ZOOM
+//    }
+//    
+//    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 0.01*COEFFICIENT_OF_HEIGHT_ZOOM
+//    }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellId = "OrderTableViewCell"
         var cell = self.customTableView.dequeueReusableCellWithIdentifier(cellId) as! OrderTableViewCell!
         if cell == nil {
             cell = OrderTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
         }
-//        let btn = cell.payBtn
-//        btn.rac_command = RACCommand(signalBlock: { (sender) -> RACSignal! in
-//            let vc = PayOrderViewController.CreateFromStoryboard("Main") as! ChangePWDViewController
-//            self.navigationController?.pushViewController(vc, animated: true)
-//            return RACSignal.empty()
-//            })
+        cell.payBtn.rac_command = RACCommand(signalBlock: { (sender) -> RACSignal! in
+            let vc = PayOrderViewController.CreateFromStoryboard("Main") as! PayOrderViewController
+            self.navigationController?.pushViewController(vc, animated: true)
+            return RACSignal.empty()
+            })
 
         return cell
     }

@@ -36,13 +36,25 @@ class PayOrderViewController: UIViewController , UITableViewDataSource, UITableV
         return 30
     }
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let lb = UILabel(frame: CGRectMake(8,7,200, 30))
+        let customView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 30))
+        customView.backgroundColor = defaultBackgroundGrayColor
+        let lb = UILabel(frame: CGRectMake(8,0,200, 30))
         lb.backgroundColor = UIColor.clearColor()
         lb.textColor = tableViewCellDefaultTextColor
         lb.textAlignment = NSTextAlignment.Left
         lb.font = UIFont.systemFontOfSize(15)
         lb.text = "请支付"
-        return lb
+        customView.addSubview(lb)
+        
+        let lb1 = UILabel(frame: CGRectMake(tableView.frame.size.width-100,0,100, 30))
+        lb1.backgroundColor = UIColor.clearColor()
+        lb1.textColor = tableViewCellDefaultTextColor
+        lb1.textAlignment = NSTextAlignment.Right
+        lb1.font = UIFont.systemFontOfSize(15)
+        lb1.text = "200"
+        customView.addSubview(lb1)
+        
+        return customView
     }
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.01*COEFFICIENT_OF_HEIGHT_ZOOM

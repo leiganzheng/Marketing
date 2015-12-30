@@ -33,13 +33,6 @@ class MyCollectionViewController: UIViewController , UITableViewDataSource, UITa
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 150
     }
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10.0*COEFFICIENT_OF_HEIGHT_ZOOM
-    }
-    
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.01*COEFFICIENT_OF_HEIGHT_ZOOM
-    }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellId = "CollectionTableViewCell"
         var cell = self.customTableView.dequeueReusableCellWithIdentifier(cellId) as! CollectionTableViewCell!
@@ -47,9 +40,7 @@ class MyCollectionViewController: UIViewController , UITableViewDataSource, UITa
             cell = (NSBundle.mainBundle().loadNibNamed(cellId, owner: self, options: nil) as NSArray).objectAtIndex(0) as! CollectionTableViewCell
             cell.accessoryType = .DisclosureIndicator
         }
-        let btn = cell.deleteBtn as UIButton
-        btn.rac_command = RACCommand(signalBlock: { (sender) -> RACSignal! in
-            
+        cell.deleteBtn.rac_command = RACCommand(signalBlock: { (sender) -> RACSignal! in
             return RACSignal.empty()
         })
         

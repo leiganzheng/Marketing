@@ -31,14 +31,14 @@ class LoginViewController: UIViewController, QNInterceptorNavigationBarHiddenPro
         self.imageView.tintColor = appThemeColor
         self.imageView.tintAdjustmentMode = .Normal
         
-        RegisterViewController.configTextField(self.accountTextField)
+//        RegisterViewController.configTextField(self.accountTextField)
 //        self.accountTextField.text = g_Account
         let accountImageView = UIImageView(frame: CGRectMake(10, 0, 40, 20))
         accountImageView.contentMode = UIViewContentMode.Center
         accountImageView.image = UIImage(named: "Login_Account")
         self.accountTextField.leftView = accountImageView
             
-        RegisterViewController.configTextField(self.passwordTextField)
+//        RegisterViewController.configTextField(self.passwordTextField)
         self.passwordTextField.secureTextEntry = true
         let passwordImageView = UIImageView(frame: CGRectMake(10, 0, 40, 20))
         passwordImageView.contentMode = UIViewContentMode.Center

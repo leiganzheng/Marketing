@@ -8,29 +8,62 @@
 
 import UIKit
 
-class NearbyViewController: UIViewController {
+class NearbyViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
+    @IBOutlet var collectionView: UICollectionView!
+    var titleArray: NSArray!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "附近"
-        self.view.backgroundColor = UIColor.lightGrayColor()
+        //数据
+        self.titleArray = NSArray()
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    //MARK:- UICollectionDelegate, UICollectionDataSource
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 2
     }
-    */
-
+    
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+        return 3
+    }
+    
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        if indexPath.section == 1 {
+            let identify:String = "NearbyCollectionCell2"
+            let cell = self.collectionView!.dequeueReusableCellWithReuseIdentifier(
+                identify, forIndexPath: indexPath) as! NearbyBCollectionViewCell
+            return cell
+        }else {
+            let identify:String = "NearbyCollectionCell1"
+            let cell = self.collectionView!.dequeueReusableCellWithReuseIdentifier(
+                identify, forIndexPath: indexPath) as! NearbySCollectionViewCell
+            return cell
+        }
+       
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        self.collectionView.deselectItemAtIndexPath(indexPath, animated: true)
+        //        let object = self.titleArray.objectAtIndex(indexPath.row) as! NSDictionary
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        if indexPath.section == 1 {
+            return CGSizeMake(collectionView.frame.width/2.0-10, 150)
+        }else {
+            return CGSizeMake(collectionView.frame.width/2.0-10, 100)
+        }
+    }
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        return UIEdgeInsetsMake(5, 0, 5, 0)
+    }
+    
+    
 }

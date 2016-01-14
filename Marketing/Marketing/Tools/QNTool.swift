@@ -2,8 +2,8 @@
 //  QNTool.swift
 //  QooccHealth
 //
-//  Created by LiuYu on 15/5/28.
-//  Copyright (c) 2015年 Liuyu. All rights reserved.
+//  Created by Leiganzheng on 15/5/28.
+//  Copyright (c) 2015年 Leiganzheng. All rights reserved.
 //
 
 import Foundation
@@ -17,7 +17,7 @@ class QNTool: NSObject {
     
 }
 /**
- *  @author LiuYu, 15-05-28 16:05:14
+ *  @author Leiganzheng, 15-05-28 16:05:14
  *
  *  //MARK:- 页面切换相关
  */

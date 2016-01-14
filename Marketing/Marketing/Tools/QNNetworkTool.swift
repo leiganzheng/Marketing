@@ -12,7 +12,7 @@ import Alamofire
 // MARK: - 315便利客服务器地址
 private let (kServerAddress) = { () -> (String) in
     // 正式环境
-    " http://cvsapi.1g9f.com"
+    "http://cvsapi.1g9f.com"
     // 测试环境
     //" http://cvsapi.1g9f.com"
 }()
@@ -35,7 +35,7 @@ private extension QNNetworkTool {
         let request = NSMutableURLRequest(URL: url)
         request.addValue(g_user?.accesstoken ?? "", forHTTPHeaderField: "AUTH") // 用户身份串,在调用/api/login 成功后会返回这个串;未登录时为空
 //        request.addValue("1", forHTTPHeaderField: "AID")                // app_id, iphone=1, android=2
-        request.addValue(APP_VERSION, forHTTPHeaderField: "VER")        // 客户端版本号
+//        request.addValue(APP_VERSION, forHTTPHeaderField: "VER")        // 客户端版本号
 //        request.addValue(g_UDID, forHTTPHeaderField: "CID")             // 客户端设备号
         request.HTTPMethod = method as String
         return request
@@ -64,8 +64,8 @@ private extension QNNetworkTool {
                     completionHandler(request: $0!, response: $1, data: $2, dictionary: nil, error: NSError(domain: "JSON解析错误", code: 10086, userInfo: nil)); return
                 }
                 
-                let errorCode = Int((dictionary!["errorCode"] as! String))
-                if errorCode == 1000 || errorCode == 0 {
+                let errorCode = Int((dictionary!["ret"] as! NSNumber))
+                if  errorCode == 0 {
                     completionHandler(request: $0!, response: $1, data: $2, dictionary: dictionary, error: nil)
                 }
                 else {
@@ -164,27 +164,25 @@ extension QNNetworkTool {
     /**
      021.医生注册接口
      
-     :param: name                姓名
-     :param: phone               电话号码
+     :param: adminuser                姓名
      :param: password            密码
      :param: authcode            验证码
      :param: completion          完成的回调
      */
-//    class func register(name: String, phone: String, password: String, authcode: String, completion: (QD_Doctor?, NSError?, String?) -> Void) {
-//        var params = [String : String]()
-//        params[""] = name
-//        params["phone"] = phone
-//        params["password"] = password
-//        params["authcode"] = authcode
-//        requestPOST(kServerAddress + "/Customersapi/customerSave", parameters: paramsToJsonDataParams(params)) { (_, _, _, dictionary, error) -> Void in
-//            if dictionary != nil, let userDic = dictionary?["data"] as? NSDictionary, let user = User(userDic) {
-//                g_user = user
-//                completion(user, nil, nil)
-//            }else {
-//                completion(nil, error, dictionary?["errorMsg"] as? String)
-//            }
-//        }
-//    }
+    class func register(adminuser: String, password: String, authcode: String, completion: (User?, NSError?, String?) -> Void) {
+        var params = [String : String]()
+        params["adminuser"] = adminuser
+        params["adminpass"] = password
+        params["code"] = authcode
+        requestPOST(kServerAddress + "/Customersapi/customerSave", parameters:params) { (_, _, _, dictionary, error) -> Void in
+            if dictionary != nil, let userDic = dictionary?["data"] as? NSDictionary, let user = User(userDic) {
+                g_user = user
+                completion(user, nil, nil)
+            }else {
+                completion(nil, error, dictionary?["errormsg"] as? String)
+            }
+        }
+    }
 
 
 }

@@ -2,14 +2,14 @@
 //  LoginViewController.swift
 //  QooccHealth
 //
-//  Created by LiuYu on 15/4/13.
-//  Copyright (c) 2015年 Liuyu. All rights reserved.
+//  Created by Leiganzheng on 15/4/13.
+//  Copyright (c) 2015年 Leiganzheng. All rights reserved.
 //
 
 import UIKit
 import ReactiveCocoa
 /**
-*  @author LiuYu, 15-05-15 10:05:27
+*  @author Leiganzheng, 15-05-15 10:05:27
 *
 *  //MARK:- 用户登录
 */
@@ -72,9 +72,12 @@ class LoginViewController: UIViewController, QNInterceptorNavigationBarHiddenPro
     }
     
     func login() {
+        QNNetworkTool.fetchAuthCode("0", type: "3", target: "15820898618") { (code, error, errorMsg) -> Void in
+            
+        }
         //进入主界面
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-        QNTool.enterRootViewController(vc!, animated: true)
+//        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+//        QNTool.enterRootViewController(vc!, animated: true)
 
 //        if !self.checkAccountPassWord() {return}
 //        if let id = self.accountTextField.text, let password = self.passwordTextField.text {

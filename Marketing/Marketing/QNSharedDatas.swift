@@ -2,7 +2,7 @@
 //  QNSharedDatas.swift
 //  QooccShow
 //
-//  Created by LiuYu on 14/10/31.
+//  Created by Leiganzheng on 14/10/31.
 //  Copyright (c) 2014年 Qoocc. All rights reserved.
 //
 

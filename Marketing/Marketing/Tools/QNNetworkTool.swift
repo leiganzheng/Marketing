@@ -134,14 +134,31 @@ extension QNNetworkTool {
 
     class func login(Account account: String, Password password: String,Role role: String, completion: (User?, NSError?, String?) -> Void) {
         requestPOST(kServerAddress + "/Apibase/userLogin", parameters: ["account" : account, "password" : password,"role":role]) { (_, _, _, dictionary, error) -> Void in
-            if dictionary != nil, let userDic = dictionary?["data"] as? NSDictionary, let doctor = User(userDic) {
-                completion(doctor, nil, nil)
+            if dictionary != nil, let userDic = dictionary?["data"] as? NSDictionary, let user = User(userDic) {
+                completion(user, nil, nil)
             }
             else {
                 completion(nil, error, dictionary?["errorMsg"] as? String)
             }
         }
     }
+    /**
+     退出登录，并且拥有页面跳转功能
+     */
+    class func logout(accesstoken: String, completion: (succeed: Bool, NSError?, String?) -> Void) {
+        requestPOST(kServerAddress + "/Apibase/userLogout", parameters: ["accesstoken" : accesstoken]) { (_, _, _, dictionary, error) -> Void in
+            let succeed: Bool
+            if let errorCode = dictionary?["errorCode"]?.integerValue where errorCode == 0 {
+                succeed = true
+            }
+            else {
+                succeed = false
+            }
+            completion(succeed: succeed, error, dictionary?["errorMsg"] as? String)//            let vc = (UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()!)
+//            QNTool.enterRootViewController(vc)
+        }
+    }
+
     /**
      获取验证码
      
@@ -151,7 +168,7 @@ extension QNNetworkTool {
      :param: completion 完成的回调（内涵验证码）
      */
     class func fetchAuthCode(role: String, type: String,target: String, completion: (String?, NSError?, String?) -> Void) {
-        requestPOST(kServerAddress + "/Apibase/sendCaptcha", parameters: ["type" : type, "target" : target,"role":role]) { (_, _, _, dictionary, error) -> Void in
+        requestGET(kServerAddress + "/Apibase/sendCaptcha", parameters: ["type" : type, "target" : target,"role":role]) { (_, _, _, dictionary, error) -> Void in
             if let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
                 completion(dictionary?["code"] as? String, nil, nil)
             }
@@ -162,7 +179,7 @@ extension QNNetworkTool {
     }
     
     /**
-     021.医生注册接口
+     021.注册接口
      
      :param: adminuser                姓名
      :param: password            密码
@@ -183,6 +200,143 @@ extension QNNetworkTool {
             }
         }
     }
+    /**
+     获取用户信息
+     :param: string accesstoken 登录状态校验令牌
+     :param: completion 完成的回调 
+     */
+    class func fetchUserinfo(role: String, type: String,target: String, completion: (User?, NSError?, String?) -> Void) {
+        requestPOST(kServerAddress + "/Apibase/userGetInfo", parameters: ["type" : type, "target" : target,"role":role]) { (_, _, _, dictionary, error) -> Void in
+            if dictionary != nil, let userDic = dictionary?["data"] as? NSDictionary, let user = User(userDic) {
+                completion(user, nil, nil)
+            }
+            else {
+                completion(nil, error, dictionary?["errorMsg"] as? String)
+            }
 
+        }
+    }
+    /**
+     获取用户信息
+     :param: string accesstoken 登录状态校验令牌
+     :param: string accesstoken 登录状态校验令牌
+     :param: string accesstoken 登录状态校验令牌
+     :param: string accesstoken 登录状态校验令牌
+     :param: string accesstoken 登录状态校验令牌
+     :param: string accesstoken 登录状态校验令牌
+     
+     :param: completion 完成的回调 
+     */
+    class func updateUserinfo(role: String, type: String,target: String, completion: (User?, NSError?, String?) -> Void) {
+        requestPOST(kServerAddress + "/Customersapi/customerSave", parameters: ["type" : type, "target" : target,"role":role]) { (_, _, _, dictionary, error) -> Void in
+            if dictionary != nil, let userDic = dictionary?["data"] as? NSDictionary, let user = User(userDic) {
+                completion(user, nil, nil)
+            }
+            else {
+                completion(nil, error, dictionary?["errorMsg"] as? String)
+            }
+            
+        }
+    }
+
+    /**
+     用户修改密码
+     :param:  accesstoken 登录状态校验令牌
+     :param:  oldpwd
+     :param:  newpwd
+     :param: completion 完成的回调 
+     */
+    class func updatePassWord(accesstoken: String, old: String,new: String, completion: (succeed: Bool, NSError?, String?) -> Void) {
+        requestPOST(kServerAddress + "/Apibase/userPasswordEdit", parameters: ["accesstoken" : accesstoken, "old_password" : old,"new_password":new]) { (_, _, _, dictionary, error) -> Void in
+            let succeed: Bool
+            if let errorCode = dictionary?["errorCode"]?.integerValue where errorCode == 0 {
+                succeed = true
+            }
+            else {
+                succeed = false
+            }
+            completion(succeed: succeed, error, dictionary?["errorMsg"] as? String)
+        }
+    }
+    /**
+     用户找回密码
+     :param: type 类型默认为0（手机-0、邮箱-1）
+     :param: code 验证码[必选项]
+     :param: role 身份默认为3（站长-1、商家-2、客户-3）
+     :param: account 账号[必选项]
+     :param: new_password 密码[必选项]
+     :param: completion 完成的回调 
+     */
+    class func findPassWord(role: String, type: String,account: String,code: String,new_password: String, completion: (succeed: Bool, NSError?, String?) -> Void) {
+        requestPOST(kServerAddress + "/Apibase/userPasswordForgot", parameters: ["role" : role, "type" : type,"code" : code,"new_password" : new_password,"account":account]) { (_, _, _, dictionary, error) -> Void in
+            let succeed: Bool
+            if let errorCode = dictionary?["errorCode"]?.integerValue where errorCode == 0 {
+                succeed = true
+            }
+            else {
+                succeed = false
+            }
+            completion(succeed: succeed, error, dictionary?["errorMsg"] as? String)
+        }
+    }
+}
+//MARK:- 商家模块
+extension QNNetworkTool {
+    /**
+     商家列表
+     :param: search_key 搜索关键词
+     :param: page 页码[必选项]
+     :param: page_size 页数默认10
+     :param: order 排序默认按shop_id
+     :param: completion 完成的回调 
+     */
+    class func fetchShopList(search_key: String, page: String,page_size: String, order:String, completion: ([Shop]?, NSError?, String?) -> Void) {
+        requestPOST(kServerAddress + "/Shopsapi/shopGetList", parameters: ["search_key" : search_key, "page" : page,"page_size":page_size,"order":order]) { (_, _, _, dictionary, error) -> Void in
+            if let userList = dictionary?["data"] as? NSArray {
+                var result = [Shop]()
+                for object in userList {
+                    if let dic = object as? NSDictionary, let shop = Shop(dic) {
+                        result.append(shop)
+                    }
+                }
+                completion(result, error, dictionary?["errorMsg"] as? String)
+            }
+            else {
+                completion(nil, error, dictionary?["errorMsg"] as? String)
+            }
+
+            
+        }
+    }
+    /**
+     商家详情
+     :param: shop_id 商家ID
+     :param: completion 完成的回调 
+     */
+    class func fetchShopDetailInfo(shop_id: String, completion: (Shop?, NSError?, String?) -> Void) {
+        requestPOST(kServerAddress + "/Shopsapi/shopGetInfo", parameters: ["shop_id" : shop_id]) { (_, _, _, dictionary, error) -> Void in
+            if dictionary != nil, let shopDic = dictionary?["data"] as? NSDictionary, let shop = Shop(shopDic) {
+                completion(shop, nil, nil)
+            }
+            else {
+                completion(nil, error, dictionary?["errorMsg"] as? String)
+            }
+        }
+    }
+    /**
+      商家保存（申请、新增、修改）
+     :param: dictionary 商家ID
+     :param: completion 完成的回调
+     */
+    class func saveShopInfo(dictionary: String, completion: (Shop?, NSError?, String?) -> Void) {
+        requestPOST(kServerAddress + "/Shopsapi/shopSave", parameters: ["dictionary" : dictionary]) { (_, _, _, dictionary, error) -> Void in
+            if dictionary != nil, let shopDic = dictionary?["data"] as? NSDictionary, let shop = Shop(shopDic) {
+                completion(shop, nil, nil)
+            }
+            else {
+                completion(nil, error, dictionary?["errorMsg"] as? String)
+            }
+        }
+    }
 
 }

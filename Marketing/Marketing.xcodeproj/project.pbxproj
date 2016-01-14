@@ -17,6 +17,8 @@
 		71C3A4271C3185100042F851 /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A4261C3185100042F851 /* MarketViewController.swift */; };
 		71C3A4291C31851E0042F851 /* PromotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A4281C31851E0042F851 /* PromotionViewController.swift */; };
 		71C3A42B1C3185300042F851 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A42A1C3185300042F851 /* UserViewController.swift */; };
+		BB52E9711C47328200E0D1EC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB52E9701C47328200E0D1EC /* User.swift */; };
+		BB52E9731C47369600E0D1EC /* QNSharedDatas.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB52E9721C47369600E0D1EC /* QNSharedDatas.swift */; };
 		BB643BB21C30EE4C00BE6790 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB643BB11C30EE4C00BE6790 /* AppDelegate.swift */; };
 		BB643BB41C30EE4C00BE6790 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB643BB31C30EE4C00BE6790 /* ViewController.swift */; };
 		BB643BB71C30EE4C00BE6790 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB643BB51C30EE4C00BE6790 /* Main.storyboard */; };
@@ -67,6 +69,8 @@
 		71C3A4281C31851E0042F851 /* PromotionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionViewController.swift; sourceTree = "<group>"; };
 		71C3A42A1C3185300042F851 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		87E2F1119F1545FD344AD0A5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB52E9701C47328200E0D1EC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		BB52E9721C47369600E0D1EC /* QNSharedDatas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNSharedDatas.swift; sourceTree = "<group>"; };
 		BB643BAE1C30EE4C00BE6790 /* Marketing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marketing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB643BB11C30EE4C00BE6790 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB643BB31C30EE4C00BE6790 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -204,6 +208,7 @@
 		BB643BB01C30EE4C00BE6790 /* Marketing */ = {
 			isa = PBXGroup;
 			children = (
+				BB52E9721C47369600E0D1EC /* QNSharedDatas.swift */,
 				BB643BD51C30EF0E00BE6790 /* Constents.swift */,
 				BB643BDF1C30EF0E00BE6790 /* QNStyleAttribute.swift */,
 				71C3A4201C3184BC0042F851 /* Market */,
@@ -249,6 +254,7 @@
 			isa = PBXGroup;
 			children = (
 				BB643BD71C30EF0E00BE6790 /* QN_Base.swift */,
+				BB52E9701C47328200E0D1EC /* User.swift */,
 			);
 			path = DataModule;
 			sourceTree = "<group>";
@@ -456,6 +462,7 @@
 				71C3A42B1C3185300042F851 /* UserViewController.swift in Sources */,
 				BBF93C371C33B4A60058894C /* NearbyBCollectionViewCell.swift in Sources */,
 				BBE32FC31C3227CE0095BA88 /* MyCollectionViewController.swift in Sources */,
+				BB52E9711C47328200E0D1EC /* User.swift in Sources */,
 				BB643BB41C30EE4C00BE6790 /* ViewController.swift in Sources */,
 				BB643BEC1C30EF0E00BE6790 /* QNNetworkTool.swift in Sources */,
 				71C3A4181C3175980042F851 /* LoginViewController.swift in Sources */,
@@ -468,6 +475,7 @@
 				BB643BE91C30EF0E00BE6790 /* UIViewControllerExtension.swift in Sources */,
 				BBE32FD11C328E5A0095BA88 /* OrderTableViewCell.swift in Sources */,
 				71C3A4191C3175980042F851 /* RegisterViewController.swift in Sources */,
+				BB52E9731C47369600E0D1EC /* QNSharedDatas.swift in Sources */,
 				BB643BB21C30EE4C00BE6790 /* AppDelegate.swift in Sources */,
 				BB643BED1C30EF0E00BE6790 /* QNTool.swift in Sources */,
 				BBF93C331C33AF1E0058894C /* PromotionCollectionViewCell.swift in Sources */,

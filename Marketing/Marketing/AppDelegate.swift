@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         // 开启拦截器
         QNInterceptor.start()
+        //微信注册
         // 修改导航栏样式
         UINavigationBar.appearance().barTintColor = appThemeColor
         UINavigationBar.appearance().tintColor = appThemeColor

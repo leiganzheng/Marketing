@@ -168,7 +168,7 @@ extension QNNetworkTool {
      :param: completion 完成的回调（内涵验证码）
      */
     class func fetchAuthCode(role: String, type: String,target: String, completion: (String?, NSError?, String?) -> Void) {
-        requestGET(kServerAddress + "/Apibase/sendCaptcha", parameters: ["type" : type, "target" : target,"role":role]) { (_, _, _, dictionary, error) -> Void in
+        requestPOST(kServerAddress + "/Apibase/sendCaptcha", parameters: ["type" : type, "target" : target,"role":role]) { (_, _, _, dictionary, error) -> Void in
             if let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
                 completion(dictionary?["code"] as? String, nil, nil)
             }

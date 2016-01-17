@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		4593F54EBD719CB1A6930695 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E2F1119F1545FD344AD0A5 /* Pods.framework */; };
+		719861941C4B6EFC00803F26 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7198618F1C4B6EFC00803F26 /* libWeChatSDK.a */; };
+		719861951C4B6EFC00803F26 /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 719861901C4B6EFC00803F26 /* read_me.txt */; };
+		719861971C4B6FFF00803F26 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 719861961C4B6FFF00803F26 /* SystemConfiguration.framework */; };
+		7198619B1C4B709900803F26 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7198619A1C4B709900803F26 /* libsqlite3.0.tbd */; };
+		7198619C1C4B70A100803F26 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 719861981C4B701700803F26 /* libz.tbd */; };
+		7198619E1C4B70B800803F26 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7198619D1C4B70B800803F26 /* libc++.tbd */; };
 		71C3A4171C3175980042F851 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A40D1C3175980042F851 /* ForgetPasswordViewController.swift */; };
 		71C3A4181C3175980042F851 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A40E1C3175980042F851 /* LoginViewController.swift */; };
 		71C3A4191C3175980042F851 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A40F1C3175980042F851 /* RegisterViewController.swift */; };
@@ -21,7 +27,6 @@
 		BB52E9731C47369600E0D1EC /* QNSharedDatas.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB52E9721C47369600E0D1EC /* QNSharedDatas.swift */; };
 		BB52E9751C47764900E0D1EC /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB52E9741C47764900E0D1EC /* Shop.swift */; };
 		BB643BB21C30EE4C00BE6790 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB643BB11C30EE4C00BE6790 /* AppDelegate.swift */; };
-		BB643BB41C30EE4C00BE6790 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB643BB31C30EE4C00BE6790 /* ViewController.swift */; };
 		BB643BB71C30EE4C00BE6790 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB643BB51C30EE4C00BE6790 /* Main.storyboard */; };
 		BB643BB91C30EE4C00BE6790 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB643BB81C30EE4C00BE6790 /* Assets.xcassets */; };
 		BB643BBC1C30EE4C00BE6790 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB643BBA1C30EE4C00BE6790 /* LaunchScreen.storyboard */; };
@@ -60,6 +65,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7198618F1C4B6EFC00803F26 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		719861901C4B6EFC00803F26 /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = read_me.txt; sourceTree = "<group>"; };
+		719861911C4B6EFC00803F26 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		719861921C4B6EFC00803F26 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		719861931C4B6EFC00803F26 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		719861961C4B6FFF00803F26 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		719861981C4B701700803F26 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		7198619A1C4B709900803F26 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		7198619D1C4B70B800803F26 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		71C3A40D1C3175980042F851 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		71C3A40E1C3175980042F851 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		71C3A40F1C3175980042F851 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -75,7 +89,6 @@
 		BB52E9741C47764900E0D1EC /* Shop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		BB643BAE1C30EE4C00BE6790 /* Marketing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Marketing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB643BB11C30EE4C00BE6790 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BB643BB31C30EE4C00BE6790 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BB643BB61C30EE4C00BE6790 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BB643BB81C30EE4C00BE6790 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BB643BBB1C30EE4C00BE6790 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -113,6 +126,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7198619E1C4B70B800803F26 /* libc++.tbd in Frameworks */,
+				7198619C1C4B70A100803F26 /* libz.tbd in Frameworks */,
+				7198619B1C4B709900803F26 /* libsqlite3.0.tbd in Frameworks */,
+				719861971C4B6FFF00803F26 /* SystemConfiguration.framework in Frameworks */,
+				719861941C4B6EFC00803F26 /* libWeChatSDK.a in Frameworks */,
 				4593F54EBD719CB1A6930695 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -130,9 +148,25 @@
 		385EDFD57E19E70DC646D726 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7198619D1C4B70B800803F26 /* libc++.tbd */,
+				7198619A1C4B709900803F26 /* libsqlite3.0.tbd */,
+				719861981C4B701700803F26 /* libz.tbd */,
+				719861961C4B6FFF00803F26 /* SystemConfiguration.framework */,
 				87E2F1119F1545FD344AD0A5 /* Pods.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7198618E1C4B6EFC00803F26 /* Weixin */ = {
+			isa = PBXGroup;
+			children = (
+				7198618F1C4B6EFC00803F26 /* libWeChatSDK.a */,
+				719861901C4B6EFC00803F26 /* read_me.txt */,
+				719861911C4B6EFC00803F26 /* WechatAuthSDK.h */,
+				719861921C4B6EFC00803F26 /* WXApi.h */,
+				719861931C4B6EFC00803F26 /* WXApiObject.h */,
+			);
+			path = Weixin;
 			sourceTree = "<group>";
 		};
 		71C3A4201C3184BC0042F851 /* Market */ = {
@@ -225,7 +259,6 @@
 				BB643BE01C30EF0E00BE6790 /* Resources */,
 				BB643BE11C30EF0E00BE6790 /* Tools */,
 				BB643BB11C30EE4C00BE6790 /* AppDelegate.swift */,
-				BB643BB31C30EE4C00BE6790 /* ViewController.swift */,
 				71C3A41B1C3175B50042F851 /* Login.storyboard */,
 				BB643BB51C30EE4C00BE6790 /* Main.storyboard */,
 				BB643BB81C30EE4C00BE6790 /* Assets.xcassets */,
@@ -276,6 +309,7 @@
 		BB643BDD1C30EF0E00BE6790 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				7198618E1C4B6EFC00803F26 /* Weixin */,
 			);
 			path = Librarys;
 			sourceTree = "<group>";
@@ -395,6 +429,7 @@
 				BB643BB91C30EE4C00BE6790 /* Assets.xcassets in Resources */,
 				71C3A41D1C3175B50042F851 /* Login.storyboard in Resources */,
 				BB643BD21C30EEFE00BE6790 /* readme.txt in Resources */,
+				719861951C4B6EFC00803F26 /* read_me.txt in Resources */,
 				BB643BB71C30EE4C00BE6790 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -467,7 +502,6 @@
 				BB52E9751C47764900E0D1EC /* Shop.swift in Sources */,
 				BBE32FC31C3227CE0095BA88 /* MyCollectionViewController.swift in Sources */,
 				BB52E9711C47328200E0D1EC /* User.swift in Sources */,
-				BB643BB41C30EE4C00BE6790 /* ViewController.swift in Sources */,
 				BB643BEC1C30EF0E00BE6790 /* QNNetworkTool.swift in Sources */,
 				71C3A4181C3175980042F851 /* LoginViewController.swift in Sources */,
 				71C3A4171C3175980042F851 /* ForgetPasswordViewController.swift in Sources */,
@@ -632,6 +666,10 @@
 				INFOPLIST_FILE = Marketing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Marketing/Librarys/Weixin",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ddd.Marketing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -645,6 +683,10 @@
 				INFOPLIST_FILE = Marketing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Marketing/Librarys/Weixin",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = ddd.Marketing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

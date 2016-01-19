@@ -13,15 +13,17 @@ import UIKit
 // 跳转到订单界面
 // MARK: Tab 分组
 private enum QNTabBarItem: Int {
-    case MedicaData = 0
-    case Task = 1
-    case UserCenter = 2
+    case Nearby = 0
+    case Market = 1
+    case Promotion = 2
+    case UserCenter = 3
     
     // 对应的图片名
     var imageName: String {
         switch self {
-        case .MedicaData: return "nav_data"
-        case .Task: return "nav_order"
+        case .Nearby: return "nav_nearby"
+        case .Market: return "nav_market"
+        case .Promotion: return "nav_promotion"
         case .UserCenter: return "nav_user"
         }
     }
@@ -42,8 +44,9 @@ class QNTabBarController: UITabBarController {
 
         // 图标配置
         if let _ = self.tabBar.items {
-            self.itemConfig(QNTabBarItem.MedicaData)
-            self.itemConfig(QNTabBarItem.Task)
+            self.itemConfig(QNTabBarItem.Nearby)
+            self.itemConfig(QNTabBarItem.Market)
+            self.itemConfig(QNTabBarItem.Promotion)
             self.itemConfig(QNTabBarItem.UserCenter)
         }
         self.messageCountChanged()

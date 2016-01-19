@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="41" width="320" height="527"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入您的账户名" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Qyw-Cr-LRm">
-                                        <rect key="frame" x="16" y="110" width="290" height="35"/>
+                                        <rect key="frame" x="25" y="156" width="270" height="49"/>
                                         <color key="backgroundColor" red="0.97254901960784312" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
@@ -31,7 +31,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WBZ-r8-qda">
-                                        <rect key="frame" x="16" y="165" width="290" height="35"/>
+                                        <rect key="frame" x="25" y="230" width="270" height="49"/>
                                         <color key="backgroundColor" red="0.97254901960784312" green="0.97647058823529409" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -41,7 +41,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YjR-6g-HPn">
-                                        <rect key="frame" x="16" y="240" width="290" height="40"/>
+                                        <rect key="frame" x="25" y="308" width="270" height="49"/>
                                         <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="登录">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -55,10 +55,6 @@
                                             <action selector="login:" destination="2uY-yi-O1Z" eventType="touchUpInside" id="OMs-HW-aFb"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2yQ-DJ-qHl">
-                                        <rect key="frame" x="121" y="8" width="79" height="66"/>
-                                        <color key="backgroundColor" red="0.80000000000000004" green="0.30980392159999998" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
-                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hW0-pI-Gbq">
                                         <rect key="frame" x="95" y="480" width="55" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -89,6 +85,10 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2yQ-DJ-qHl">
+                                        <rect key="frame" x="115" y="15" width="90" height="90"/>
+                                        <color key="backgroundColor" red="0.80000000000000004" green="0.30980392159999998" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>

@@ -30,7 +30,7 @@ let navigationTextFont = UIFont.systemFontOfSize(16)
 //MARK: 默认背景色
 let defaultBackgroundColor = UIColor(white: 1.0, alpha: 1.0)
 //MARK: 默认灰色背景
-let defaultBackgroundGrayColor = UIColor(white: 249/255.0, alpha: 1.0)
+let defaultBackgroundGrayColor = UIColor(white: 243/255.0, alpha: 1.0)
 //MARK: 默认灰色
 let defaultGrayColor = UIColor(white: 81/255.0, alpha: 1.0)
 //MARK：默认的分割线颜色

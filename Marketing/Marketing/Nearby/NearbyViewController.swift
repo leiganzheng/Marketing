@@ -15,6 +15,7 @@ class NearbyViewController: UIViewController, UICollectionViewDataSource, UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "附近"
+        self.view.backgroundColor = defaultBackgroundGrayColor
         //数据
         self.titleArray = NSArray()
         // Do any additional setup after loading the view.
@@ -58,11 +59,11 @@ class NearbyViewController: UIViewController, UICollectionViewDataSource, UIColl
         if indexPath.section == 1 {
             return CGSizeMake(collectionView.frame.width/2.0-10, 150)
         }else {
-            return CGSizeMake(collectionView.frame.width/2.0-10, 100)
+            return CGSizeMake(collectionView.frame.width/2.0-10, 78)
         }
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(5, 0, 5, 0)
+        return UIEdgeInsetsMake(5, 2, 5, 2)
     }
     
     

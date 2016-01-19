@@ -72,12 +72,12 @@ class LoginViewController: UIViewController, QNInterceptorNavigationBarHiddenPro
     }
     
     func login() {
-        QNNetworkTool.fetchAuthCode("3", type: "0", target: "15820898618") { (code, error, errorMsg) -> Void in
-            
-        }
+//        QNNetworkTool.fetchAuthCode("3", type: "0", target: "15820898618") { (code, error, errorMsg) -> Void in
+//            
+//        }
         //进入主界面
-//        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-//        QNTool.enterRootViewController(vc!, animated: true)
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+        QNTool.enterRootViewController(vc!, animated: true)
 
 //        if !self.checkAccountPassWord() {return}
 //        if let id = self.accountTextField.text, let password = self.passwordTextField.text {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChangePWDViewController: UIViewController , UITableViewDataSource, UITableViewDelegate {
+class ChangePWDViewController: UIViewController , UITableViewDataSource, UITableViewDelegate,QNInterceptorProtocol {
     
     var titles: NSArray!
     @IBOutlet weak var customTableView: UITableView!

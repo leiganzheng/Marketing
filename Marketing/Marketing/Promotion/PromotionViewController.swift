@@ -15,8 +15,10 @@ class PromotionViewController: UIViewController, UICollectionViewDataSource, UIC
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "促销"
+        self.view.backgroundColor = defaultBackgroundGrayColor
         //数据
         self.titleArray = NSArray()
+        
         // Do any additional setup after loading the view.
     }
 
@@ -63,10 +65,10 @@ class PromotionViewController: UIViewController, UICollectionViewDataSource, UIC
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-            return CGSizeMake(collectionView.frame.width/2.0-10, collectionView.frame.width/2.0-10)
+            return CGSizeMake(collectionView.frame.width/2.0-10, 245)
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(5, 0, 5, 0)
+        return UIEdgeInsetsMake(2, 2, 2, 2)
     }
 
 

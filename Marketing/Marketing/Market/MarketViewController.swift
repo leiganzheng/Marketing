@@ -17,6 +17,7 @@ class MarketViewController: UIViewController, UICollectionViewDataSource, UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "商城"
+        self.view.backgroundColor = defaultBackgroundGrayColor
         //数据
         self.titleArray = NSArray()
         self.titles = ["日用品","日用品","日用品","日用品"]
@@ -50,7 +51,7 @@ class MarketViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(collectionView.frame.width/3.0-10, collectionView.frame.width/3.0-10)
+        return CGSizeMake(collectionView.frame.width/3.0-10, 85)
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         return UIEdgeInsetsMake(5, 0, 5, 0)
@@ -60,7 +61,7 @@ class MarketViewController: UIViewController, UICollectionViewDataSource, UIColl
         return titles.count
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 40
+        return 66
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellId = "cell"
@@ -69,6 +70,10 @@ class MarketViewController: UIViewController, UICollectionViewDataSource, UIColl
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
         }
         cell.textLabel?.text = self.titles[indexPath.row] as? String
+        let lb = UILabel(frame: CGRectMake(0,65,85, 1))
+        lb.backgroundColor = UIColor(white: 136/255, alpha: 1)
+        cell.addSubview(lb)
+
         return cell
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

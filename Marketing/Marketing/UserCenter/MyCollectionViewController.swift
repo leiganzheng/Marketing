@@ -9,7 +9,7 @@
 import UIKit
 import ReactiveCocoa
 
-class MyCollectionViewController: UIViewController , UITableViewDataSource, UITableViewDelegate {
+class MyCollectionViewController: UIViewController , UITableViewDataSource, UITableViewDelegate,QNInterceptorProtocol{
 
     var titles: NSArray!
      @IBOutlet weak var customTableView: UITableView!

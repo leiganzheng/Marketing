@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PayOrderViewController: UIViewController , UITableViewDataSource, UITableViewDelegate {
+class PayOrderViewController: UIViewController , UITableViewDataSource, UITableViewDelegate,QNInterceptorProtocol {
     
     var titles: NSArray!
     @IBOutlet weak var customTableView: UITableView!

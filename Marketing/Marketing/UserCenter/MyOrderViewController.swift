@@ -9,7 +9,7 @@
 import UIKit
 import ReactiveCocoa
 
-class MyOrderViewController: UIViewController , UITableViewDataSource, UITableViewDelegate {
+class MyOrderViewController: UIViewController , UITableViewDataSource, UITableViewDelegate,QNInterceptorProtocol{
     
     var titles: NSArray!
      @IBOutlet weak var customTableView: UITableView!

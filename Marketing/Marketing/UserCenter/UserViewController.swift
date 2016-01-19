@@ -19,7 +19,7 @@ class UserViewController: UIViewController , UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         self.titles = [[""],["我的订单","我的收藏"],["修改密码","退出登录"]]
-        self.icons = [[""],["",""],["",""]]
+        self.icons = [[""],["order","favite"],["change_pwd","exit"]]
         self.navigationController?.navigationBar.translucent = false // 关闭透明度效果
         // 让导航栏支持向右滑动手势
         QNTool.addInteractive(self.navigationController)

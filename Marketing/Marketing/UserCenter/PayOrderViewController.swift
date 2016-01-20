@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PayOrderViewController: UIViewController , UITableViewDataSource, UITableViewDelegate,QNInterceptorProtocol {
+class PayOrderViewController: BaseViewController , UITableViewDataSource, UITableViewDelegate,QNInterceptorProtocol {
     
     var titles: NSArray!
     @IBOutlet weak var customTableView: UITableView!
@@ -16,7 +16,6 @@ class PayOrderViewController: UIViewController , UITableViewDataSource, UITableV
         super.viewDidLoad()
         self.title = "订单支付"
         self.titles = ["微信支付","快捷支付"]
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
@@ -30,15 +29,15 @@ class PayOrderViewController: UIViewController , UITableViewDataSource, UITableV
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 44
+        return 54
     }
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        return 40
     }
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let customView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 30))
         customView.backgroundColor = defaultBackgroundGrayColor
-        let lb = UILabel(frame: CGRectMake(8,0,200, 30))
+        let lb = UILabel(frame: CGRectMake(8,5,200, 30))
         lb.backgroundColor = UIColor.clearColor()
         lb.textColor = tableViewCellDefaultTextColor
         lb.textAlignment = NSTextAlignment.Left
@@ -46,12 +45,12 @@ class PayOrderViewController: UIViewController , UITableViewDataSource, UITableV
         lb.text = "请支付"
         customView.addSubview(lb)
         
-        let lb1 = UILabel(frame: CGRectMake(tableView.frame.size.width-100,0,100, 30))
+        let lb1 = UILabel(frame: CGRectMake(tableView.frame.size.width-110,5,100, 30))
         lb1.backgroundColor = UIColor.clearColor()
         lb1.textColor = tableViewCellDefaultTextColor
         lb1.textAlignment = NSTextAlignment.Right
         lb1.font = UIFont.systemFontOfSize(15)
-        lb1.text = "200"
+        lb1.text = "¥200"
         customView.addSubview(lb1)
         
         return customView

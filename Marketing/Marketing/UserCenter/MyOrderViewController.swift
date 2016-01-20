@@ -9,7 +9,7 @@
 import UIKit
 import ReactiveCocoa
 
-class MyOrderViewController: UIViewController , UITableViewDataSource, UITableViewDelegate,QNInterceptorProtocol{
+class MyOrderViewController: BaseViewController , UITableViewDataSource, UITableViewDelegate,QNInterceptorProtocol{
     
     var titles: NSArray!
      @IBOutlet weak var customTableView: UITableView!
@@ -17,7 +17,6 @@ class MyOrderViewController: UIViewController , UITableViewDataSource, UITableVi
         super.viewDidLoad()
         self.title = "我的订单"
         self.titles = ["我的订单","我的收藏","修改密码","退出登录"]
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {

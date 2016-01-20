@@ -8,18 +8,15 @@
 
 import UIKit
 
-class PromotionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class PromotionViewController: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet var collectionView: UICollectionView!
     var titleArray: NSArray!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "促销"
-        self.view.backgroundColor = defaultBackgroundGrayColor
         //数据
         self.titleArray = NSArray()
-        
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

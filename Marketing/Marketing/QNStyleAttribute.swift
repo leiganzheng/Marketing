@@ -50,25 +50,25 @@ let tableViewCellDefaultDetailTextFont = UIFont.systemFontOfSize(14)
 //MARK: 默认详情颜色
 let tableViewCellDefaultDetailTextColor = UIColor(white: 136/255.0, alpha: 1)
 //MARK:- 对UITableViewCell对象进行默认配置
-//extension QNTool {
-//    class func configTableViewCellDefault(cell: UITableViewCell) {
-//        cell.textLabel?.font = tableViewCellDefaultTextFont
-//        cell.textLabel?.textColor = tableViewCellDefaultTextColor
-//        cell.contentView.backgroundColor = tableViewCellDefaultBackgroundColor
-//        cell.detailTextLabel?.font = tableViewCellDefaultDetailTextFont
-//        cell.detailTextLabel?.textColor = tableViewCellDefaultDetailTextColor
-//    }
-//    /// 对UIView对象进行配置(cornerRadius)
-//    class func configViewLayer(view: UIView) {
-//        view.layer.cornerRadius = 2
-//        view.layer.masksToBounds = true
-//    }
-//    ///对UIView对象进行配置(borderWidth、borderColor)
-//    class func configViewLayerFrame(view: UIView) {
-//        view.layer.borderWidth = 0.5
-//        view.layer.borderColor = defaultLineColor.CGColor
-//    }
-//}
+extension QNTool {
+    class func configTableViewCellDefault(cell: UITableViewCell) {
+        cell.textLabel?.font = tableViewCellDefaultTextFont
+        cell.textLabel?.textColor = tableViewCellDefaultTextColor
+        cell.contentView.backgroundColor = tableViewCellDefaultBackgroundColor
+        cell.detailTextLabel?.font = tableViewCellDefaultDetailTextFont
+        cell.detailTextLabel?.textColor = tableViewCellDefaultDetailTextColor
+    }
+    /// 对UIView对象进行配置(cornerRadius)
+    class func configViewLayer(view: UIView) {
+        view.layer.cornerRadius = 2
+        view.layer.masksToBounds = true
+    }
+    ///对UIView对象进行配置(borderWidth、borderColor)
+    class func configViewLayerFrame(view: UIView) {
+        view.layer.borderWidth = 0.5
+        view.layer.borderColor = defaultLineColor.CGColor
+    }
+}
 
 
 

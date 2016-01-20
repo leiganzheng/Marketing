@@ -9,7 +9,7 @@
 import UIKit
 import ReactiveCocoa
 
-class MyCollectionViewController: UIViewController , UITableViewDataSource, UITableViewDelegate,QNInterceptorProtocol{
+class MyCollectionViewController: BaseViewController , UITableViewDataSource, UITableViewDelegate,QNInterceptorProtocol{
 
     var titles: NSArray!
      @IBOutlet weak var customTableView: UITableView!
@@ -17,7 +17,6 @@ class MyCollectionViewController: UIViewController , UITableViewDataSource, UITa
         super.viewDidLoad()
         self.title = "我的收藏"
         self.titles = ["我的订单","我的收藏","修改密码","退出登录"]
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

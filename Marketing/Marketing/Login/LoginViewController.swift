@@ -30,20 +30,21 @@ class LoginViewController: UIViewController, QNInterceptorNavigationBarHiddenPro
         self.imageView.image = UIImage(named: "Login_Logo.png")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
         self.imageView.tintColor = appThemeColor
         self.imageView.tintAdjustmentMode = .Normal
+        QNTool.configViewLayer(self.imageView)
         
-//        RegisterViewController.configTextField(self.accountTextField)
+        RegisterViewController.configTextField(self.accountTextField)
 //        self.accountTextField.text = g_Account
-        let accountImageView = UIImageView(frame: CGRectMake(10, 0, 40, 20))
+        let accountImageView = UIImageView(frame: CGRectMake(4, 0, 40, 20))
         accountImageView.contentMode = UIViewContentMode.Center
-        accountImageView.image = UIImage(named: "Login_Account")
-        self.accountTextField.leftView = accountImageView
-            
-//        RegisterViewController.configTextField(self.passwordTextField)
+//        accountImageView.image = UIImage(named: "Login_Account")
+//        self.accountTextField.leftView = accountImageView
+        
+        RegisterViewController.configTextField(self.passwordTextField)
         self.passwordTextField.secureTextEntry = true
-        let passwordImageView = UIImageView(frame: CGRectMake(10, 0, 40, 20))
+        let passwordImageView = UIImageView(frame: CGRectMake(4, 0, 40, 20))
         passwordImageView.contentMode = UIViewContentMode.Center
-        passwordImageView.image = UIImage(named: "Login_Password")
-        self.passwordTextField.leftView = passwordImageView
+//        passwordImageView.image = UIImage(named: "Login_Password")
+//        self.passwordTextField.leftView = passwordImageView
 
         // 键盘消失
         let tap = UITapGestureRecognizer()
@@ -72,12 +73,12 @@ class LoginViewController: UIViewController, QNInterceptorNavigationBarHiddenPro
     }
     
     func login() {
-//        QNNetworkTool.fetchAuthCode("3", type: "0", target: "15820898618") { (code, error, errorMsg) -> Void in
-//            
-//        }
+        QNNetworkTool.fetchAuthCode("3", type: "0", target: "15820898618") { (code, error, errorMsg) -> Void in
+            
+        }
         //进入主界面
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
-        QNTool.enterRootViewController(vc!, animated: true)
+//        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+//        QNTool.enterRootViewController(vc!, animated: true)
 
 //        if !self.checkAccountPassWord() {return}
 //        if let id = self.accountTextField.text, let password = self.passwordTextField.text {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserViewController: UIViewController , UITableViewDataSource, UITableViewDelegate{
+class UserViewController: BaseViewController , UITableViewDataSource, UITableViewDelegate{
 
     var titles: NSArray!
     var icons: NSArray!

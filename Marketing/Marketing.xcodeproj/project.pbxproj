@@ -48,6 +48,7 @@
 		BBE32FC91C328BD60095BA88 /* PayOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE32FC81C328BD60095BA88 /* PayOrderViewController.swift */; };
 		BBE32FD01C328E5A0095BA88 /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE32FCE1C328E5A0095BA88 /* CollectionTableViewCell.swift */; };
 		BBE32FD11C328E5A0095BA88 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE32FCF1C328E5A0095BA88 /* OrderTableViewCell.swift */; };
+		BBF1C5C91C4F59D80057FDE4 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF1C5C81C4F59D80057FDE4 /* BaseViewController.swift */; };
 		BBF93C331C33AF1E0058894C /* PromotionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF93C321C33AF1E0058894C /* PromotionCollectionViewCell.swift */; };
 		BBF93C351C33B49B0058894C /* NearbySCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF93C341C33B49B0058894C /* NearbySCollectionViewCell.swift */; };
 		BBF93C371C33B4A60058894C /* NearbyBCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF93C361C33B4A60058894C /* NearbyBCollectionViewCell.swift */; };
@@ -113,6 +114,7 @@
 		BBE32FC81C328BD60095BA88 /* PayOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PayOrderViewController.swift; sourceTree = "<group>"; };
 		BBE32FCE1C328E5A0095BA88 /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionTableViewCell.swift; sourceTree = "<group>"; };
 		BBE32FCF1C328E5A0095BA88 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
+		BBF1C5C81C4F59D80057FDE4 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		BBF93C321C33AF1E0058894C /* PromotionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionCollectionViewCell.swift; sourceTree = "<group>"; };
 		BBF93C341C33B49B0058894C /* NearbySCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbySCollectionViewCell.swift; sourceTree = "<group>"; };
 		BBF93C361C33B4A60058894C /* NearbyBCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearbyBCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				BB643BD41C30EF0E00BE6790 /* QNTabBarController.swift */,
+				BBF1C5C81C4F59D80057FDE4 /* BaseViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 			files = (
 				BB643BE61C30EF0E00BE6790 /* QN_Base.swift in Sources */,
 				71C3A42B1C3185300042F851 /* UserViewController.swift in Sources */,
+				BBF1C5C91C4F59D80057FDE4 /* BaseViewController.swift in Sources */,
 				BBF93C371C33B4A60058894C /* NearbyBCollectionViewCell.swift in Sources */,
 				BB52E9751C47764900E0D1EC /* Shop.swift in Sources */,
 				BBE32FC31C3227CE0095BA88 /* MyCollectionViewController.swift in Sources */,

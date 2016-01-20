@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MarketViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate,UITableViewDataSource, UITableViewDelegate   {
+class MarketViewController: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate,UITableViewDataSource, UITableViewDelegate   {
 
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet weak var customTableView: UITableView!
@@ -17,7 +17,6 @@ class MarketViewController: UIViewController, UICollectionViewDataSource, UIColl
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "商城"
-        self.view.backgroundColor = defaultBackgroundGrayColor
         //数据
         self.titleArray = NSArray()
         self.titles = ["日用品","日用品","日用品","日用品"]

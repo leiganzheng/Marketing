@@ -9,5 +9,6 @@
 import UIKit
 
 class NearbyBCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var customView: UIView!
     
 }

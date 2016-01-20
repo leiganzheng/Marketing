@@ -10,4 +10,5 @@ import UIKit
 
 class PromotionCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var customView: UIView!
 }

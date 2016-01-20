@@ -73,7 +73,7 @@ extension UIView {
     //MARK : - 加线条
     func addLine(x: CGFloat = 0,y:CGFloat, width: CGFloat,height : CGFloat = 1) {
         let line = UIView(frame: CGRectMake(x,y,width, height))
-        line.backgroundColor = defaultLineColor
+        line.backgroundColor = UIColor.lightGrayColor()
         self.addSubview(line)
     }
 }

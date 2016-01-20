@@ -55,7 +55,8 @@ class PromotionViewController: UIViewController, UICollectionViewDataSource, UIC
 //        selectedView.layer.cornerRadius = cell.customView.layer.cornerRadius
 //        selectedBgView.addSubview(selectedView)
         
-        
+        cell.customView.layer.borderColor = defaultLineColor.CGColor
+        cell.customView.layer.borderWidth = 0.5
         return cell
     }
     

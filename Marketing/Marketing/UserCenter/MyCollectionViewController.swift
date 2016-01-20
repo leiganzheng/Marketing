@@ -40,6 +40,7 @@ class MyCollectionViewController: UIViewController , UITableViewDataSource, UITa
             cell = (NSBundle.mainBundle().loadNibNamed(cellId, owner: self, options: nil) as NSArray).objectAtIndex(0) as! CollectionTableViewCell
             cell.accessoryType = .DisclosureIndicator
         }
+        cell.addLine(0, y: 34, width: tableView.frame.size.width, height: 0.5)
         cell.deleteBtn.rac_command = RACCommand(signalBlock: { (sender) -> RACSignal! in
             return RACSignal.empty()
         })

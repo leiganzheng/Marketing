@@ -73,7 +73,7 @@ class LoginViewController: UIViewController, QNInterceptorNavigationBarHiddenPro
     }
     
     func login() {
-        QNNetworkTool.fetchAuthCode("3", type: "0", target: "15820898618") { (code, error, errorMsg) -> Void in
+        QNNetworkTool.fetchAuthCode("3", type: "0",flag: "Register", target: "15820898618") { (code, error, errorMsg) -> Void in
             
         }
         //进入主界面

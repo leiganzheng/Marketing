@@ -162,15 +162,16 @@ extension QNNetworkTool {
     /**
      获取验证码
      
+     :param: flag 标记默认为Other（其他-Other、注册-Register）（注册时为Register[必选项]）
      :param: role 身份默认为3（站长-1、商家-2、客户-3）
      :param: type  类型默认为0（手机-0、邮箱-1）
      :param: target 账号（手机类型时填手机号码、邮箱类型时填邮件地址）[必选项]
      :param: completion 完成的回调（内涵验证码）
      */
-    class func fetchAuthCode(role: String, type: String,target: String, completion: (String?, NSError?, String?) -> Void) {
-        requestPOST(kServerAddress + "/Apibase/sendCaptcha", parameters: ["type" : type, "target" : target,"role":role]) { (_, _, _, dictionary, error) -> Void in
+    class func fetchAuthCode(role: String, type: String,flag:String,target: String, completion: (String?, NSError?, String?) -> Void) {
+        requestPOST(kServerAddress + "/Apibase/sendCaptcha", parameters: ["type" : type, "target" : target,"role":role,"flag":flag]) { (_, _, _, dictionary, error) -> Void in
             if let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
-                completion(dictionary?["code"] as? String, nil, nil)
+                completion(String(stringInterpolationSegment: dictionary?["code"]), nil, nil)
             }
             else {
                 completion(nil, error, dictionary?["errmsg"] as? String)

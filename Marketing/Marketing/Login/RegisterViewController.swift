@@ -18,7 +18,6 @@ class RegisterViewController: UIViewController, QNInterceptorNavigationBarHidden
     @IBOutlet weak var textField1: UITextField!
     @IBOutlet weak var textField2: UITextField!
     @IBOutlet weak var textField3: UITextField!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,18 +34,18 @@ class RegisterViewController: UIViewController, QNInterceptorNavigationBarHidden
         RegisterViewController.waitingAuthCode(authCodeButton, start: false)
         self.textField2.rightView = authCodeButton
         authCodeButton.rac_signalForControlEvents(.TouchUpInside).subscribeNext { [weak self](sender) -> Void in
-//            if let strongSelf = self {
-//                RegisterViewController.fetchAuthCode(strongSelf, phone: { () -> String? in
-//                    if !QNTool.stringCheck(strongSelf.textField1.text) {
+            if let strongSelf = self {
+               RegisterViewController.fetchAuthCode(strongSelf, phone: { () -> String? in
+                    if !QNTool.stringCheck(strongSelf.textField1.text) {
 //                        QNTool.showPromptView("请填写手机号码")
-//                        strongSelf.textField1.text = nil; strongSelf.textField1.becomeFirstResponder()
-//                        return nil
-//                    }
-//                    else {
-//                        return strongSelf.textField1.text!
-//                    }
-//                }, authCodeButton: authCodeButton, isRegister: true)
-//            }
+                        strongSelf.textField1.text = nil; strongSelf.textField1.becomeFirstResponder()
+                        return nil
+                    }
+                    else {
+                        return strongSelf.textField1.text!
+                    }
+                }, authCodeButton: authCodeButton, isRegister: true)
+            }
         }
         
         // 键盘消失
@@ -167,21 +166,18 @@ private let overTimeMax = 60
 extension RegisterViewController {
     // MARK: 验证码
     // 从服务器获取验证码
-    class func fetchAuthCode(viewController: UIViewController, phone: (() -> String?), authCodeButton: UIButton?, isRegister: Bool) {
-//        if let phoneNum = phone() where phoneNum.characters.count > 0 {
-//            QNTool.showActivityView("正在获取验证码...", inView: viewController.view)
-//            QNNetworkTool.fetchAuthCode(phoneNum, isRegister: isRegister, completion: { [weak viewController](succeed, error, errorMsg) -> Void in
-//                if let _ = viewController {
-//                    QNTool.hiddenActivityView()
-//                    if succeed {
-//                        self.waitingAuthCode(authCodeButton, start: true)
-//                    }
-//                    else {
+    class func fetchAuthCode(viewController: UIViewController, phone: (() -> String?), authCodeButton: UIButton?, isRegister: Bool){
+        var authCode:String?
+        if let phoneNum = phone() where phoneNum.characters.count > 0 {
+            QNNetworkTool.fetchAuthCode("3", type: "0",flag: "Register", target: "15820898618") { (code, error, errorMsg) -> Void in
+                    if (code != nil) {
+                        self.waitingAuthCode(authCodeButton, start: true)
+                    }
+                    else {
 //                        QNTool.showErrorPromptView(nil, error: error, errorMsg: errorMsg)
-//                    }
-//                }
-//            })
-//        }
+                    }
+            }
+        }
     }
     
     

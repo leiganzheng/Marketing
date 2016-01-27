@@ -53,6 +53,7 @@ class ChangePWDViewController: BaseViewController , UITableViewDataSource, UITab
             }
         if indexPath.section == 0 && indexPath.row == 0{
             self.oldPwd = UITextField(frame: CGRectMake(15, 0, cell.contentView.bounds.width - 15, cell.contentView.bounds.height))
+            self.oldPwd.secureTextEntry = true
             oldPwd.backgroundColor = UIColor.clearColor()
             self.oldPwd.delegate = self
             self.oldPwd.tag = 1000
@@ -64,6 +65,7 @@ class ChangePWDViewController: BaseViewController , UITableViewDataSource, UITab
         }
         if  indexPath.section == 1 && indexPath.row == 0 {
             self.newPwd = UITextField(frame: CGRectMake(15, 0, cell.contentView.bounds.width - 15, cell.contentView.bounds.height))
+            self.newPwd.secureTextEntry = true
             newPwd.backgroundColor = UIColor.clearColor()
             self.newPwd.delegate = self
             self.newPwd.tag = 1000
@@ -75,6 +77,7 @@ class ChangePWDViewController: BaseViewController , UITableViewDataSource, UITab
         }
         if indexPath.section == 1 && indexPath.row == 1  {
             self.newPwdAgin = UITextField(frame: CGRectMake(15, 0, cell.contentView.bounds.width - 15, cell.contentView.bounds.height))
+            self.newPwdAgin.secureTextEntry = true
             newPwdAgin.backgroundColor = UIColor.clearColor()
             self.newPwdAgin.delegate = self
             self.newPwdAgin.tag = 1000
@@ -92,10 +95,23 @@ class ChangePWDViewController: BaseViewController , UITableViewDataSource, UITab
             okButton.titleLabel?.font = UIFont.systemFontOfSize(15)
             okButton.titleLabel?.textAlignment = .Center
             okButton.frame =  CGRectMake(0, 0, cell.contentView.frame.size.width , cell.contentView.frame.size.height)
-            okButton.rac_signalForControlEvents(.TouchUpInside).subscribeNext { [weak self](sender) -> Void in
-//                if let strongSelf = self {
-//                    
-//                }
+            okButton.rac_signalForControlEvents(.TouchUpInside).subscribeNext { (sender) -> Void in
+                if !self.checkAccountPassWord() {return}
+                if self.newPwd.text == self.newPwdAgin.text {
+                    QNTool.showActivityView("正在修改密码...")
+                    QNNetworkTool.updatePassWord((g_user?.accesstoken)!, old: self.oldPwd.text!, new: self.newPwd.text!, completion: { (succeed, error, errorMsg) -> Void in
+                        QNTool.hiddenActivityView()
+                        if succeed {
+                            QNTool.showPromptView("修改密码成功!")
+                            self.navigationController?.popViewControllerAnimated(true)
+                        }else {
+                            QNTool.showErrorPromptView(nil, error: error, errorMsg: errorMsg)
+                        }
+                    })
+
+                }else {
+                    QNTool.showPromptView("两次密码输入不一样")
+                }
             }
             cell.contentView.addSubview(okButton)
             
@@ -111,5 +127,26 @@ class ChangePWDViewController: BaseViewController , UITableViewDataSource, UITab
         textField.resignFirstResponder()
         return true
     }
+    // 判断输入的合法性
+    //MARK:TODO
+    private func checkAccountPassWord() -> Bool {
+        
+        if (self.oldPwd.text?.characters.count == 0 && self.newPwd.text?.characters.count == 0) {
+            QNTool.showPromptView("请输入密码")
+            self.oldPwd.becomeFirstResponder()
+            return false
+        }else if(self.oldPwd.text?.characters.count == 0) {
+            QNTool.showPromptView("请输入旧密码")
+            self.oldPwd.becomeFirstResponder()
+            return false
+            
+        }else if (self.newPwd.text?.characters.count == 0){
+            QNTool.showPromptView("请输入新密码")
+            self.newPwd.becomeFirstResponder()
+            return false
+        }
+        return true
+    }
+
 }
 

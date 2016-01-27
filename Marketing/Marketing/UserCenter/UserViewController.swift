@@ -98,10 +98,13 @@ class UserViewController: BaseViewController , UITableViewDataSource, UITableVie
             self.navigationController?.pushViewController(vc, animated: true)
             
         }else if (indexPath.section == 2 && indexPath.row == 1){
-            QNTool.enterLoginViewController()
-//            QNNetworkTool.logout("", completion: { (succeed, error, errorMsg) -> Void in
-//                
-//            })
+            QNNetworkTool.logout((g_user?.accesstoken)!, completion: { (succeed, error, errorMsg) -> Void in
+                if succeed {
+                    QNTool.enterLoginViewController()
+                }else {
+                    QNTool.showPromptView("退出失败")
+                }
+            })
         }
 
     }

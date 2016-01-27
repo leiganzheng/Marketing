@@ -17,7 +17,6 @@ class NearbyViewController: BaseViewController, UICollectionViewDataSource, UICo
         self.title = "附近"
         //数据
         self.titleArray = NSArray()
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
@@ -82,4 +81,14 @@ class NearbyViewController: BaseViewController, UICollectionViewDataSource, UICo
 //    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
 //        return 1
 //    }
+    //MARK: - Private Method
+    func fetchData (){
+        QNNetworkTool.fetchShopList("", page: "", page_size: "", order: "") { (shops, error, errorMsg) -> Void in
+            if shops?.count > 0{
+                
+            }else {
+                
+            }
+        }
+    }
 }

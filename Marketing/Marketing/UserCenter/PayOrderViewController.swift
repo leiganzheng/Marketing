@@ -73,6 +73,21 @@ class PayOrderViewController: BaseViewController , UITableViewDataSource, UITabl
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
     }
-    
+    //微信支付
+//    private func wxPayCheck(){
+//        if WXApi.isWXAppInstalled() {
+//            QNNetworkTool.wxpayOrderCheck(self.order!.orderNo, completion: { (dictionary, error, errorMsg) -> Void in
+//                if dictionary != nil {
+//                    let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//                    delegate.submitOrder(dictionary!, vc: self)
+//                }else {
+//                    QNTool.showPromptView( errorMsg!)
+//                }
+//            })
+//        }else{
+//            QNTool.showPromptView( "请安装微信客户端")
+//        }
+//    }
+
 }
 

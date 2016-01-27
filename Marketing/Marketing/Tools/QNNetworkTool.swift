@@ -13,8 +13,6 @@ import Alamofire
 private let (kServerAddress) = { () -> (String) in
     // 正式环境
     "http://cvsapi.1g9f.com"
-    // 测试环境
-    //" http://cvsapi.1g9f.com"
 }()
 /**
  *  //MARK:- 网络处理中心
@@ -33,7 +31,7 @@ private extension QNNetworkTool {
      */
     private class func productRequest(url: NSURL!, method: NSString!) -> NSMutableURLRequest {
         let request = NSMutableURLRequest(URL: url)
-        request.addValue(g_user?.accesstoken ?? "", forHTTPHeaderField: "AUTH") // 用户身份串,在调用/api/login 成功后会返回这个串;未登录时为空
+//        request.addValue(g_user?.accesstoken ?? "", forHTTPHeaderField: "AUTH") // 用户身份串,在调用/api/login 成功后会返回这个串;未登录时为空
 //        request.addValue("1", forHTTPHeaderField: "AID")                // app_id, iphone=1, android=2
 //        request.addValue(APP_VERSION, forHTTPHeaderField: "VER")        // 客户端版本号
 //        request.addValue(g_UDID, forHTTPHeaderField: "CID")             // 客户端设备号
@@ -136,6 +134,7 @@ extension QNNetworkTool {
         requestPOST(kServerAddress + "/Apibase/userLogin", parameters: ["account" : account, "password" : password,"role":role]) { (_, _, _, dictionary, error) -> Void in
             if dictionary != nil, let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
                 let user = User(dictionary!)
+                g_user = user
                 saveAccountAndPassword(account, password: password)
                 saveObjectToUserDefaults("UserPic", value: user.picture!)
                 completion(user, nil, nil)
@@ -158,9 +157,7 @@ extension QNNetworkTool {
                 succeed = false
             }
             completion(succeed: succeed, error, dictionary?["errorMsg"] as? String)
-            let vc = (UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()!)
-            QNTool.enterRootViewController(vc)
-        }
+          }
     }
 
     /**

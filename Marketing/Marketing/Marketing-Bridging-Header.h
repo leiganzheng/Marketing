@@ -10,5 +10,6 @@
 #define Marketing_Bridging_Header_h
 
 #import "NSString+AES.h"
-
+#import "WXApi.h"
+#import "WXApiObject.h"
 #endif /* Marketing_Bridging_Header_h */

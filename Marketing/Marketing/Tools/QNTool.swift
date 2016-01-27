@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+
 private let qnToolInstance = QNTool()
 
 /**
@@ -16,6 +17,124 @@ private let qnToolInstance = QNTool()
 class QNTool: NSObject {
     
 }
+// MARK: - 提示框相关
+extension QNTool {
+    
+    /**
+     弹出会自动消失的提示框
+     
+     :param: message    提示内容
+     :param: completion 提示框消失后的回调
+     */
+    class func showPromptView(message: String = "服务升级中，请耐心等待！", _ completion: (()->Void)? = nil) {
+        lyShowPromptView(message, completion)
+    }
+    
+    /**
+     弹出进度提示框
+     
+     :param: message         提示内容
+     :param: inView          容器，如果设置为nil，会放在keyWindow上
+     :param: timeoutInterval 超时隐藏，如果设置为nil，超时时间是3min
+     */
+    class func showActivityView(message: String?, inView: UIView? = nil, _ timeoutInterval: NSTimeInterval? = nil) {
+        lyShowActivityView(message, inView: inView, timeoutInterval)
+    }
+    
+    /**
+     隐藏进度提示框
+     */
+    class func hiddenActivityView() {
+        lyHiddenActivityView()
+    }
+    
+    /**
+     显示错误提示
+     
+     优先显示服务器返回的错误信息，如果没有，则显示网络层返回的错误信息，如果在没有，则显示默认的错误提示
+     
+     :param: dictionary 服务器返回的Dic
+     :param: error      网络层返回的error
+     :param: errorMsg   服务器返回的错误信息
+     */
+    class func showErrorPromptView(dictionary: NSDictionary?, error: NSError?, errorMsg: String? = nil) {
+        if errorMsg != nil {
+            QNTool.showPromptView(errorMsg!); return
+        }
+        
+        if let errorMsg = dictionary?["errorMsg"] as? String {
+            QNTool.showPromptView(errorMsg); return
+        }
+        
+        if error != nil && error!.domain.lengthOfBytesUsingEncoding(NSUTF8StringEncoding) > 0 {
+            QNTool.showPromptView("网络异常，请稍后重试！"); return
+        }
+        
+        QNTool.showPromptView()
+    }
+    
+    
+}
+
+// MARK: - 增加空提示的View
+private let kTagEmptyView = 96211
+private let kTagMessageLabel = 96212
+extension QNTool {
+    
+    /**
+     为inView增加空提示
+     
+     :param: message    提示内容
+     :param: inView     所依附的View
+     */
+    class func showEmptyView(message: String? = nil, inView: UIView?) {
+        if inView == nil { return }
+        
+        //
+        var emptyView: UIView! = inView!.viewWithTag(kTagEmptyView)
+        if emptyView == nil {
+            emptyView = UIView(frame: inView!.bounds)
+            emptyView.backgroundColor = UIColor.clearColor()
+            emptyView.tag = kTagEmptyView
+            inView!.addSubview(emptyView)
+        }
+        
+        // 设置提示
+        if message != nil {
+            let widthMax = emptyView.bounds.width - 40
+            var messageLabel: UILabel! = emptyView.viewWithTag(kTagMessageLabel) as? UILabel
+            if messageLabel == nil {
+                messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: widthMax, height: 20))
+                messageLabel.tag = kTagMessageLabel
+                messageLabel.textColor = tableViewCellDefaultDetailTextColor
+                messageLabel.backgroundColor = UIColor.clearColor()
+                messageLabel.textAlignment = .Center
+                messageLabel.autoresizingMask = .FlexibleWidth
+                messageLabel.numberOfLines = 0
+                emptyView.addSubview(messageLabel)
+            }
+            
+            messageLabel.text = message
+            messageLabel.bounds = CGRect(origin: CGPointZero, size: messageLabel.sizeThatFits(CGSize(width: widthMax, height: CGFloat.max)))
+            messageLabel.center = CGPoint(x: emptyView.bounds.width/2.0, y: emptyView.bounds.height/2.0)
+        }
+        else {
+            emptyView.viewWithTag(kTagMessageLabel)?.removeFromSuperview()
+        }
+    }
+    
+    /**
+     隐藏空提示
+     
+     :param: inView     所依附的View
+     */
+    class func hiddenEmptyView(forView: UIView?) {
+        forView?.viewWithTag(kTagEmptyView)?.removeFromSuperview()
+    }
+    
+    
+}
+
 /**
  *  @author Leiganzheng, 15-05-28 16:05:14
  *

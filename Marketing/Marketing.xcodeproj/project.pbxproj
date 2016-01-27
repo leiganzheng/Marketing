@@ -23,6 +23,10 @@
 		71C3A4271C3185100042F851 /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A4261C3185100042F851 /* MarketViewController.swift */; };
 		71C3A4291C31851E0042F851 /* PromotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A4281C31851E0042F851 /* PromotionViewController.swift */; };
 		71C3A42B1C3185300042F851 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A42A1C3185300042F851 /* UserViewController.swift */; };
+		BB11281D1C58582200297DAD /* LyActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11281B1C58582200297DAD /* LyActivityView.swift */; };
+		BB11281E1C58582200297DAD /* LyPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11281C1C58582200297DAD /* LyPrompt.swift */; };
+		BB1128241C5868AA00297DAD /* NSData+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1128211C5868AA00297DAD /* NSData+AES.m */; };
+		BB1128251C5868AA00297DAD /* NSString+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1128231C5868AA00297DAD /* NSString+AES.m */; };
 		BB52E9711C47328200E0D1EC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB52E9701C47328200E0D1EC /* User.swift */; };
 		BB52E9731C47369600E0D1EC /* QNSharedDatas.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB52E9721C47369600E0D1EC /* QNSharedDatas.swift */; };
 		BB52E9751C47764900E0D1EC /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB52E9741C47764900E0D1EC /* Shop.swift */; };
@@ -85,6 +89,13 @@
 		71C3A4281C31851E0042F851 /* PromotionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionViewController.swift; sourceTree = "<group>"; };
 		71C3A42A1C3185300042F851 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		87E2F1119F1545FD344AD0A5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB11281B1C58582200297DAD /* LyActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LyActivityView.swift; sourceTree = "<group>"; };
+		BB11281C1C58582200297DAD /* LyPrompt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LyPrompt.swift; sourceTree = "<group>"; };
+		BB1128201C5868AA00297DAD /* NSData+AES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES.h"; sourceTree = "<group>"; };
+		BB1128211C5868AA00297DAD /* NSData+AES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES.m"; sourceTree = "<group>"; };
+		BB1128221C5868AA00297DAD /* NSString+AES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AES.h"; sourceTree = "<group>"; };
+		BB1128231C5868AA00297DAD /* NSString+AES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AES.m"; sourceTree = "<group>"; };
+		BB1128271C586A8800297DAD /* Marketing-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Marketing-Bridging-Header.h"; sourceTree = "<group>"; };
 		BB52E9701C47328200E0D1EC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BB52E9721C47369600E0D1EC /* QNSharedDatas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNSharedDatas.swift; sourceTree = "<group>"; };
 		BB52E9741C47764900E0D1EC /* Shop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
@@ -222,6 +233,26 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BB1128161C58517600297DAD /* PromptView */ = {
+			isa = PBXGroup;
+			children = (
+				BB11281B1C58582200297DAD /* LyActivityView.swift */,
+				BB11281C1C58582200297DAD /* LyPrompt.swift */,
+			);
+			path = PromptView;
+			sourceTree = "<group>";
+		};
+		BB11281F1C5868AA00297DAD /* AES */ = {
+			isa = PBXGroup;
+			children = (
+				BB1128201C5868AA00297DAD /* NSData+AES.h */,
+				BB1128211C5868AA00297DAD /* NSData+AES.m */,
+				BB1128221C5868AA00297DAD /* NSString+AES.h */,
+				BB1128231C5868AA00297DAD /* NSString+AES.m */,
+			);
+			path = AES;
+			sourceTree = "<group>";
+		};
 		BB643BA51C30EE4C00BE6790 = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +277,7 @@
 		BB643BB01C30EE4C00BE6790 /* Marketing */ = {
 			isa = PBXGroup;
 			children = (
+				BB1128271C586A8800297DAD /* Marketing-Bridging-Header.h */,
 				BB52E9721C47369600E0D1EC /* QNSharedDatas.swift */,
 				BB643BD51C30EF0E00BE6790 /* Constents.swift */,
 				BB643BDF1C30EF0E00BE6790 /* QNStyleAttribute.swift */,
@@ -312,6 +344,8 @@
 		BB643BDD1C30EF0E00BE6790 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				BB11281F1C5868AA00297DAD /* AES */,
+				BB1128161C58517600297DAD /* PromptView */,
 				7198618E1C4B6EFC00803F26 /* Weixin */,
 			);
 			path = Librarys;
@@ -511,15 +545,19 @@
 				71C3A4171C3175980042F851 /* ForgetPasswordViewController.swift in Sources */,
 				BB643BE81C30EF0E00BE6790 /* UIImageExtension.swift in Sources */,
 				BB643BEB1C30EF0E00BE6790 /* QNStyleAttribute.swift in Sources */,
+				BB1128251C5868AA00297DAD /* NSString+AES.m in Sources */,
 				BBF93C351C33B49B0058894C /* NearbySCollectionViewCell.swift in Sources */,
 				BB643BE71C30EF0E00BE6790 /* StringExtension.swift in Sources */,
+				BB1128241C5868AA00297DAD /* NSData+AES.m in Sources */,
 				BBE32FD01C328E5A0095BA88 /* CollectionTableViewCell.swift in Sources */,
 				BB643BE91C30EF0E00BE6790 /* UIViewControllerExtension.swift in Sources */,
 				BBE32FD11C328E5A0095BA88 /* OrderTableViewCell.swift in Sources */,
 				71C3A4191C3175980042F851 /* RegisterViewController.swift in Sources */,
 				BB52E9731C47369600E0D1EC /* QNSharedDatas.swift in Sources */,
 				BB643BB21C30EE4C00BE6790 /* AppDelegate.swift in Sources */,
+				BB11281D1C58582200297DAD /* LyActivityView.swift in Sources */,
 				BB643BED1C30EF0E00BE6790 /* QNTool.swift in Sources */,
+				BB11281E1C58582200297DAD /* LyPrompt.swift in Sources */,
 				BBF93C331C33AF1E0058894C /* PromotionCollectionViewCell.swift in Sources */,
 				71C3A4251C3185000042F851 /* NearbyViewController.swift in Sources */,
 				BB643BEA1C30EF0E00BE6790 /* UIViewExtension.swift in Sources */,
@@ -677,6 +715,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ddd.Marketing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c9cd00e5-5246-4a32-b5e0-1f201733954d";
+				SWIFT_OBJC_BRIDGING_HEADER = "Marketing/Marketing-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -695,6 +734,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ddd.Marketing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c9cd00e5-5246-4a32-b5e0-1f201733954d";
+				SWIFT_OBJC_BRIDGING_HEADER = "Marketing/Marketing-Bridging-Header.h";
 			};
 			name = Release;
 		};

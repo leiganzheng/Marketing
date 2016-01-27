@@ -33,20 +33,20 @@ class ForgetPasswordViewController: UIViewController, QNInterceptorNavigationBar
         authCodeButton.layer.borderColor = defaultLineColor.CGColor
         authCodeButton.backgroundColor = appThemeColor
         authCodeButton.titleLabel?.font = UIFont.systemFontOfSize(12)
-        RegisterViewController.waitingAuthCode(authCodeButton, start: false)
+//        self.waitingAuthCode(authCodeButton, start: false)
         self.textField2.rightView = authCodeButton
         authCodeButton.rac_signalForControlEvents(.TouchUpInside).subscribeNext { [weak self](sender) -> Void in
             if let strongSelf = self {
-                RegisterViewController.fetchAuthCode(strongSelf, phone: { () -> String? in
-                    if !QNTool.stringCheck(strongSelf.textField1.text) {
-//                        QNTool.showPromptView("请填写手机号码")
-                        strongSelf.textField1.text = nil; strongSelf.textField1.becomeFirstResponder()
-                        return nil
-                    }
-                    else {
-                        return strongSelf.textField1.text!
-                    }
-                }, authCodeButton: authCodeButton, isRegister: false)
+//                strongSelf.fetchAuthCode(strongSelf, phone: { () -> String? in
+//                    if !QNTool.stringCheck(strongSelf.textField1.text) {
+////                        QNTool.showPromptView("请填写手机号码")
+//                        strongSelf.textField1.text = nil; strongSelf.textField1.becomeFirstResponder()
+//                        return nil
+//                    }
+//                    else {
+//                        return strongSelf.textField1.text!
+//                    }
+//                }, authCodeButton: authCodeButton, isRegister: false)
             }
         }
         

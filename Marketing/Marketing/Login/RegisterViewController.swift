@@ -13,11 +13,16 @@ import UIKit
 *
 *  // MARK: - 注册
 */
+
+// MARK: - 获取验证码UI 显示的超时时间
+private let overTimeMax = 60
+
 class RegisterViewController: UIViewController, QNInterceptorNavigationBarHiddenProtocol, QNInterceptorKeyboardProtocol, UITextFieldDelegate {
     
     @IBOutlet weak var textField1: UITextField!
     @IBOutlet weak var textField2: UITextField!
     @IBOutlet weak var textField3: UITextField!
+    var authCode: NSInteger!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,13 +36,13 @@ class RegisterViewController: UIViewController, QNInterceptorNavigationBarHidden
         authCodeButton.layer.borderColor = defaultLineColor.CGColor
         authCodeButton.backgroundColor = appThemeColor
         authCodeButton.titleLabel?.font = UIFont.systemFontOfSize(12)
-        RegisterViewController.waitingAuthCode(authCodeButton, start: false)
+        self.waitingAuthCode(authCodeButton, start: false)
         self.textField2.rightView = authCodeButton
         authCodeButton.rac_signalForControlEvents(.TouchUpInside).subscribeNext { [weak self](sender) -> Void in
             if let strongSelf = self {
-               RegisterViewController.fetchAuthCode(strongSelf, phone: { () -> String? in
+               strongSelf.fetchAuthCode(strongSelf, phone: { () -> String? in
                     if !QNTool.stringCheck(strongSelf.textField1.text) {
-//                        QNTool.showPromptView("请填写手机号码")
+                        QNTool.showPromptView("请填写手机号码")
                         strongSelf.textField1.text = nil; strongSelf.textField1.becomeFirstResponder()
                         return nil
                     }
@@ -72,62 +77,41 @@ class RegisterViewController: UIViewController, QNInterceptorNavigationBarHidden
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     // 提交
     @IBAction func done(sender: UIButton!) {
-//        if self.check() {
-//            QNTool.showActivityView("正在注册...", inView: self.view)
-//            QNNetworkTool.register(self.textField0.text!,
-//                phone: self.textField1.text!,
-//                password: self.textField3.text!,
-//                authcode: self.textField2.text!, completion: { [weak self](doctor, error, errorMsg) -> Void in
-//                    if let strongSelf = self {
-//                        QNTool.hiddenActivityView()
-//                        if doctor != nil {
-//                            let vc = EditInformationViewController.CreateFromStoryboard("Login") as! EditInformationViewController
-//                            vc.finished = { () -> Void in
-//                                QNNetworkTool.login(Id: strongSelf.textField1.text!, Password: strongSelf.textField3.text!) { (doctor, error, errorMsg) -> Void in
-//                                    QNTool.hiddenActivityView()
-//                                    if doctor != nil {
-//                                        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()!
-//                                        QNTool.enterRootViewController(vc, animated: true)
-//                                    }
-//                                    else {
-//                                        QNTool.showErrorPromptView(nil, error: error, errorMsg: errorMsg)
-//                                    }
-//                                }
-//                            }
-//                            strongSelf.navigationController?.pushViewController(vc, animated: true)
-//                        }
-//                        else {
-//                            QNTool.showErrorPromptView(nil, error: error, errorMsg: errorMsg)
-//                        }
-//                    }
-//                })
-//        }
+        if self.check() {
+            QNTool.showActivityView("正在注册...", inView: self.view)
+            QNNetworkTool.register(self.textField1.text!, password: self.textField3.text!, authcode: self.textField2.text!, completion: { (user, error, errorMsg) -> Void in
+               QNTool.hiddenActivityView()
+                if (user != nil) {
+                    //进入主界面
+                    g_user = user
+                    let vc = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+                    QNTool.enterRootViewController(vc!, animated: true)
+                }else {
+                    QNTool.showErrorPromptView(nil, error: error, errorMsg: errorMsg)
+                }
+            })
+        }
     }
     
     // 判断输入的合法性
     private func check() -> Bool {
-//        if !self.textField0.text!.checkStingIsName() {
-//            self.markLbl.text = "姓名中包含特殊符号，请重新填写"
-//            return false
-//        }
-        if !QNTool.stringCheck(self.textField1.text, allowLength: 4) {
-//            QNTool.showPromptView("请填写手机号码")
+        if !QNTool.stringCheck(self.textField1.text, allowLength: 10) {
+            QNTool.showPromptView("请填写手机号码")
             self.textField1.text = nil; self.textField1.becomeFirstResponder()
             return false
         }
         
         if !QNTool.stringCheck(self.textField2.text) {
-//            QNTool.showPromptView("请填写验证码")
+            QNTool.showPromptView("请填写验证码")
             self.textField2.text = nil; self.textField2.becomeFirstResponder()
             return false
         }
         
         if !QNTool.stringCheck(self.textField3.text, allowAllSpace: true, allowLength: 5) {
-//            QNTool.showPromptView("请设置6位及以上的密码！")
+            QNTool.showPromptView("请设置6位及以上的密码！")
             self.textField3.becomeFirstResponder()
             return false
         }
@@ -149,40 +133,26 @@ class RegisterViewController: UIViewController, QNInterceptorNavigationBarHidden
         
         return true
     }
-//    func textFieldShouldBeginEditing(textField: UITextField) -> Bool  {
-//        if textField == self.textField0 {
-//            self.markLbl.text = ""
-//            textField.textColor = UIColor.blackColor()
-//        }
-//        return true
-//    }
-    
-}
-
-// MARK: - 获取验证码UI 显示的超时时间
-private let overTimeMax = 60
-
-// MARK: - 获取验证码的支持
-extension RegisterViewController {
     // MARK: 验证码
     // 从服务器获取验证码
-    class func fetchAuthCode(viewController: UIViewController, phone: (() -> String?), authCodeButton: UIButton?, isRegister: Bool){
-        var authCode:String?
+     func fetchAuthCode(viewController: UIViewController, phone: (() -> String?), authCodeButton: UIButton?, isRegister: Bool){
         if let phoneNum = phone() where phoneNum.characters.count > 0 {
-            QNNetworkTool.fetchAuthCode("3", type: "0",flag: "Register", target: "15820898618") { (code, error, errorMsg) -> Void in
-                    if (code != nil) {
-                        self.waitingAuthCode(authCodeButton, start: true)
-                    }
-                    else {
-//                        QNTool.showErrorPromptView(nil, error: error, errorMsg: errorMsg)
-                    }
+            QNNetworkTool.fetchAuthCode("3", type: "0",flag: "Register", target: phoneNum) { (code, error, errorMsg) -> Void in
+                if (code != nil) {
+                    self.waitingAuthCode(authCodeButton, start: true)
+                    self.authCode = code as! NSInteger
+                    self.textField2.text = "\(code)"
+                }
+                else {
+                    QNTool.showErrorPromptView(nil, error: error, errorMsg: errorMsg)
+                }
             }
         }
     }
     
     
     // 显示获取验证码倒计时
-    class func waitingAuthCode(button: UIButton!, start: Bool = false) {
+     func waitingAuthCode(button: UIButton!, start: Bool = false) {
         if button == nil { return } // 验证码的UI变化，如果没有button，则不会有变化
         
         let overTimer = button.tag
@@ -212,8 +182,7 @@ extension RegisterViewController {
             })
         }
     }
-    @IBAction func loginBtnCli(sender: UIButton) {
-        self.navigationController?.popViewControllerAnimated(true)
-    }
+
 }
+
 

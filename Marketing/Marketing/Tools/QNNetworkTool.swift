@@ -134,7 +134,10 @@ extension QNNetworkTool {
 
     class func login(Account account: String, Password password: String,Role role: String, completion: (User?, NSError?, String?) -> Void) {
         requestPOST(kServerAddress + "/Apibase/userLogin", parameters: ["account" : account, "password" : password,"role":role]) { (_, _, _, dictionary, error) -> Void in
-            if dictionary != nil, let userDic = dictionary?["data"] as? NSDictionary, let user = User(userDic) {
+            if dictionary != nil, let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
+                let user = User(dictionary!)
+                saveAccountAndPassword(account, password: password)
+                saveObjectToUserDefaults("UserPic", value: user.picture!)
                 completion(user, nil, nil)
             }
             else {
@@ -148,14 +151,15 @@ extension QNNetworkTool {
     class func logout(accesstoken: String, completion: (succeed: Bool, NSError?, String?) -> Void) {
         requestPOST(kServerAddress + "/Apibase/userLogout", parameters: ["accesstoken" : accesstoken]) { (_, _, _, dictionary, error) -> Void in
             let succeed: Bool
-            if let errorCode = dictionary?["errorCode"]?.integerValue where errorCode == 0 {
+            if let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
                 succeed = true
             }
             else {
                 succeed = false
             }
-            completion(succeed: succeed, error, dictionary?["errorMsg"] as? String)//            let vc = (UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()!)
-//            QNTool.enterRootViewController(vc)
+            completion(succeed: succeed, error, dictionary?["errorMsg"] as? String)
+            let vc = (UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController()!)
+            QNTool.enterRootViewController(vc)
         }
     }
 
@@ -168,10 +172,10 @@ extension QNNetworkTool {
      :param: target 账号（手机类型时填手机号码、邮箱类型时填邮件地址）[必选项]
      :param: completion 完成的回调（内涵验证码）
      */
-    class func fetchAuthCode(role: String, type: String,flag:String,target: String, completion: (String?, NSError?, String?) -> Void) {
+    class func fetchAuthCode(role: String, type: String,flag:String,target: String, completion: (AnyObject!, NSError!, String!) -> Void) {
         requestPOST(kServerAddress + "/Apibase/sendCaptcha", parameters: ["type" : type, "target" : target,"role":role,"flag":flag]) { (_, _, _, dictionary, error) -> Void in
-            if let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
-                completion(String(stringInterpolationSegment: dictionary?["code"]), nil, nil)
+            if dictionary != nil, let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
+                completion(dictionary?["code"], nil, nil)
             }
             else {
                 completion(nil, error, dictionary?["errmsg"] as? String)
@@ -187,13 +191,14 @@ extension QNNetworkTool {
      :param: authcode            验证码
      :param: completion          完成的回调
      */
-    class func register(adminuser: String, password: String, authcode: String, completion: (User?, NSError?, String?) -> Void) {
+    class func register(adminuser: String, password: String, authcode: String, completion: (User!, NSError!, String!) -> Void) {
         var params = [String : String]()
         params["adminuser"] = adminuser
         params["adminpass"] = password
         params["code"] = authcode
         requestPOST(kServerAddress + "/Customersapi/customerSave", parameters:params) { (_, _, _, dictionary, error) -> Void in
-            if dictionary != nil, let userDic = dictionary?["data"] as? NSDictionary, let user = User(userDic) {
+            if dictionary != nil, let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
+                let user = User(dictionary!)
                 g_user = user
                 completion(user, nil, nil)
             }else {
@@ -208,7 +213,8 @@ extension QNNetworkTool {
      */
     class func fetchUserinfo(role: String, type: String,target: String, completion: (User?, NSError?, String?) -> Void) {
         requestPOST(kServerAddress + "/Apibase/userGetInfo", parameters: ["type" : type, "target" : target,"role":role]) { (_, _, _, dictionary, error) -> Void in
-            if dictionary != nil, let userDic = dictionary?["data"] as? NSDictionary, let user = User(userDic) {
+            if dictionary != nil, let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
+                let user = User(dictionary!)
                 completion(user, nil, nil)
             }
             else {
@@ -230,7 +236,8 @@ extension QNNetworkTool {
      */
     class func updateUserinfo(role: String, type: String,target: String, completion: (User?, NSError?, String?) -> Void) {
         requestPOST(kServerAddress + "/Customersapi/customerSave", parameters: ["type" : type, "target" : target,"role":role]) { (_, _, _, dictionary, error) -> Void in
-            if dictionary != nil, let userDic = dictionary?["data"] as? NSDictionary, let user = User(userDic) {
+            if dictionary != nil, let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
+                let user = User(dictionary!)
                 completion(user, nil, nil)
             }
             else {
@@ -250,7 +257,7 @@ extension QNNetworkTool {
     class func updatePassWord(accesstoken: String, old: String,new: String, completion: (succeed: Bool, NSError?, String?) -> Void) {
         requestPOST(kServerAddress + "/Apibase/userPasswordEdit", parameters: ["accesstoken" : accesstoken, "old_password" : old,"new_password":new]) { (_, _, _, dictionary, error) -> Void in
             let succeed: Bool
-            if let errorCode = dictionary?["errorCode"]?.integerValue where errorCode == 0 {
+            if dictionary != nil, let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
                 succeed = true
             }
             else {
@@ -271,7 +278,7 @@ extension QNNetworkTool {
     class func findPassWord(role: String, type: String,account: String,code: String,new_password: String, completion: (succeed: Bool, NSError?, String?) -> Void) {
         requestPOST(kServerAddress + "/Apibase/userPasswordForgot", parameters: ["role" : role, "type" : type,"code" : code,"new_password" : new_password,"account":account]) { (_, _, _, dictionary, error) -> Void in
             let succeed: Bool
-            if let errorCode = dictionary?["errorCode"]?.integerValue where errorCode == 0 {
+            if let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
                 succeed = true
             }
             else {
@@ -316,7 +323,8 @@ extension QNNetworkTool {
      */
     class func fetchShopDetailInfo(shop_id: String, completion: (Shop?, NSError?, String?) -> Void) {
         requestPOST(kServerAddress + "/Shopsapi/shopGetInfo", parameters: ["shop_id" : shop_id]) { (_, _, _, dictionary, error) -> Void in
-            if dictionary != nil, let shopDic = dictionary?["data"] as? NSDictionary, let shop = Shop(shopDic) {
+            if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
+                let shop = Shop(dictionary!)
                 completion(shop, nil, nil)
             }
             else {
@@ -331,7 +339,8 @@ extension QNNetworkTool {
      */
     class func saveShopInfo(dictionary: String, completion: (Shop?, NSError?, String?) -> Void) {
         requestPOST(kServerAddress + "/Shopsapi/shopSave", parameters: ["dictionary" : dictionary]) { (_, _, _, dictionary, error) -> Void in
-            if dictionary != nil, let shopDic = dictionary?["data"] as? NSDictionary, let shop = Shop(shopDic) {
+            if dictionary != nil, let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
+                let shop = Shop(dictionary!)
                 completion(shop, nil, nil)
             }
             else {

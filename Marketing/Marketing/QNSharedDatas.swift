@@ -16,37 +16,35 @@ import OpenUDID
 //MARK: 账号（登录成功的）
 
 //////MARK:- 加密解密密钥
-////let g_SecretKey = "qoocc"
-////private let kKeyAccount = ("Account" as NSString).encrypt(g_SecretKey)
-//var g_Account: String? {
-//    return (getObjectFromUserDefaults(kKeyAccount) as? NSString)?.decrypt(g_SecretKey)
-//}
-////MARK: 密码（登录成功的）
-//private let kKeyPassword = ("Password" as NSString).encrypt(g_SecretKey)
-//var g_Password: String? {
-//    return (getObjectFromUserDefaults(kKeyPassword) as? NSString)?.decrypt(g_SecretKey)
-//}
-////MARK: 保存账号和密码
-//func saveAccountAndPassword(account: String, password: String?) {
-//    saveObjectToUserDefaults(kKeyAccount, value: (account as NSString).encrypt(g_SecretKey))
-//    if password == nil {
-//        cleanPassword()
-//    }
-//    else {
-//        saveObjectToUserDefaults(kKeyPassword, value: (password! as NSString).encrypt(g_SecretKey))
-//    }
-//}
-////MARK: 清除密码
-//func cleanPassword() {
-//    removeObjectAtUserDefaults(kKeyPassword)
-//}
-//
+let g_SecretKey = "qoocc"
+private let kKeyAccount = ("Account" as NSString).encrypt(g_SecretKey)
+var g_Account: String? {
+    return (getObjectFromUserDefaults(kKeyAccount) as? NSString)?.decrypt(g_SecretKey)
+}
+//MARK: 密码（登录成功的）
+private let kKeyPassword = ("Password" as NSString).encrypt(g_SecretKey)
+var g_Password: String? {
+    return (getObjectFromUserDefaults(kKeyPassword) as? NSString)?.decrypt(g_SecretKey)
+}
+//MARK: 保存账号和密码
+func saveAccountAndPassword(account: String, password: String?) {
+    saveObjectToUserDefaults(kKeyAccount, value: (account as NSString).encrypt(g_SecretKey))
+    if password == nil {
+        cleanPassword()
+    }
+    else {
+        saveObjectToUserDefaults(kKeyPassword, value: (password! as NSString).encrypt(g_SecretKey))
+    }
+}
+//MARK: 清除密码
+func cleanPassword() {
+    removeObjectAtUserDefaults(kKeyPassword)
+}
+
 //MARK: 当前账户信息有变更时的通知
 //var g_isLogin: Bool { return g_doctor != nil }    // 是否登录
 //MARK: g_doctor 当登录账号
 var g_user: User?
-
-
 
 //MARK:- UDID
 private var _udid: String?

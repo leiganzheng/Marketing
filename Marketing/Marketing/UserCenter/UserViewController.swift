@@ -57,6 +57,14 @@ class UserViewController: BaseViewController , UITableViewDataSource, UITableVie
             if cell == nil {
                 cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
             }
+            let img = cell.viewWithTag(100) as! UIImageView
+            if g_user?.picture != nil {
+                img.sd_setImageWithURL(NSURL(string: (g_user?.picture)!), placeholderImage: nil)
+            }
+            let name = cell.viewWithTag(101) as! UILabel
+            name.text = g_user?.nickname!
+            let addres = cell.viewWithTag(102) as! UILabel
+            addres.text = "地址：\(g_user?.role!)"
             return cell
         }else {
             let cellId = "cell1"
@@ -91,6 +99,9 @@ class UserViewController: BaseViewController , UITableViewDataSource, UITableVie
             
         }else if (indexPath.section == 2 && indexPath.row == 1){
             QNTool.enterLoginViewController()
+//            QNNetworkTool.logout("", completion: { (succeed, error, errorMsg) -> Void in
+//                
+//            })
         }
 
     }

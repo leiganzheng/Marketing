@@ -96,6 +96,9 @@ class RegisterViewController: UIViewController, QNInterceptorNavigationBarHidden
         }
     }
     
+    @IBAction func popVC(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
     // 判断输入的合法性
     private func check() -> Bool {
         if !QNTool.stringCheck(self.textField1.text, allowLength: 10) {

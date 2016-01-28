@@ -13,6 +13,7 @@ import UIKit
 *
 *  // MARK: - 忘记密码
 */
+private let overTimeMax = 60
 class ForgetPasswordViewController: UIViewController, QNInterceptorNavigationBarShowProtocol {
 
     @IBOutlet weak var textField1: UITextField!
@@ -33,7 +34,7 @@ class ForgetPasswordViewController: UIViewController, QNInterceptorNavigationBar
         authCodeButton.layer.borderColor = defaultLineColor.CGColor
         authCodeButton.backgroundColor = appThemeColor
         authCodeButton.titleLabel?.font = UIFont.systemFontOfSize(12)
-//        self.waitingAuthCode(authCodeButton, start: false)
+        self.waitingAuthCode(authCodeButton, start: false)
         self.textField2.rightView = authCodeButton
         authCodeButton.rac_signalForControlEvents(.TouchUpInside).subscribeNext { [weak self](sender) -> Void in
             if let strongSelf = self {
@@ -83,20 +84,20 @@ class ForgetPasswordViewController: UIViewController, QNInterceptorNavigationBar
     // 判断输入的合法性
     private func check() -> Bool {
         if !QNTool.stringCheck(self.textField1.text) {
-//            QNTool.showPromptView("请填写手机号码")
+            QNTool.showPromptView("请填写手机号码")
             self.textField1.text = nil; self.textField1.becomeFirstResponder()
             return false
         }
         
         
         if !QNTool.stringCheck(self.textField2.text) {
-//            QNTool.showPromptView("请填写验证码")
+            QNTool.showPromptView("请填写验证码")
             self.textField2.text = nil; self.textField2.becomeFirstResponder()
             return false
         }
         
         if !QNTool.stringCheck(self.textField3.text, allowAllSpace: true, allowLength: 5) {
-//            QNTool.showPromptView("请设置6位及以上的密码！")
+            QNTool.showPromptView("请设置6位及以上的密码！")
             self.textField3.becomeFirstResponder()
             return false
         }
@@ -118,6 +119,37 @@ class ForgetPasswordViewController: UIViewController, QNInterceptorNavigationBar
         
         return true
     }
-    
+    // 显示获取验证码倒计时
+    func waitingAuthCode(button: UIButton!, start: Bool = false) {
+        if button == nil { return } // 验证码的UI变化，如果没有button，则不会有变化
+        
+        let overTimer = button.tag
+        if overTimer == 0 && start {
+            button.tag = overTimeMax
+        }
+        else {
+            button.tag = max(overTimer - 1, 0)
+        }
+        
+        if button.tag == 0 {
+            button.setTitle("获取验证码", forState: .Normal)
+            button.backgroundColor = appThemeColor
+            button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+            button.setTitleColor(UIColor.grayColor(), forState: .Highlighted)
+            button.enabled = true
+        }
+        else {
+            button.setTitle("\(button.tag)S", forState: .Normal)
+            button.backgroundColor = UIColor.whiteColor()
+            button.setTitleColor(appThemeColor, forState: .Normal)
+            button.enabled = false
+            button.setNeedsLayout()
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (Int64)(UInt64(1) * NSEC_PER_SEC)), dispatch_get_main_queue(), { () in
+                self.waitingAuthCode(button)
+            })
+        }
+    }
+
     
 }

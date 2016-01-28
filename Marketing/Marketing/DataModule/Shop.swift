@@ -11,7 +11,6 @@ class Shop: QN_Base {
     
     private(set) var shop_id: String!          // Id
     private(set) var name: String?        // 名称
-    private(set) var accesstoken: String!              // 登录状态校验令牌
     private(set) var adminuser: String? //（******占位符管理中心专属）
     private(set) var adminpass: String?
     
@@ -47,7 +46,6 @@ class Shop: QN_Base {
         // 所需要的数据都存在，则开始真正的数据初始化
         self.shop_id = dictionary["shop_id"] as! String
         self.name = dictionary["name"] as? String
-        self.accesstoken = dictionary["accesstoken"] as! String
         self.adminuser = dictionary["adminuser"] as? String
         self.adminpass = dictionary["adminpass"] as? String
         self.picture = dictionary["picture"] as? String
@@ -79,7 +77,6 @@ class Shop: QN_Base {
         dictionary.addEntriesFromDictionary(super.dictionary() as [NSObject : AnyObject])
         dictionary.setValue(self.shop_id, forKey:"shop_id")
         dictionary.setValue(self.name, forKey:"name")
-        dictionary.setValue(self.accesstoken, forKey:"accesstoken")
         dictionary.setValue(self.adminuser, forKey:"adminuser")
         dictionary.setValue(self.adminpass, forKey:"adminpass")
         dictionary.setValue(self.picture, forKey:"picture")

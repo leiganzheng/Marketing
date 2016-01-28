@@ -297,9 +297,10 @@ extension QNNetworkTool {
      */
     class func fetchShopList(search_key: String, page: String,page_size: String, order:String, completion: ([Shop]?, NSError?, String?) -> Void) {
         requestPOST(kServerAddress + "/Shopsapi/shopGetList", parameters: ["search_key" : search_key, "page" : page,"page_size":page_size,"order":order]) { (_, _, _, dictionary, error) -> Void in
-            if let userList = dictionary?["data"] as? NSArray {
+            if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
+                let userList = dictionary?["data"] as? NSArray
                 var result = [Shop]()
-                for object in userList {
+                for object in userList! {
                     if let dic = object as? NSDictionary, let shop = Shop(dic) {
                         result.append(shop)
                     }
@@ -345,5 +346,98 @@ extension QNNetworkTool {
             }
         }
     }
+    /**
+     分类列表
+     :param: completion 完成的回调
+     */
+    class func fetchCategoryList(completion: ([Category]?, NSError?, String?) -> Void) {
+        requestGET(kServerAddress + "/Categoryapi/categoryGetList", parameters: nil) { (_, _, _, dictionary, error) -> Void in
+            if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
+                let userList = dictionary?["data"] as? NSArray
+                var result = [Category]()
+                for object in userList! {
+                    if let dic = object as? NSDictionary, let category = Category(dic) {
+                        result.append(category)
+                    }
+                }
+                completion(result, error, dictionary?["errorMsg"] as? String)
+            }
+            else {
+                completion(nil, error, dictionary?["errorMsg"] as? String)
+            }
+            
+            
+        }
+    }
+    /**
+     商品列表
+     :param: shop_id 商店ID
+     :param: cat_id 分类ID
+     :param: shop_cat_id 店内分类ID
+     :param: name 商品名称
+     :param: verify 认证状态：1 验证中 2 验证通过 3 验证不通过
+     :param: status 状态：-1 删除 1 未上架 2 上架 3 下架 4 禁用
+     :param: page 页码默认1[必选项]
+     :param: page_size 页数默认10
+     :param: completion 完成的回调
+     */
+    class func fetchGoodList(shop_id: String,cat_id: String,shop_cat_id: String,name: String,verify: String,status:String, page: String,page_size: String, order:String, completion: ([Good]?, NSError?, String?) -> Void) {
+        requestGET(kServerAddress + "/Goodsapi/goodsGetList", parameters: ["shop_id" : shop_id, "page" : page,"page_size":page_size, "cat_id" : cat_id,"shop_cat_id":shop_cat_id, "name" : name,"verify":verify,"status":status]) { (_, _, _, dictionary, error) -> Void in
+            if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
+                let userList = dictionary?["data"] as? NSArray
+                var result = [Good]()
+                for object in userList! {
+                    if let dic = object as? NSDictionary, let good = Good(dic) {
+                        result.append(good)
+                    }
+                }
+                completion(result, error, dictionary?["errorMsg"] as? String)
+            }
+            else {
+                completion(nil, error, dictionary?["errorMsg"] as? String)
+            }
+        }
+    }
+    /**
+     商品详情
+     :param: good_id ID
+     :param: completion 完成的回调
+     */
+    class func fetchGoodDetailInfo(good_id: String, completion: (Good?, NSError?, String?) -> Void) {
+        requestPOST(kServerAddress + "/Goodsapi/goodsGetInfo", parameters: ["good_id" : good_id]) { (_, _, _, dictionary, error) -> Void in
+            if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
+                let shop = Good(dictionary!)
+                completion(shop, nil, nil)
+            }
+            else {
+                completion(nil, error, dictionary?["errorMsg"] as? String)
+            }
+        }
+    }
+    /**
+     广告列表
+     :param: completion 完成的回调
+     */
+    class func fetchAdList(completion: ([AdModel]?, NSError?, String?) -> Void) {
+        requestGET(kServerAddress + "/Adapi/adGetList", parameters: nil) { (_, _, _, dictionary, error) -> Void in
+            if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
+                let userList = dictionary?["data"] as? NSArray
+                var result = [AdModel]()
+                for object in userList! {
+                    if let dic = object as? NSDictionary, let category = AdModel(dic) {
+                        result.append(category)
+                    }
+                }
+                completion(result, error, dictionary?["errorMsg"] as? String)
+            }
+            else {
+                completion(nil, error, dictionary?["errorMsg"] as? String)
+            }
+            
+            
+        }
+    }
+
+
 
 }

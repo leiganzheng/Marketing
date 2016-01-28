@@ -23,6 +23,9 @@
 		71C3A4271C3185100042F851 /* MarketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A4261C3185100042F851 /* MarketViewController.swift */; };
 		71C3A4291C31851E0042F851 /* PromotionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A4281C31851E0042F851 /* PromotionViewController.swift */; };
 		71C3A42B1C3185300042F851 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71C3A42A1C3185300042F851 /* UserViewController.swift */; };
+		BB033B451C59E3C3007DB94D /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB033B441C59E3C3007DB94D /* Category.swift */; };
+		BB033B471C59E5DF007DB94D /* Good.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB033B461C59E5DF007DB94D /* Good.swift */; };
+		BB033B491C59EA88007DB94D /* AdModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB033B481C59EA88007DB94D /* AdModel.swift */; };
 		BB11281D1C58582200297DAD /* LyActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11281B1C58582200297DAD /* LyActivityView.swift */; };
 		BB11281E1C58582200297DAD /* LyPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11281C1C58582200297DAD /* LyPrompt.swift */; };
 		BB1128241C5868AA00297DAD /* NSData+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1128211C5868AA00297DAD /* NSData+AES.m */; };
@@ -89,6 +92,9 @@
 		71C3A4281C31851E0042F851 /* PromotionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromotionViewController.swift; sourceTree = "<group>"; };
 		71C3A42A1C3185300042F851 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		87E2F1119F1545FD344AD0A5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB033B441C59E3C3007DB94D /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		BB033B461C59E5DF007DB94D /* Good.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Good.swift; sourceTree = "<group>"; };
+		BB033B481C59EA88007DB94D /* AdModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdModel.swift; sourceTree = "<group>"; };
 		BB11281B1C58582200297DAD /* LyActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LyActivityView.swift; sourceTree = "<group>"; };
 		BB11281C1C58582200297DAD /* LyPrompt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LyPrompt.swift; sourceTree = "<group>"; };
 		BB1128201C5868AA00297DAD /* NSData+AES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES.h"; sourceTree = "<group>"; };
@@ -326,6 +332,9 @@
 				BB643BD71C30EF0E00BE6790 /* QN_Base.swift */,
 				BB52E9701C47328200E0D1EC /* User.swift */,
 				BB52E9741C47764900E0D1EC /* Shop.swift */,
+				BB033B441C59E3C3007DB94D /* Category.swift */,
+				BB033B461C59E5DF007DB94D /* Good.swift */,
+				BB033B481C59EA88007DB94D /* AdModel.swift */,
 			);
 			path = DataModule;
 			sourceTree = "<group>";
@@ -533,6 +542,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB033B471C59E5DF007DB94D /* Good.swift in Sources */,
 				BB643BE61C30EF0E00BE6790 /* QN_Base.swift in Sources */,
 				71C3A42B1C3185300042F851 /* UserViewController.swift in Sources */,
 				BBF1C5C91C4F59D80057FDE4 /* BaseViewController.swift in Sources */,
@@ -546,6 +556,7 @@
 				BB643BE81C30EF0E00BE6790 /* UIImageExtension.swift in Sources */,
 				BB643BEB1C30EF0E00BE6790 /* QNStyleAttribute.swift in Sources */,
 				BB1128251C5868AA00297DAD /* NSString+AES.m in Sources */,
+				BB033B491C59EA88007DB94D /* AdModel.swift in Sources */,
 				BBF93C351C33B49B0058894C /* NearbySCollectionViewCell.swift in Sources */,
 				BB643BE71C30EF0E00BE6790 /* StringExtension.swift in Sources */,
 				BB1128241C5868AA00297DAD /* NSData+AES.m in Sources */,
@@ -554,6 +565,7 @@
 				BBE32FD11C328E5A0095BA88 /* OrderTableViewCell.swift in Sources */,
 				71C3A4191C3175980042F851 /* RegisterViewController.swift in Sources */,
 				BB52E9731C47369600E0D1EC /* QNSharedDatas.swift in Sources */,
+				BB033B451C59E3C3007DB94D /* Category.swift in Sources */,
 				BB643BB21C30EE4C00BE6790 /* AppDelegate.swift in Sources */,
 				BB11281D1C58582200297DAD /* LyActivityView.swift in Sources */,
 				BB643BED1C30EF0E00BE6790 /* QNTool.swift in Sources */,

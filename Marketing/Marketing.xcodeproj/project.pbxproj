@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4593F54EBD719CB1A6930695 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E2F1119F1545FD344AD0A5 /* Pods.framework */; };
+		7194D5A71C5A591700294A8A /* PersonInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7194D5A61C5A591700294A8A /* PersonInfoViewController.swift */; };
 		719861941C4B6EFC00803F26 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7198618F1C4B6EFC00803F26 /* libWeChatSDK.a */; };
 		719861951C4B6EFC00803F26 /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 719861901C4B6EFC00803F26 /* read_me.txt */; };
 		719861971C4B6FFF00803F26 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 719861961C4B6FFF00803F26 /* SystemConfiguration.framework */; };
@@ -73,6 +74,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7194D5A61C5A591700294A8A /* PersonInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonInfoViewController.swift; sourceTree = "<group>"; };
 		7198618F1C4B6EFC00803F26 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		719861901C4B6EFC00803F26 /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = read_me.txt; sourceTree = "<group>"; };
 		719861911C4B6EFC00803F26 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				BBE32FC41C3227EE0095BA88 /* MyOrderViewController.swift */,
 				BBE32FC61C3228000095BA88 /* ChangePWDViewController.swift */,
 				BBE32FC81C328BD60095BA88 /* PayOrderViewController.swift */,
+				7194D5A61C5A591700294A8A /* PersonInfoViewController.swift */,
 			);
 			path = UserCenter;
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 				BB643BED1C30EF0E00BE6790 /* QNTool.swift in Sources */,
 				BB11281E1C58582200297DAD /* LyPrompt.swift in Sources */,
 				BBF93C331C33AF1E0058894C /* PromotionCollectionViewCell.swift in Sources */,
+				7194D5A71C5A591700294A8A /* PersonInfoViewController.swift in Sources */,
 				71C3A4251C3185000042F851 /* NearbyViewController.swift in Sources */,
 				BB643BEA1C30EF0E00BE6790 /* UIViewExtension.swift in Sources */,
 				BB643BE41C30EF0E00BE6790 /* QNTabBarController.swift in Sources */,

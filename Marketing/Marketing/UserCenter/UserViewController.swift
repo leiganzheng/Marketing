@@ -65,6 +65,13 @@ class UserViewController: BaseViewController , UITableViewDataSource, UITableVie
             name.text = g_user?.nickname!
             let addres = cell.viewWithTag(102) as! UILabel
             addres.text = "地址：\(g_user?.role!)"
+            let btn = cell.viewWithTag(103) as! UIButton
+            btn.rac_signalForControlEvents(.TouchUpInside).subscribeNext { (sender) -> Void in
+                let vc = PersonInfoViewController()
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+
             return cell
         }else {
             let cellId = "cell1"

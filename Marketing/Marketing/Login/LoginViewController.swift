@@ -41,16 +41,13 @@ class LoginViewController: UIViewController, QNInterceptorNavigationBarHiddenPro
         self.accountTextField.text = g_Account
         let accountImageView = UIImageView(frame: CGRectMake(4, 0, 40, 20))
         accountImageView.contentMode = UIViewContentMode.Center
-//        accountImageView.image = UIImage(named: "Login_Account")
-//        self.accountTextField.leftView = accountImageView
+
         
         RegisterViewController.configTextField(self.passwordTextField)
         self.passwordTextField.secureTextEntry = true
         let passwordImageView = UIImageView(frame: CGRectMake(4, 0, 40, 20))
         passwordImageView.contentMode = UIViewContentMode.Center
-//        passwordImageView.image = UIImage(named: "Login_Password")
-//        self.passwordTextField.leftView = passwordImageView
-
+        self.passwordTextField.text = g_Password
         // 键盘消失
         let tap = UITapGestureRecognizer()
         tap.rac_gestureSignal().subscribeNext { [weak self](tap) -> Void in

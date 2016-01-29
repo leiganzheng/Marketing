@@ -12,15 +12,14 @@ class MarketViewController: BaseViewController, UICollectionViewDataSource, UICo
 
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet weak var customTableView: UITableView!
-    var titles: NSArray!
+    var titles: [Category] =  NSArray() as! [Category]
     var titleArray: NSArray!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "商城"
         //数据
         self.titleArray = NSArray()
-        self.titles = ["日用品","日用品","日用品","日用品"]
-        // Do any additional setup after loading the view.
+       self.fetchCategoryData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -68,7 +67,8 @@ class MarketViewController: BaseViewController, UICollectionViewDataSource, UICo
         if cell == nil {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
         }
-        cell.textLabel?.text = self.titles[indexPath.row] as? String
+        let category = self.titles[indexPath.row]
+        cell.textLabel?.text = category.name
         let lb = UILabel(frame: CGRectMake(0,65,85, 1))
         lb.backgroundColor = UIColor(white: 136/255, alpha: 1)
         cell.addSubview(lb)
@@ -78,6 +78,17 @@ class MarketViewController: BaseViewController, UICollectionViewDataSource, UICo
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
+    }
+    //MARK: - Private Method
+    func fetchCategoryData (){
+        QNNetworkTool.fetchCategoryList { (array, error, errorMsg) -> Void in
+            if array?.count>=0 {
+                self.titles = array!
+                self.customTableView.reloadData()
+            }else{
+                
+            }
+        }
     }
 
 }

@@ -31,10 +31,6 @@ private extension QNNetworkTool {
      */
     private class func productRequest(url: NSURL!, method: NSString!) -> NSMutableURLRequest {
         let request = NSMutableURLRequest(URL: url)
-//        request.addValue(g_user?.accesstoken ?? "", forHTTPHeaderField: "AUTH") // 用户身份串,在调用/api/login 成功后会返回这个串;未登录时为空
-//        request.addValue("1", forHTTPHeaderField: "AID")                // app_id, iphone=1, android=2
-//        request.addValue(APP_VERSION, forHTTPHeaderField: "VER")        // 客户端版本号
-//        request.addValue(g_UDID, forHTTPHeaderField: "CID")             // 客户端设备号
         request.HTTPMethod = method as String
         return request
     }

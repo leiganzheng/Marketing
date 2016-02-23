@@ -68,7 +68,6 @@ class LoginViewController: UIViewController, QNInterceptorNavigationBarHiddenPro
         }
         return false
     }
-    
     // MARK: 登录
     @IBAction func login(sender: AnyObject) {
         self.login()

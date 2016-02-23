@@ -366,6 +366,30 @@ extension QNNetworkTool {
         }
     }
     /**
+     经营分类列表
+     :param: completion 完成的回调
+     */
+    class func fetchBusinessCategoryList(completion: ([Category]?, NSError?, String?) -> Void) {
+        requestGET(kServerAddress + "/BusinessCategoryapi/businessCategoryGetList", parameters: nil) { (_, _, _, dictionary, error) -> Void in
+            if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
+//                let userList = dictionary?["data"] as? NSArray
+//                var result = [Category]()
+//                for object in userList! {
+//                    if let dic = object as? NSDictionary, let category = Category(dic) {
+//                        result.append(category)
+//                    }
+//                }
+//                completion(result, error, dictionary?["errorMsg"] as? String)
+            }
+            else {
+                completion(nil, error, dictionary?["errorMsg"] as? String)
+            }
+            
+            
+        }
+    }
+
+    /**
      商品列表
      :param: shop_id 商店ID
      :param: cat_id 分类ID

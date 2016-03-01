@@ -11,12 +11,11 @@ import UIKit
 class NearbyViewController: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet var collectionView: UICollectionView!
-    var titleArray: NSArray!
+    var titleArray:NSArray =  NSArray() as! [BusinessCategory]
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "附近"
         //数据
-        self.titleArray = NSArray()
         self.fetchData()
     }
     
@@ -62,7 +61,12 @@ class NearbyViewController: BaseViewController, UICollectionViewDataSource, UICo
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         self.collectionView.deselectItemAtIndexPath(indexPath, animated: true)
-        //        let object = self.titleArray.objectAtIndex(indexPath.row) as! NSDictionary
+//        let object = self.titleArray.objectAtIndex(indexPath.row) as! BusinessCategory
+        let vc = ShopListTableViewController()
+//        vc.businessCategory = object
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
@@ -84,17 +88,17 @@ class NearbyViewController: BaseViewController, UICollectionViewDataSource, UICo
 //    }
     //MARK: - Private Method
     func fetchData (){
-        QNNetworkTool.fetchShopList("", page: "1", page_size: "10", order: "shop_id") { (shops, error, errorMsg) -> Void in
-            if shops != nil {
-                if shops?.count > 0{
-                    
-                }else {
-                    QNTool.showPromptView("没有数据")
-                }
+        QNNetworkTool.fetchBusinessCategoryList { (array, error, errorMsg) -> Void in
+        if array != nil {
+            if array?.count>=0 {
+                self.titleArray = array!
+                self.collectionView.reloadData()
             }else{
-                QNTool.showErrorPromptView(nil, error: error)
+                QNTool.showPromptView("没有数据")
             }
-           
+        }else{
+            QNTool.showErrorPromptView(nil, error: error)
+        }
         }
     }
 }

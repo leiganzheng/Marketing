@@ -187,7 +187,7 @@ extension QNNetworkTool {
     class func register(adminuser: String, password: String, authcode: String, completion: (User!, NSError!, String!) -> Void) {
         var params = [String : String]()
         params["adminuser"] = adminuser
-        params["adminpass"] = password
+        params["adminpass"] = password.MD5()
         params["code"] = authcode
         requestPOST(kServerAddress + "/Customersapi/customerSave", parameters:params) { (_, _, _, dictionary, error) -> Void in
             if dictionary != nil, let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
@@ -248,7 +248,7 @@ extension QNNetworkTool {
      :param: completion 完成的回调 
      */
     class func updatePassWord(accesstoken: String, old: String,new: String, completion: (succeed: Bool, NSError?, String?) -> Void) {
-        requestPOST(kServerAddress + "/Apibase/userPasswordEdit", parameters: ["accesstoken" : accesstoken, "old_password" : old,"new_password":new]) { (_, _, _, dictionary, error) -> Void in
+        requestPOST(kServerAddress + "/Apibase/userPasswordEdit", parameters: ["accesstoken" : accesstoken, "old_password" : old.MD5(),"new_password":new.MD5()]) { (_, _, _, dictionary, error) -> Void in
             let succeed: Bool
             if dictionary != nil, let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
                 succeed = true
@@ -269,7 +269,7 @@ extension QNNetworkTool {
      :param: completion 完成的回调 
      */
     class func findPassWord(role: String, type: String,account: String,code: String,new_password: String, completion: (succeed: Bool, NSError?, String?) -> Void) {
-        requestPOST(kServerAddress + "/Apibase/userPasswordForgot", parameters: ["role" : role, "type" : type,"code" : code,"new_password" : new_password,"account":account]) { (_, _, _, dictionary, error) -> Void in
+        requestPOST(kServerAddress + "/Apibase/userPasswordForgot", parameters: ["role" : role, "type" : type,"code" : code,"new_password" : new_password.MD5(),"account":account]) { (_, _, _, dictionary, error) -> Void in
             let succeed: Bool
             if let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
                 succeed = true
@@ -289,10 +289,12 @@ extension QNNetworkTool {
      :param: page 页码[必选项]
      :param: page_size 页数默认10
      :param: order 排序默认按shop_id
+     :param:  business_cat_id 行业ID
+     :param:  need_shop_address 1 返回店铺地址 0 不返回（当选择这个参数，只有有地址的店铺会被返回）
      :param: completion 完成的回调 
      */
-    class func fetchShopList(search_key: String, page: String,page_size: String, order:String, completion: ([Shop]?, NSError?, String?) -> Void) {
-        requestPOST(kServerAddress + "/Shopsapi/shopGetList", parameters: ["search_key" : search_key, "page" : page,"page_size":page_size,"order":order]) { (_, _, _, dictionary, error) -> Void in
+    class func fetchShopList(search_key: String, page: String,business_cat_id: String,need_shop_address: String,page_size: String, order:String, completion: ([Shop]?, NSError?, String?) -> Void) {
+        requestPOST(kServerAddress + "/Shopsapi/shopGetList", parameters: ["search_key" : search_key, "page" : page,"page_size":page_size,"order":order,"need_shop_address":need_shop_address,"business_cat_id":business_cat_id]) { (_, _, _, dictionary, error) -> Void in
             if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
                 let userList = dictionary?["data"] as? NSArray
                 var result = [Shop]()
@@ -329,6 +331,7 @@ extension QNNetworkTool {
     /**
       商家保存（申请、新增、修改）
      :param: dictionary 商家ID
+     :param: adminpass 商家密码（MD5）[必选项]
      :param: completion 完成的回调
      */
     class func saveShopInfo(dictionary: String, completion: (Shop?, NSError?, String?) -> Void) {
@@ -576,8 +579,31 @@ extension QNNetworkTool {
             
         }
     }
-
-
     
 }
+//MARK:- (店内分类模块)
+extension QNNetworkTool {
+    /**
+     订单详情
+     :param: completion 完成的回调
+     */
+    class func fetchShopCategoryList(completion: ([ShopCategory]?, NSError?, String?) -> Void) {
+        requestGET(kServerAddress + "/Shopcategoryapi/shopCategoryGetList", parameters: nil) { (_, _, _, dictionary, error) -> Void in
+            if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
+                let list = dictionary?["data"] as? NSArray
+                var result = [ShopCategory]()
+                for object in list! {
+                    if let dic = object as? NSDictionary, let order = ShopCategory(dic) {
+                        result.append(order)
+                    }
+                }
+                completion(result, error, dictionary?["errorMsg"] as? String)
+            }
+            else {
+                completion(nil, error, dictionary?["errorMsg"] as? String)
+            }
+            
+        }
+    }
 
+}

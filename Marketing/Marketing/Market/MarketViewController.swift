@@ -12,7 +12,7 @@ class MarketViewController: BaseViewController, UICollectionViewDataSource, UICo
 
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet weak var customTableView: UITableView!
-    var titles: [Category] =  NSArray() as! [Category]
+    var titles: [ShopCategory] =  NSArray() as! [ShopCategory]
     var titleArray: NSArray!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,12 +81,16 @@ class MarketViewController: BaseViewController, UICollectionViewDataSource, UICo
     }
     //MARK: - Private Method
     func fetchCategoryData (){
-        QNNetworkTool.fetchCategoryList { (array, error, errorMsg) -> Void in
-            if array?.count>=0 {
-                self.titles = array!
-                self.customTableView.reloadData()
+        QNNetworkTool.fetchShopCategoryList { (array, error, errorMsg) -> Void in
+            if array != nil {
+                if array?.count>=0 {
+                    self.titles = array!
+                    self.customTableView.reloadData()
+                }else{
+                    QNTool.showPromptView("没有数据")
+                }
             }else{
-                
+                QNTool.showErrorPromptView(nil, error: error)
             }
         }
     }

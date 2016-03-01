@@ -65,6 +65,7 @@
 		BBFF7C861C8533970092C7CB /* BusinessCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFF7C851C8533970092C7CB /* BusinessCategory.swift */; };
 		BBFF7C881C8575250092C7CB /* ShopCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFF7C871C8575250092C7CB /* ShopCategory.swift */; };
 		BBFF7C8A1C85798C0092C7CB /* ShopListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFF7C891C85798C0092C7CB /* ShopListTableViewController.swift */; };
+		BBFF7C8C1C8583BA0092C7CB /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFF7C8B1C8583BA0092C7CB /* Address.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +147,7 @@
 		BBFF7C851C8533970092C7CB /* BusinessCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessCategory.swift; sourceTree = "<group>"; };
 		BBFF7C871C8575250092C7CB /* ShopCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopCategory.swift; sourceTree = "<group>"; };
 		BBFF7C891C85798C0092C7CB /* ShopListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopListTableViewController.swift; sourceTree = "<group>"; };
+		BBFF7C8B1C8583BA0092C7CB /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		F372F1E61691C173103A6F51 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F85F8EDCC90C6F5369D98E8A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -350,6 +352,7 @@
 				BBFF7C831C852C6C0092C7CB /* Order.swift */,
 				BBFF7C851C8533970092C7CB /* BusinessCategory.swift */,
 				BBFF7C871C8575250092C7CB /* ShopCategory.swift */,
+				BBFF7C8B1C8583BA0092C7CB /* Address.swift */,
 			);
 			path = DataModule;
 			sourceTree = "<group>";
@@ -573,6 +576,7 @@
 				BB643BE81C30EF0E00BE6790 /* UIImageExtension.swift in Sources */,
 				BB643BEB1C30EF0E00BE6790 /* QNStyleAttribute.swift in Sources */,
 				BB1128251C5868AA00297DAD /* NSString+AES.m in Sources */,
+				BBFF7C8C1C8583BA0092C7CB /* Address.swift in Sources */,
 				BB033B491C59EA88007DB94D /* AdModel.swift in Sources */,
 				BBF93C351C33B49B0058894C /* NearbySCollectionViewCell.swift in Sources */,
 				BB643BE71C30EF0E00BE6790 /* StringExtension.swift in Sources */,

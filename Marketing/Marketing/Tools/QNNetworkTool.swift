@@ -607,3 +607,98 @@ extension QNNetworkTool {
     }
 
 }
+//MARK:- CustomerAddress (客户地址模块)
+extension QNNetworkTool {
+    /**
+     客户地址列表
+     :param:  accesstoken 登录状态校验令牌[必选项]
+     :param:  status 状态：-1 删除 0 正常 1 默认使用 2 禁用
+     :param: completion 完成的回调
+     */
+    class func customerAddressGetList(accesstoken:String,status:String, completion: ([Address]?, NSError?, String?) -> Void) {
+        requestGET(kServerAddress + "/Customeraddressapi/customerAddressGetList", parameters: ["accesstoken":accesstoken,"status":status]) { (_, _, _, dictionary, error) -> Void in
+            if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
+                let list = dictionary?["data"] as? NSArray
+                var result = [Address]()
+                for object in list! {
+                    if let dic = object as? NSDictionary, let address = Address(dic) {
+                        result.append(address)
+                    }
+                }
+                completion(result, error, dictionary?["errorMsg"] as? String)
+            }
+            else {
+                completion(nil, error, dictionary?["errorMsg"] as? String)
+            }
+            
+        }
+    }
+    /**
+     客户地址详情
+     :param:  accesstoken 登录状态校验令牌[必选项]
+     :param:  id 客户地址ID[必选项]
+     :param:  status 状态：-1 删除 0 正常 1 默认使用 2 禁用
+     :param: completion 完成的回调
+     */
+    class func customerAddressGetInfo(accesstoken:String,status:String,id:String, completion: (Address?, NSError?, String?) -> Void) {
+        requestGET(kServerAddress + "/Customeraddressapi/customerAddressGetInfo", parameters: ["accesstoken":accesstoken,"status":status,"id":id]) { (_, _, _, dictionary, error) -> Void in
+            if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
+                let address = Address(dictionary!)
+                completion(address, error, dictionary?["errorMsg"] as? String)
+            }
+            else {
+                completion(nil, error, dictionary?["errorMsg"] as? String)
+            }
+            
+        }
+    }
+    /**
+     客户地址添加
+     :param:  accesstoken 登录状态校验令牌[必选项]
+     :param:   mobile 联系电话[必选项]
+     :param:   longitude 经度
+     :param:   latitude 纬度
+     :param:   address 所在乡镇
+     :param:   address_detail 所在街道
+     :param: completion 完成的回调
+     */
+    class func customerAddressAdd(accesstoken:String,mobile:String,longitude:String,latitude:String,address:String,address_detail:String, completion: (Address?, NSError?, String?) -> Void) {
+        requestGET(kServerAddress + "/Customeraddressapi/CustomerAddressAdd", parameters: ["accesstoken":accesstoken,"mobile":mobile,"longitude":longitude,"latitude":latitude,"address":address,"address_detail":address_detail]) { (_, _, _, dictionary, error) -> Void in
+            if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
+                let address = Address(dictionary!)
+                completion(address, error, dictionary?["errorMsg"] as? String)
+            }
+            else {
+                completion(nil, error, dictionary?["errorMsg"] as? String)
+            }
+            
+        }
+    }
+    /**
+     客户地址更新
+     :param:  accesstoken 登录状态校验令牌[必选项]
+     :param:   mobile 联系电话[必选项]
+     :param:   longitude 经度
+     :param:   latitude 纬度
+     :param:   address 所在乡镇
+     :param:   address_detail 所在街道
+     :param:    id 客户地址ID[必选项]
+     :param:    status 状态：-1 删除 0 正常 1 默认使用 2 禁用
+     :param: completion 完成的回调
+     */
+    class func customerAddressUpdate(accesstoken:String,id:String,status:String,mobile:String,longitude:String,latitude:String,address:String,address_detail:String, completion: (Address?, NSError?, String?) -> Void) {
+        requestGET(kServerAddress + "/Customeraddressapi/customerAddressUpdate", parameters: ["accesstoken":accesstoken,"mobile":mobile,"longitude":longitude,"latitude":latitude,"address":address,"address_detail":address_detail,"id":id,"status":status]) { (_, _, _, dictionary, error) -> Void in
+            if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
+                let address = Address(dictionary!)
+                completion(address, error, dictionary?["errorMsg"] as? String)
+            }
+            else {
+                completion(nil, error, dictionary?["errorMsg"] as? String)
+            }
+            
+        }
+    }
+
+
+    
+}

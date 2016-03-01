@@ -366,30 +366,6 @@ extension QNNetworkTool {
         }
     }
     /**
-     经营分类列表
-     :param: completion 完成的回调
-     */
-    class func fetchBusinessCategoryList(completion: ([Category]?, NSError?, String?) -> Void) {
-        requestGET(kServerAddress + "/BusinessCategoryapi/businessCategoryGetList", parameters: nil) { (_, _, _, dictionary, error) -> Void in
-            if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
-//                let userList = dictionary?["data"] as? NSArray
-//                var result = [Category]()
-//                for object in userList! {
-//                    if let dic = object as? NSDictionary, let category = Category(dic) {
-//                        result.append(category)
-//                    }
-//                }
-//                completion(result, error, dictionary?["errorMsg"] as? String)
-            }
-            else {
-                completion(nil, error, dictionary?["errorMsg"] as? String)
-            }
-            
-            
-        }
-    }
-
-    /**
      商品列表
      :param: shop_id 商店ID
      :param: cat_id 分类ID
@@ -479,6 +455,61 @@ extension QNNetworkTool {
     }
 
 }
+//MARK:- BusinessCategory (行业分类模块)
+extension QNNetworkTool {
+    /**
+     行业分类列表
+     :param: completion 完成的回调
+     */
+    class func fetchBusinessCategoryList(completion: ([BusinessCategory]?, NSError?, String?) -> Void) {
+        requestGET(kServerAddress + "/BusinessCategoryapi/businessCategoryGetList", parameters: nil) { (_, _, _, dictionary, error) -> Void in
+            if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
+                let userList = dictionary?["data"] as? NSArray
+                var result = [BusinessCategory]()
+                for object in userList! {
+                    if let dic = object as? NSDictionary, let category = BusinessCategory(dic) {
+                        result.append(category)
+                    }
+                }
+                completion(result, error, dictionary?["errorMsg"] as? String)
+            }
+            else {
+                completion(nil, error, dictionary?["errorMsg"] as? String)
+            }
+            
+            
+        }
+    }
+    /**
+     添加行业分类
+     :param: completion 完成的回调
+     */
+    class func businessCategoryAdd(accesstoken:String,name:String,description:String,picture:String,parent:String,sort:String, completion: (BusinessCategory?, NSError?, String?) -> Void) {
+        requestGET(kServerAddress + "/BusinessCategoryapi/businessCategoryAdd", parameters: ["accesstoken":accesstoken,"name":name,"description":description,"picture":picture,"parent":parent,"sort":sort]) { (_, _, _, dictionary, error) -> Void in
+            if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
+                completion(BusinessCategory(dictionary!), error, dictionary?["errorMsg"] as? String)
+            }
+            else {
+                completion(nil, error, dictionary?["errorMsg"] as? String)
+            }
+        }
+    }
+    /**
+     更新行业分类
+     :param: completion 完成的回调
+     */
+    class func businessCategoryUpdate(accesstoken:String,name:String,description:String,picture:String,parent:String,sort:String, completion: (BusinessCategory?, NSError?, String?) -> Void) {
+        requestGET(kServerAddress + "/BusinessCategoryapi/businessCategoryUpdate", parameters: ["accesstoken":accesstoken,"name":name,"description":description,"picture":picture,"parent":parent,"sort":sort]) { (_, _, _, dictionary, error) -> Void in
+            if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
+                completion(BusinessCategory(dictionary!), error, dictionary?["errorMsg"] as? String)
+            }
+            else {
+                completion(nil, error, dictionary?["errorMsg"] as? String)
+            }
+        }
+    }
+}
+
 //MARK:- 订单模块
 extension QNNetworkTool {
     /**

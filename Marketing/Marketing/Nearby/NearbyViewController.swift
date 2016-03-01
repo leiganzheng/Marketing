@@ -85,11 +85,16 @@ class NearbyViewController: BaseViewController, UICollectionViewDataSource, UICo
     //MARK: - Private Method
     func fetchData (){
         QNNetworkTool.fetchShopList("", page: "1", page_size: "10", order: "shop_id") { (shops, error, errorMsg) -> Void in
-            if shops?.count > 0{
-                
-            }else {
-                
+            if shops != nil {
+                if shops?.count > 0{
+                    
+                }else {
+                    QNTool.showPromptView("没有数据")
+                }
+            }else{
+                QNTool.showErrorPromptView(nil, error: error)
             }
+           
         }
     }
 }

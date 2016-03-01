@@ -457,7 +457,95 @@ extension QNNetworkTool {
             
         }
     }
-
-
+}
+//MARK:- 促销模块
+extension QNNetworkTool {
+    /**
+     分类列表
+     :param: completion 完成的回调
+     */
+    class func fetchPromotionList(completion: (NSArray?, NSError?, String?) -> Void) {
+        requestGET(kServerAddress + "/Promotionapi/promotionGetList", parameters: nil) { (_, _, _, dictionary, error) -> Void in
+            if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
+                let userList = dictionary?["data"] as? NSArray
+                completion(userList, error, dictionary?["errorMsg"] as? String)
+            }
+            else {
+                completion(nil, error, dictionary?["errorMsg"] as? String)
+            }
+            
+            
+        }
+    }
 
 }
+//MARK:- 订单模块
+extension QNNetworkTool {
+    /**
+     订单列表
+     :param: completion 完成的回调
+     */
+    class func fetchOrderList(uid:String, accesstoken: String,page: String,page_size: String, completion: ([Order]?, NSError?, String?) -> Void) {
+        requestGET(kServerAddress + "/Orderapi/orderGetList", parameters: ["uid" : uid, "page" : page,"page_size":page_size, "accesstoken" : accesstoken]) { (_, _, _, dictionary, error) -> Void in
+            if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
+                let list = dictionary?["data"] as? NSArray
+                var result = [Order]()
+                for object in list! {
+                    if let dic = object as? NSDictionary, let order = Order(dic) {
+                        result.append(order)
+                    }
+                }
+
+                completion(result, error, dictionary?["errorMsg"] as? String)
+            }
+            else {
+                completion(nil, error, dictionary?["errorMsg"] as? String)
+            }
+            
+            
+        }
+    }
+    /**
+     订单详情
+     :param: completion 完成的回调
+     */
+    class func fetchOrderInfo(order_id:String, accesstoken: String, completion: (Order?, NSError?, String?) -> Void) {
+        requestGET(kServerAddress + "/Orderapi/orderGetInfo", parameters: ["order_id" : order_id,"accesstoken" : accesstoken]) { (_, _, _, dictionary, error) -> Void in
+            if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
+                let order = Order(dictionary!)
+                completion(order, error, dictionary?["errorMsg"] as? String)
+            }
+            else {
+                completion(nil, error, dictionary?["errorMsg"] as? String)
+            }
+            
+        }
+    }
+    /**
+     添加订单
+     :param:  accesstoken 登录状态校验令牌[必选项]
+     :param:  shop_id 商店ID
+     :param:  uid 用户ID
+     :param:  goods_price 商品总价格
+     :param:  order_price 订单总价格
+     :param:  customer_address_id 用户地址ID
+     :param:  order_goods 订单商品，为数组json化格式
+     :param: completion 完成的回调
+     */
+    class func orderAdd(shop_id:String, accesstoken: String,uid: String,goods_price: String,order_price: String,customer_address_id: String, order_goods: String, completion: (Order?, NSError?, String?) -> Void) {
+        requestGET(kServerAddress + "/Orderapi/orderAdd", parameters: ["shop_id" : shop_id,"uid" : uid,"goods_price" : goods_price,"order_price" : order_price,"customer_address_id" : customer_address_id,"accesstoken" : accesstoken,"order_goods" : order_goods]) { (_, _, _, dictionary, error) -> Void in
+            if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
+                let order = Order(dictionary!)
+                completion(order, error, dictionary?["errorMsg"] as? String)
+            }
+            else {
+                completion(nil, error, dictionary?["errorMsg"] as? String)
+            }
+            
+        }
+    }
+
+
+    
+}
+

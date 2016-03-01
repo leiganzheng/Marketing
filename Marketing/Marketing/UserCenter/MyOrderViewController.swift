@@ -17,6 +17,8 @@ class MyOrderViewController: BaseViewController , UITableViewDataSource, UITable
         super.viewDidLoad()
         self.title = "我的订单"
         self.titles = ["我的订单","我的收藏","修改密码","退出登录"]
+        //
+        self.fetchData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,5 +53,19 @@ class MyOrderViewController: BaseViewController , UITableViewDataSource, UITable
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
     }
-    
+    //MARK: Private Method
+    func fetchData (){
+            QNNetworkTool.fetchOrderList((g_user?.uid)!, accesstoken: (g_user?.accesstoken)!, page: "1", page_size: "10") { (orders, error, errorMsg) -> Void in
+                if orders != nil {
+                    if orders?.count > 0{
+                        
+                    }else {
+                        QNTool.showPromptView("没有数据")
+                    }
+                }else{
+                    QNTool.showErrorPromptView(nil, error: error)
+                }
+        }
+    }
+
 }

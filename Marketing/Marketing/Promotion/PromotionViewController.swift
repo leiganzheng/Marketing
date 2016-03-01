@@ -17,6 +17,7 @@ class PromotionViewController: BaseViewController, UICollectionViewDataSource, U
         self.title = "促销"
         //数据
         self.titleArray = NSArray()
+        self.fetchData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,6 +55,12 @@ class PromotionViewController: BaseViewController, UICollectionViewDataSource, U
         
         cell.customView.layer.borderColor = defaultLineColor.CGColor
         cell.customView.layer.borderWidth = 0.5
+//        "id": "2",
+//        "name": "促销2",
+//        "description": "促销2"
+        if self.titleArray.count>0{
+            
+        }
         return cell
     }
     
@@ -68,6 +75,16 @@ class PromotionViewController: BaseViewController, UICollectionViewDataSource, U
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         return UIEdgeInsetsMake(2, 2, 2, 2)
     }
-
+    //MARK: Private Method
+    func fetchData (){
+        QNNetworkTool.fetchPromotionList { (array, error, errorMsg) -> Void in
+            if array != nil {
+                self.titleArray = array
+                self.collectionView.reloadData()
+            }else{
+                QNTool.showErrorPromptView(nil, error: error)
+            }
+        }
+    }
 
 }

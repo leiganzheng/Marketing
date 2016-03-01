@@ -127,7 +127,7 @@ extension QNNetworkTool {
      */
 
     class func login(Account account: String, Password password: String,Role role: String, completion: (User?, NSError?, String?) -> Void) {
-        requestPOST(kServerAddress + "/Apibase/userLogin", parameters: ["account" : account, "password" : password,"role":role]) { (_, _, _, dictionary, error) -> Void in
+        requestPOST(kServerAddress + "/Apibase/userLogin", parameters: ["account" : account, "password" : password.MD5(),"role":role]) { (_, _, _, dictionary, error) -> Void in
             if dictionary != nil, let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
                 let user = User(dictionary!)
                 g_user = user
@@ -370,6 +370,7 @@ extension QNNetworkTool {
      :param: shop_id 商店ID
      :param: cat_id 分类ID
      :param: shop_cat_id 店内分类ID
+     :param: promotion_type 促销类型ID
      :param: name 商品名称
      :param: verify 认证状态：1 验证中 2 验证通过 3 验证不通过
      :param: status 状态：-1 删除 1 未上架 2 上架 3 下架 4 禁用
@@ -377,8 +378,8 @@ extension QNNetworkTool {
      :param: page_size 页数默认10
      :param: completion 完成的回调
      */
-    class func fetchGoodList(shop_id: String,cat_id: String,shop_cat_id: String,name: String,verify: String,status:String, page: String,page_size: String, order:String, completion: ([Good]?, NSError?, String?) -> Void) {
-        requestGET(kServerAddress + "/Goodsapi/goodsGetList", parameters: ["shop_id" : shop_id, "page" : page,"page_size":page_size, "cat_id" : cat_id,"shop_cat_id":shop_cat_id, "name" : name,"verify":verify,"status":status]) { (_, _, _, dictionary, error) -> Void in
+    class func fetchGoodList(shop_id: String,cat_id: String,shop_cat_id: String,promotion_type:String,name: String,verify: String,status:String, page: String,page_size: String, order:String, completion: ([Good]?, NSError?, String?) -> Void) {
+        requestGET(kServerAddress + "/Goodsapi/goodsGetList", parameters: ["shop_id" : shop_id, "promotion_type" : promotion_type, "page" : page,"page_size":page_size, "cat_id" : cat_id,"shop_cat_id":shop_cat_id, "name" : name,"verify":verify,"status":status]) { (_, _, _, dictionary, error) -> Void in
             if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
                 let userList = dictionary?["data"] as? NSArray
                 var result = [Good]()

@@ -77,7 +77,7 @@ class LoginViewController: UIViewController, QNInterceptorNavigationBarHiddenPro
         if !self.checkAccountPassWord() {return}
         if let id = self.accountTextField.text, let password = self.passwordTextField.text {
             QNTool.showActivityView("正在登录...")
-            QNNetworkTool.login(Account: id, Password: password, Role: "3", completion: { (user, error, errorMsg) -> Void in
+            QNNetworkTool.login(Account: id, Password:password, Role: "3", completion: { (user, error, errorMsg) -> Void in
                  QNTool.hiddenActivityView()
                 if user != nil {
                     //进入主界面

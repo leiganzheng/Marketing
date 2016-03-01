@@ -77,14 +77,16 @@ class PromotionViewController: BaseViewController, UICollectionViewDataSource, U
     }
     //MARK: Private Method
     func fetchData (){
-        QNNetworkTool.fetchPromotionList { (array, error, errorMsg) -> Void in
-            if array != nil {
-                self.titleArray = array
+        QNNetworkTool.fetchGoodList("", cat_id: "", shop_cat_id: "", promotion_type: "2", name: "", verify: "", status: "", page: "", page_size: "", order: "") { (goods, error, errorMsg) -> Void in
+            if goods != nil {
+                self.titleArray = goods
                 self.collectionView.reloadData()
             }else{
                 QNTool.showErrorPromptView(nil, error: error)
             }
+
         }
+       
     }
 
 }

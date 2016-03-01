@@ -12,4 +12,5 @@
 #import "NSString+AES.h"
 #import "WXApi.h"
 #import "WXApiObject.h"
+#import <CommonCrypto/CommonDigest.h>   // MD5
 #endif /* Marketing_Bridging_Header_h */

@@ -50,11 +50,11 @@ class Order: QN_Base {
         self.create_time = dictionary["create_time"] as? String
         self.create_time = dictionary["update_time"] as? String
         self.status = dictionary["status"] as? String
-        for goodsDictionary in dictionary["order_goods"] as! NSArray {
-            if let dictionary = goodsDictionary as? NSDictionary, let good = Good(dictionary) {
-                self.goods.append(good)
-            }
-        }
+//        for goodsDictionary in dictionary["order_goods"] as! NSArray {
+//            if let dictionary = goodsDictionary as? NSDictionary, let good = Good(dictionary) {
+//                self.goods.append(good)
+//            }
+//        }
         super.init(dictionary)
     }
     
@@ -77,11 +77,11 @@ class Order: QN_Base {
         dictionary.setValue(self.create_time, forKey:"create_time")
         dictionary.setValue(self.create_time, forKey:"create_time")
         dictionary.setValue(self.status, forKey:"status")
-        let goods = NSMutableArray()
-        for good in self.goods {
-            goods.addObject(good.dictionary())
-        }
-        dictionary.setValue(goods, forKey: "order_goods")
+//        let goods = NSMutableArray()
+//        for good in self.goods {
+//            goods.addObject(good.dictionary())
+//        }
+//        dictionary.setValue(goods, forKey: "order_goods")
         return dictionary
     }
 

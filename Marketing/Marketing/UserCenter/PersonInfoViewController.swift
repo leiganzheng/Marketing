@@ -14,16 +14,14 @@ class PersonInfoViewController:  BaseViewController ,QNInterceptorProtocol, UITa
         case HeadImage = 0       // 头像
         case NickName = 1        // 姓名
         case phone = 2         // 注册手机
-        case Address = 3         // 地区
-        case Save = 4
-        static let count = 5    // 总数
+        case Save = 3
+        static let count = 4    // 总数
         
         var title: String {
             switch self {
             case .HeadImage: return "我的头像"
             case .NickName:  return "我的昵称"
             case .phone: return "联系方式"
-            case .Address:   return "通讯地址"
             case .Save:   return "保存资料"
             }
         }
@@ -47,7 +45,7 @@ class PersonInfoViewController:  BaseViewController ,QNInterceptorProtocol, UITa
         // 让导航栏支持向右滑动手势
         QNTool.addInteractive(self.navigationController)
         self.title = "个人资料"
-        self.userCenterData = [[Content.HeadImage], [Content.NickName],[Content.phone,Content.Address],[Content.Save]]
+        self.userCenterData = [[Content.HeadImage], [Content.NickName],[Content.phone],[Content.Save]]
         
         self.tableView = UITableView(frame: self.view.bounds, style: UITableViewStyle.Grouped)
         self.tableView.autoresizingMask = [UIViewAutoresizing.FlexibleWidth , UIViewAutoresizing.FlexibleHeight]
@@ -120,14 +118,14 @@ class PersonInfoViewController:  BaseViewController ,QNInterceptorProtocol, UITa
             self.phoneLB.textAlignment = NSTextAlignment.Right
             self.phoneLB.textColor = UIColor(white: 66/255, alpha: 1)
             cell.accessoryView = self.phoneLB
-//            self.phoneLB.text = g_user?.p
-        case .Address:
-            self.zoneLB = UILabel(frame: CGRectMake(0, 0, 160, 50))
-            self.zoneLB.font = UIFont.systemFontOfSize(14)
-            self.zoneLB.textAlignment = NSTextAlignment.Right
-            self.zoneLB.textColor = UIColor(white: 66/255, alpha: 1)
-            cell.accessoryView = self.zoneLB
-//            self.zoneLB.text = g_user?.location
+            self.phoneLB.text = g_user?.mobile
+//        case .Address:
+//            self.zoneLB = UILabel(frame: CGRectMake(0, 0, 160, 50))
+//            self.zoneLB.font = UIFont.systemFontOfSize(14)
+//            self.zoneLB.textAlignment = NSTextAlignment.Right
+//            self.zoneLB.textColor = UIColor(white: 66/255, alpha: 1)
+//            cell.accessoryView = self.zoneLB
+////            self.zoneLB.text = g_user?.location
         case .Save:
             cell.textLabel?.text = ""
             self.saveButton = UIButton(type: .Custom)

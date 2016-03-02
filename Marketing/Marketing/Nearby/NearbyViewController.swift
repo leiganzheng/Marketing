@@ -37,25 +37,25 @@ class NearbyViewController: BaseViewController, UICollectionViewDataSource, UICo
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 3
+        return 4
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        if indexPath.section == 1 {
-            let identify:String = "NearbyCollectionCell2"
-            let cell = self.collectionView!.dequeueReusableCellWithReuseIdentifier(
-                identify, forIndexPath: indexPath) as! NearbyBCollectionViewCell
-            cell.customView.layer.borderColor = defaultLineColor.CGColor
-            cell.customView.layer.borderWidth = 0.5
-            return cell
-        }else {
+//        if indexPath.section == 1 {
+//            let identify:String = "NearbyCollectionCell2"
+//            let cell = self.collectionView!.dequeueReusableCellWithReuseIdentifier(
+//                identify, forIndexPath: indexPath) as! NearbyBCollectionViewCell
+//            cell.customView.layer.borderColor = defaultLineColor.CGColor
+//            cell.customView.layer.borderWidth = 0.5
+//            return cell
+//        }else {
             let identify:String = "NearbyCollectionCell1"
             let cell = self.collectionView!.dequeueReusableCellWithReuseIdentifier(
                 identify, forIndexPath: indexPath) as! NearbySCollectionViewCell
             cell.customView.layer.borderColor = defaultLineColor.CGColor
             cell.customView.layer.borderWidth = 0.5
             return cell
-        }
+//        }
        
     }
     
@@ -70,11 +70,11 @@ class NearbyViewController: BaseViewController, UICollectionViewDataSource, UICo
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        if indexPath.section == 1 {
-            return CGSizeMake(collectionView.frame.width/2.0-6, 150)
-        }else {
+//        if indexPath.section == 1 {
+//            return CGSizeMake(collectionView.frame.width/2.0-6, 150)
+//        }else {
             return CGSizeMake(collectionView.frame.width/2.0-6, 78)
-        }
+//        }
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         return UIEdgeInsetsMake(2, 2, 2, 0)

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4593F54EBD719CB1A6930695 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E2F1119F1545FD344AD0A5 /* Pods.framework */; };
+		7172AFED1C87347300E37337 /* ShopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7172AFEC1C87347300E37337 /* ShopDetailViewController.swift */; };
+		7172AFEF1C8739DA00E37337 /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7172AFEE1C8739DA00E37337 /* OrderDetailViewController.swift */; };
 		7194D5A71C5A591700294A8A /* PersonInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7194D5A61C5A591700294A8A /* PersonInfoViewController.swift */; };
 		719861941C4B6EFC00803F26 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7198618F1C4B6EFC00803F26 /* libWeChatSDK.a */; };
 		719861951C4B6EFC00803F26 /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 719861901C4B6EFC00803F26 /* read_me.txt */; };
@@ -79,6 +81,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7172AFEC1C87347300E37337 /* ShopDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
+		7172AFEE1C8739DA00E37337 /* OrderDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
 		7194D5A61C5A591700294A8A /* PersonInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonInfoViewController.swift; sourceTree = "<group>"; };
 		7198618F1C4B6EFC00803F26 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		719861901C4B6EFC00803F26 /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = read_me.txt; sourceTree = "<group>"; };
@@ -216,6 +220,7 @@
 				BBF93C341C33B49B0058894C /* NearbySCollectionViewCell.swift */,
 				BBF93C361C33B4A60058894C /* NearbyBCollectionViewCell.swift */,
 				BBFF7C891C85798C0092C7CB /* ShopListTableViewController.swift */,
+				7172AFEC1C87347300E37337 /* ShopDetailViewController.swift */,
 			);
 			path = Nearby;
 			sourceTree = "<group>";
@@ -240,6 +245,7 @@
 				BBE32FC61C3228000095BA88 /* ChangePWDViewController.swift */,
 				BBE32FC81C328BD60095BA88 /* PayOrderViewController.swift */,
 				7194D5A61C5A591700294A8A /* PersonInfoViewController.swift */,
+				7172AFEE1C8739DA00E37337 /* OrderDetailViewController.swift */,
 			);
 			path = UserCenter;
 			sourceTree = "<group>";
@@ -584,6 +590,7 @@
 				BBE32FD01C328E5A0095BA88 /* CollectionTableViewCell.swift in Sources */,
 				BB643BE91C30EF0E00BE6790 /* UIViewControllerExtension.swift in Sources */,
 				BBE32FD11C328E5A0095BA88 /* OrderTableViewCell.swift in Sources */,
+				7172AFEF1C8739DA00E37337 /* OrderDetailViewController.swift in Sources */,
 				71C3A4191C3175980042F851 /* RegisterViewController.swift in Sources */,
 				BB52E9731C47369600E0D1EC /* QNSharedDatas.swift in Sources */,
 				BB033B451C59E3C3007DB94D /* Category.swift in Sources */,
@@ -596,6 +603,7 @@
 				7194D5A71C5A591700294A8A /* PersonInfoViewController.swift in Sources */,
 				71C3A4251C3185000042F851 /* NearbyViewController.swift in Sources */,
 				BB643BEA1C30EF0E00BE6790 /* UIViewExtension.swift in Sources */,
+				7172AFED1C87347300E37337 /* ShopDetailViewController.swift in Sources */,
 				BB643BE41C30EF0E00BE6790 /* QNTabBarController.swift in Sources */,
 				BB643BE51C30EF0E00BE6790 /* Constents.swift in Sources */,
 				BBE32FC71C3228000095BA88 /* ChangePWDViewController.swift in Sources */,

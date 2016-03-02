@@ -10,12 +10,13 @@ import UIKit
 
 class ShopListTableViewController: UITableViewController{
 
-    var data: NSArray!
+    var data: NSArray =  NSArray() as! [Shop]
     var businessCategory:BusinessCategory!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "附近商家"
         self.view.backgroundColor = defaultBackgroundGrayColor
-        self.data = ["dd","dd","dd"]
+//        self.data = ["dd","dd","dd"]
         self.configBackButton()
         self.fetchData()
     }
@@ -42,23 +43,28 @@ class ShopListTableViewController: UITableViewController{
         if cell == nil {
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: cellId)
         }
-
-        cell.textLabel?.text = "门店的名称"
-        cell.detailTextLabel?.text = "工业北四路"
+        if self.data.count>0{
+            let cate = self.data[indexPath.row] as! Shop
+            cell.textLabel?.text = cate.name
+            cell.detailTextLabel?.text = cate.info
+        }
 
         return cell
     }
 
    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
+    let vc = ShopDetailViewController.CreateFromStoryboard("Main") as! ShopDetailViewController
+    vc.hidesBottomBarWhenPushed = true
+    self.navigationController?.pushViewController(vc, animated: true)
+
     }
     //MARK: - Private Method
     func fetchData (){
         QNNetworkTool.fetchShopList("", page: "", business_cat_id: "", need_shop_address: "", page_size: "", order: "") { (array, error, errorMsg) -> Void in
             if array != nil {
                 if array?.count>=0 {
-//                    self.data = array!
+                    self.data = array!
                     self.tableView.reloadData()
                 }else{
                     QNTool.showPromptView("没有数据")

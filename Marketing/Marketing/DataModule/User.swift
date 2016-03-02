@@ -25,6 +25,7 @@ class User: QN_Base {
     private(set) var login_time: String?
     private(set) var create_time: String?
     private(set) var update_time: String?
+    private(set) var mobile: String?
     private(set) var status: String?
     private(set) var role: String?        // 身份（站长-1、商家-2、客户-3）
     
@@ -48,7 +49,7 @@ class User: QN_Base {
         self.update_time = dictionary["update_time"] as? String
         self.status = dictionary["status"] as? String
         self.role = dictionary["role"] as? String
-        
+        self.mobile = dictionary["mobile"] as? String
         super.init(dictionary)
     }
     
@@ -68,6 +69,7 @@ class User: QN_Base {
         dictionary.setValue(self.update_time, forKey:"update_time")
         dictionary.setValue(self.status, forKey:"status")
         dictionary.setValue(self.role, forKey:"role")
+         dictionary.setValue(self.mobile, forKey:"mobile")
         return dictionary
     }
     

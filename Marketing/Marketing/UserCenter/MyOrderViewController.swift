@@ -51,7 +51,9 @@ class MyOrderViewController: BaseViewController , UITableViewDataSource, UITable
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
+        let vc = OrderDetailViewController.CreateFromStoryboard("Main") as! OrderDetailViewController
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     //MARK: Private Method
     func fetchData (){

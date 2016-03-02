@@ -18,7 +18,7 @@ class UserViewController: BaseViewController , UITableViewDataSource, UITableVie
     var imgV : UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.titles = [[""],["我的订单","我的收藏"],["修改密码","退出登录"]]
+        self.titles = [[""],["我的订单"],["修改密码","退出登录"]]
         self.icons = [[""],["order","favite"],["change_pwd","exit"]]
         self.navigationController?.navigationBar.translucent = false // 关闭透明度效果
         // 让导航栏支持向右滑动手势
@@ -91,11 +91,6 @@ class UserViewController: BaseViewController , UITableViewDataSource, UITableVie
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if indexPath.section == 1 && indexPath.row == 0 {
             let vc = MyOrderViewController.CreateFromStoryboard("Main") as! MyOrderViewController
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
-            
-        }else if (indexPath.section == 1 && indexPath.row == 1){
-            let vc = MyCollectionViewController.CreateFromStoryboard("Main") as! MyCollectionViewController
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
             

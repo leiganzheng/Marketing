@@ -41,6 +41,7 @@ class Shop: QN_Base {
     private(set) var address_detail: String?
     private(set) var longitude: String?
     private(set) var latitude: String?
+    private(set) var distance: NSInteger?
     
     var goods=[Good]()
     var category = [ShopCategory]()
@@ -82,6 +83,7 @@ class Shop: QN_Base {
         self.address_detail = dictionary["address_detail"] as? String
         self.longitude = dictionary["longitude"] as? String
         self.latitude = dictionary["latitude"] as? String
+        self.distance = dictionary["distance"] as? NSInteger
         
         if QN_Base.existValue(dictionary, keys: "shop_category"){
             for cateDictionary in dictionary["shop_category"] as! NSArray {
@@ -134,6 +136,7 @@ class Shop: QN_Base {
         dictionary.setValue(self.address_detail, forKey:"address_detail")
         dictionary.setValue(self.longitude, forKey:"longitude")
         dictionary.setValue(self.latitude, forKey:"latitude")
+        dictionary.setValue(self.distance, forKey:"distance")
         //
         if QN_Base.existValue(dictionary, keys: "shop_category"){
             let cates = NSMutableArray()

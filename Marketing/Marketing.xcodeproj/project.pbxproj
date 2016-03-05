@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		4593F54EBD719CB1A6930695 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E2F1119F1545FD344AD0A5 /* Pods.framework */; };
+		714B0DE71C8B2F4F00DD5EEB /* ConfirmOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B0DE61C8B2F4F00DD5EEB /* ConfirmOrderViewController.swift */; };
+		714B0DEA1C8B3AAC00DD5EEB /* TableViewCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B0DE91C8B3AAC00DD5EEB /* TableViewCell1.swift */; };
+		714B0DEC1C8B3AB500DD5EEB /* TableViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B0DEB1C8B3AB500DD5EEB /* TableViewCell2.swift */; };
+		714B0DEE1C8B3AC100DD5EEB /* TableViewCell3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B0DED1C8B3AC100DD5EEB /* TableViewCell3.swift */; };
+		714B0DF01C8B3ACB00DD5EEB /* TableViewCell4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B0DEF1C8B3ACB00DD5EEB /* TableViewCell4.swift */; };
+		714B0DF21C8B3AD400DD5EEB /* TableViewCell5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B0DF11C8B3AD400DD5EEB /* TableViewCell5.swift */; };
+		714B0DF41C8B3ADC00DD5EEB /* TableViewCell6.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B0DF31C8B3ADC00DD5EEB /* TableViewCell6.swift */; };
 		7172AFED1C87347300E37337 /* ShopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7172AFEC1C87347300E37337 /* ShopDetailViewController.swift */; };
 		7172AFEF1C8739DA00E37337 /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7172AFEE1C8739DA00E37337 /* OrderDetailViewController.swift */; };
 		7194D5A71C5A591700294A8A /* PersonInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7194D5A61C5A591700294A8A /* PersonInfoViewController.swift */; };
@@ -81,6 +88,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		714B0DE61C8B2F4F00DD5EEB /* ConfirmOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmOrderViewController.swift; sourceTree = "<group>"; };
+		714B0DE91C8B3AAC00DD5EEB /* TableViewCell1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell1.swift; sourceTree = "<group>"; };
+		714B0DEB1C8B3AB500DD5EEB /* TableViewCell2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell2.swift; sourceTree = "<group>"; };
+		714B0DED1C8B3AC100DD5EEB /* TableViewCell3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell3.swift; sourceTree = "<group>"; };
+		714B0DEF1C8B3ACB00DD5EEB /* TableViewCell4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell4.swift; sourceTree = "<group>"; };
+		714B0DF11C8B3AD400DD5EEB /* TableViewCell5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell5.swift; sourceTree = "<group>"; };
+		714B0DF31C8B3ADC00DD5EEB /* TableViewCell6.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell6.swift; sourceTree = "<group>"; };
 		7172AFEC1C87347300E37337 /* ShopDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
 		7172AFEE1C8739DA00E37337 /* OrderDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
 		7194D5A61C5A591700294A8A /* PersonInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonInfoViewController.swift; sourceTree = "<group>"; };
@@ -192,6 +206,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		714B0DE81C8B3A7E00DD5EEB /* OrderCell */ = {
+			isa = PBXGroup;
+			children = (
+				714B0DE91C8B3AAC00DD5EEB /* TableViewCell1.swift */,
+				714B0DEB1C8B3AB500DD5EEB /* TableViewCell2.swift */,
+				714B0DED1C8B3AC100DD5EEB /* TableViewCell3.swift */,
+				714B0DEF1C8B3ACB00DD5EEB /* TableViewCell4.swift */,
+				714B0DF11C8B3AD400DD5EEB /* TableViewCell5.swift */,
+				714B0DF31C8B3ADC00DD5EEB /* TableViewCell6.swift */,
+			);
+			name = OrderCell;
+			sourceTree = "<group>";
+		};
 		7198618E1C4B6EFC00803F26 /* Weixin */ = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +264,7 @@
 		71C3A4231C3184BC0042F851 /* UserCenter */ = {
 			isa = PBXGroup;
 			children = (
+				714B0DE81C8B3A7E00DD5EEB /* OrderCell */,
 				BBE32FCE1C328E5A0095BA88 /* CollectionTableViewCell.swift */,
 				BBE32FCF1C328E5A0095BA88 /* OrderTableViewCell.swift */,
 				71C3A42A1C3185300042F851 /* UserViewController.swift */,
@@ -246,6 +274,7 @@
 				BBE32FC81C328BD60095BA88 /* PayOrderViewController.swift */,
 				7194D5A61C5A591700294A8A /* PersonInfoViewController.swift */,
 				7172AFEE1C8739DA00E37337 /* OrderDetailViewController.swift */,
+				714B0DE61C8B2F4F00DD5EEB /* ConfirmOrderViewController.swift */,
 			);
 			path = UserCenter;
 			sourceTree = "<group>";
@@ -567,6 +596,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB033B471C59E5DF007DB94D /* Good.swift in Sources */,
+				714B0DEE1C8B3AC100DD5EEB /* TableViewCell3.swift in Sources */,
 				BB643BE61C30EF0E00BE6790 /* QN_Base.swift in Sources */,
 				71C3A42B1C3185300042F851 /* UserViewController.swift in Sources */,
 				BBF1C5C91C4F59D80057FDE4 /* BaseViewController.swift in Sources */,
@@ -574,6 +604,7 @@
 				BB52E9751C47764900E0D1EC /* Shop.swift in Sources */,
 				BBFF7C841C852C6C0092C7CB /* Order.swift in Sources */,
 				BBE32FC31C3227CE0095BA88 /* MyCollectionViewController.swift in Sources */,
+				714B0DE71C8B2F4F00DD5EEB /* ConfirmOrderViewController.swift in Sources */,
 				BBFF7C8A1C85798C0092C7CB /* ShopListTableViewController.swift in Sources */,
 				BB52E9711C47328200E0D1EC /* User.swift in Sources */,
 				BB643BEC1C30EF0E00BE6790 /* QNNetworkTool.swift in Sources */,
@@ -582,6 +613,8 @@
 				BB643BE81C30EF0E00BE6790 /* UIImageExtension.swift in Sources */,
 				BB643BEB1C30EF0E00BE6790 /* QNStyleAttribute.swift in Sources */,
 				BB1128251C5868AA00297DAD /* NSString+AES.m in Sources */,
+				714B0DF01C8B3ACB00DD5EEB /* TableViewCell4.swift in Sources */,
+				714B0DF41C8B3ADC00DD5EEB /* TableViewCell6.swift in Sources */,
 				BBFF7C8C1C8583BA0092C7CB /* Address.swift in Sources */,
 				BB033B491C59EA88007DB94D /* AdModel.swift in Sources */,
 				BBF93C351C33B49B0058894C /* NearbySCollectionViewCell.swift in Sources */,
@@ -589,8 +622,10 @@
 				BB1128241C5868AA00297DAD /* NSData+AES.m in Sources */,
 				BBE32FD01C328E5A0095BA88 /* CollectionTableViewCell.swift in Sources */,
 				BB643BE91C30EF0E00BE6790 /* UIViewControllerExtension.swift in Sources */,
+				714B0DEC1C8B3AB500DD5EEB /* TableViewCell2.swift in Sources */,
 				BBE32FD11C328E5A0095BA88 /* OrderTableViewCell.swift in Sources */,
 				7172AFEF1C8739DA00E37337 /* OrderDetailViewController.swift in Sources */,
+				714B0DF21C8B3AD400DD5EEB /* TableViewCell5.swift in Sources */,
 				71C3A4191C3175980042F851 /* RegisterViewController.swift in Sources */,
 				BB52E9731C47369600E0D1EC /* QNSharedDatas.swift in Sources */,
 				BB033B451C59E3C3007DB94D /* Category.swift in Sources */,
@@ -610,6 +645,7 @@
 				BBFF7C861C8533970092C7CB /* BusinessCategory.swift in Sources */,
 				71C3A4271C3185100042F851 /* MarketViewController.swift in Sources */,
 				BBE32FC91C328BD60095BA88 /* PayOrderViewController.swift in Sources */,
+				714B0DEA1C8B3AAC00DD5EEB /* TableViewCell1.swift in Sources */,
 				71C3A4291C31851E0042F851 /* PromotionViewController.swift in Sources */,
 				71C3A41F1C31771E0042F851 /* QNInterceptor.swift in Sources */,
 				BBF93C391C33B8490058894C /* MarketCollectionViewCell.swift in Sources */,

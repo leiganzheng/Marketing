@@ -11,12 +11,11 @@ import ReactiveCocoa
 
 class MyOrderViewController: BaseViewController , UITableViewDataSource, UITableViewDelegate,QNInterceptorProtocol{
     
-    var titles: NSArray!
+    var dataArray:NSArray =  NSArray() as! [Order]
      @IBOutlet weak var customTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "我的订单"
-        self.titles = ["我的订单","我的收藏","修改密码","退出登录"]
         //
         self.fetchData()
     }
@@ -28,7 +27,7 @@ class MyOrderViewController: BaseViewController , UITableViewDataSource, UITable
     
     // MARK: UITableViewDataSource, UITableViewDelegate
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return titles.count
+        return dataArray.count
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -39,6 +38,11 @@ class MyOrderViewController: BaseViewController , UITableViewDataSource, UITable
         var cell = self.customTableView.dequeueReusableCellWithIdentifier(cellId) as! OrderTableViewCell!
         if cell == nil {
             cell = OrderTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
+        }
+        if self.dataArray.count != 0{
+//            let order = self.dataArray[indexPath.row]
+//            cell.name.text = order.name
+            
         }
         cell.addLine(0, y: 34, width: tableView.frame.size.width, height: 0.5)
         cell.payBtn.rac_command = RACCommand(signalBlock: { (sender) -> RACSignal! in
@@ -57,17 +61,19 @@ class MyOrderViewController: BaseViewController , UITableViewDataSource, UITable
     }
     //MARK: Private Method
     func fetchData (){
-            QNNetworkTool.fetchOrderList((g_user?.uid)!, accesstoken: (g_user?.accesstoken)!, page: "1", page_size: "10") { (orders, error, errorMsg) -> Void in
-                if orders != nil {
-                    if orders?.count > 0{
-                        
-                    }else {
-                        QNTool.showPromptView("没有数据")
-                    }
-                }else{
-                    QNTool.showErrorPromptView(nil, error: error)
+        QNNetworkTool.fetchOrderList("", shop_id: "", uid: (g_user?.uid)!, payment_id: "", pay_sn: "", evaluation_status: "", shipping_code: "", customer_address: "", status: "", need_order_goods: "1", accesstoken:  (g_user?.accesstoken)!, page: "1", page_size: "10") { (orders, error, errorMsg) -> Void in
+            if orders != nil {
+                if orders?.count > 0{
+                    self.dataArray = orders!
+                    self.customTableView.reloadData()
+                }else {
+                    QNTool.showPromptView("没有数据")
                 }
+            }else{
+                QNTool.showErrorPromptView(nil, error: error)
+            }
         }
+        
     }
 
 }

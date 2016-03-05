@@ -46,8 +46,21 @@ class ShopListTableViewController: UITableViewController{
             let cate = self.data[indexPath.row] as! Shop
             cell.textLabel?.text = cate.name
             cell.detailTextLabel?.text = cate.address_detail
-        }
+            
+            
+            let imgV = UIImageView(frame: CGRectMake(tableView.bounds.size.width - 35, 15, 15, 15))
+            imgV.image = UIImage(named: "nav_nearby1")
+            cell.contentView.addSubview(imgV)
 
+            let lb = UILabel(frame:CGRectMake(tableView.bounds.size.width - 35, 35, 30, 30))
+            lb.backgroundColor = UIColor.clearColor()
+            lb.textColor = tableViewCellDefaultTextColor
+            lb.textAlignment = NSTextAlignment.Left
+            lb.font = UIFont.systemFontOfSize(13)
+            lb.text = "\(NSString(format: "%i", cate.distance!))km"
+            cell.contentView.addSubview(lb)
+        
+        }
         return cell
     }
 

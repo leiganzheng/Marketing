@@ -520,10 +520,23 @@ extension QNNetworkTool {
 extension QNNetworkTool {
     /**
      订单列表
+     :param:  accesstoken 登录状态校验令牌[必选项]
+     :param:  order_id 订单ID
+     :param:  shop_id 商店ID
+     :param:  uid 用户ID
+     :param:  payment_id 支付渠道ID
+     :param:  pay_sn 支付sn
+     :param:  evaluation_status 评价状态：0 未评价 1 已评价 2 过期未评价
+     :param:  shipping_code 物流单号
+     :param:  customer_address 收货地址
+     :param:  status 状态：-1 删除 0 未支付 1 已支付 2 已发货 3 已收货 4 取消订单 5 申请退款 6 已退款
+     :param:  need_order_goods 1 返回下单的商品 0 不返回
+     :param:  page 页码默认1
+     :param:  page_size 页数默认10
      :param: completion 完成的回调
      */
-    class func fetchOrderList(uid:String, accesstoken: String,page: String,page_size: String, completion: ([Order]?, NSError?, String?) -> Void) {
-        requestGET(kServerAddress + "/Orderapi/orderGetList", parameters: ["uid" : uid, "page" : page,"page_size":page_size, "accesstoken" : accesstoken]) { (_, _, _, dictionary, error) -> Void in
+    class func fetchOrderList(order_id:String,shop_id:String,uid:String,payment_id:String,pay_sn:String,evaluation_status:String,shipping_code:String,customer_address:String,status:String,need_order_goods:String, accesstoken: String,page: String,page_size: String, completion: ([Order]?, NSError?, String?) -> Void) {
+        requestGET(kServerAddress + "/Orderapi/orderGetList", parameters: ["order_id" : order_id, "page" : page,"page_size":page_size, "accesstoken" : accesstoken,"shop_id" : shop_id,"uid" : uid,"payment_id" : payment_id,"pay_sn" : pay_sn,"evaluation_status" : evaluation_status,"shipping_code" : shipping_code,"customer_address" : customer_address,"status" : status,"need_order_goods" : need_order_goods]) { (_, _, _, dictionary, error) -> Void in
             if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
                 let list = dictionary?["data"] as? NSArray
                 var result = [Order]()

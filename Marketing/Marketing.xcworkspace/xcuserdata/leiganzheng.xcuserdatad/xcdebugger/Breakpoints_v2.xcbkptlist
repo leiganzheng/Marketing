@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Marketing/Nearby/ShopListTableViewController.swift"
-            timestampString = "478857840.592547"
+            timestampString = "478887228.765453"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "fetchData()"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Marketing/Tools/QNNetworkTool.swift"
-            timestampString = "478862267.545475"
+            timestampString = "478882524.595828"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "594"
-            endingLineNumber = "594"
+            startingLineNumber = "607"
+            endingLineNumber = "607"
             landmarkName = "fetchShopCategoryList(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -112,6 +112,38 @@
             startingLineNumber = "73"
             endingLineNumber = "73"
             landmarkName = "fetchData()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Marketing/Tools/QNNetworkTool.swift"
+            timestampString = "478882514.879776"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "540"
+            endingLineNumber = "540"
+            landmarkName = "fetchOrderList(_:shop_id:uid:payment_id:pay_sn:evaluation_status:shipping_code:customer_address:status:need_order_goods:accesstoken:page:page_size:completion:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Marketing/UserCenter/ConfirmOrderViewController.swift"
+            timestampString = "478888087.592225"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

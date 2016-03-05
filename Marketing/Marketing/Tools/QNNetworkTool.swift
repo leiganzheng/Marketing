@@ -314,11 +314,13 @@ extension QNNetworkTool {
     }
     /**
      商家详情
-     :param: shop_id 商家ID
+     :param:  shop_id 商家ID
+     :param:  need_shop_category 1 返回店内分类列表 0 不返回
+     :param:  need_shop_goods 1 返回店内商品列表 0 不返回
      :param: completion 完成的回调 
      */
-    class func fetchShopDetailInfo(shop_id: String, completion: (Shop?, NSError?, String?) -> Void) {
-        requestPOST(kServerAddress + "/Shopsapi/shopGetInfo", parameters: ["shop_id" : shop_id]) { (_, _, _, dictionary, error) -> Void in
+    class func fetchShopDetailInfo(shop_id: String,needCategory:String,needGoods:String, completion: (Shop?, NSError?, String?) -> Void) {
+        requestPOST(kServerAddress + "/Shopsapi/shopGetInfo", parameters: ["shop_id" : shop_id,"need_shop_goods":needGoods,"need_shop_category":needCategory]) { (_, _, _, dictionary, error) -> Void in
             if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
                 let shop = Shop(dictionary!)
                 completion(shop, nil, nil)

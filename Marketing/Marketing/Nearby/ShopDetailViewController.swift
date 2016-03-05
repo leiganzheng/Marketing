@@ -10,16 +10,20 @@ import UIKit
 
 class ShopDetailViewController: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate,UITableViewDataSource, UITableViewDelegate   {
     
+    @IBOutlet weak var info: UITextView!
+    @IBOutlet weak var name: UILabel!
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet weak var customTableView: UITableView!
-    var titles: [ShopCategory] =  NSArray() as! [ShopCategory]
-    var titleArray: NSArray!
+    @IBOutlet weak var address: UILabel!
+    @IBOutlet weak var mobileBtn: UIButton!
+    var goods: [Good] =  NSArray() as! [Good]
+    var shop: Shop!
+    var shopId: String!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "商家详情"
         self.configBackButton()
         //数据
-        self.titleArray = NSArray()
         self.fetchCategoryData()
     }
     
@@ -30,17 +34,25 @@ class ShopDetailViewController: BaseViewController, UICollectionViewDataSource, 
     
     //MARK:- UICollectionDelegate, UICollectionDataSource
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        if self.shop != nil {
+            return self.goods.count == 0 ?10 :self.goods.count
+        }
+        return 0
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 4
+        return 1
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let identify:String = "MarketCell"
         let cell = self.collectionView!.dequeueReusableCellWithReuseIdentifier(
             identify, forIndexPath: indexPath) as! MarketCollectionViewCell
+        if self.goods.count != 0{
+            let good = self.goods[indexPath.row] as Good
+            cell.nameLB.text = good.name
+            cell.goodPic.sd_setImageWithURL(NSURL(string: good.picture!), placeholderImage: UIImage(named: ""), options: .ProgressiveDownload)
+        }
         return cell
     }
     
@@ -50,14 +62,17 @@ class ShopDetailViewController: BaseViewController, UICollectionViewDataSource, 
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(collectionView.frame.width/3.0-10, 85)
+        return CGSizeMake(collectionView.frame.width/3.0-8, 85)
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(5, 0, 5, 0)
+        return UIEdgeInsetsMake(2, 2, 2, 2)
     }
     // MARK: UITableViewDataSource, UITableViewDelegate
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return titles.count
+        if self.shop != nil {
+            return self.shop.category.count == 0 ?10 :self.shop.category.count
+        }
+        return 0
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 66
@@ -68,8 +83,12 @@ class ShopDetailViewController: BaseViewController, UICollectionViewDataSource, 
         if cell == nil {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
         }
-        let category = self.titles[indexPath.row]
-        cell.textLabel?.text = category.name
+        if self.shop.category.count != 0 {
+            let category = self.shop.category[indexPath.row]
+            cell.textLabel?.text = category.name
+        }else {
+            cell.textLabel?.text = "测试数据"
+        }
         let lb = UILabel(frame: CGRectMake(0,65,85, 1))
         lb.backgroundColor = UIColor(white: 136/255, alpha: 1)
         cell.addSubview(lb)
@@ -78,22 +97,41 @@ class ShopDetailViewController: BaseViewController, UICollectionViewDataSource, 
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
+        if self.shop.category.count != 0 {
+            let category = self.shop.category[indexPath.row]
+            self.fetchGoods(category.shop_cat_id)
+        }
     }
     //MARK: - Private Method
     func fetchCategoryData (){
-        QNNetworkTool.fetchShopCategoryList { (array, error, errorMsg) -> Void in
-            if array != nil {
-                if array?.count>=0 {
-                    self.titles = array!
-                    self.customTableView.reloadData()
-                }else{
-                    QNTool.showPromptView("没有数据")
-                }
-            }else{
+        QNNetworkTool.fetchShopDetailInfo(self.shopId,needCategory: "1", needGoods: "1") { (shop, error, errMsg) -> Void in
+            if shop != nil {
+                self.shop = shop!
+                self.goods = self.shop.goods
+                self.name.text = self.shop.name
+                self.info.text = self.shop.info
+                self.address.text = self.shop.address_detail
+                self.customTableView.reloadData()
+                self.collectionView.reloadData()
+            }else {
                 QNTool.showErrorPromptView(nil, error: error)
             }
         }
     }
+    func fetchGoods(cateId:String){
+        QNNetworkTool.fetchGoodList("", cat_id: "", shop_cat_id: cateId, promotion_type: "", name: "", verify: "", status: "", page: "", page_size: "", order: "") { (array, error, errorMsg) -> Void in
+            if array != nil {
+                if array?.count>=0 {
+                    self.goods = array!
+                    self.collectionView.reloadData()
+                }else{
+                    QNTool.showPromptView("没有数据")
+                }
+            }else {
+                QNTool.showErrorPromptView(nil, error: error)
+            }
+        }
+    }
+
     
 }

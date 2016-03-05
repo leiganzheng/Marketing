@@ -16,7 +16,6 @@ class ShopListTableViewController: UITableViewController{
         super.viewDidLoad()
         self.title = "附近商家"
         self.view.backgroundColor = defaultBackgroundGrayColor
-//        self.data = ["dd","dd","dd"]
         self.configBackButton()
         self.fetchData()
     }
@@ -46,7 +45,7 @@ class ShopListTableViewController: UITableViewController{
         if self.data.count>0{
             let cate = self.data[indexPath.row] as! Shop
             cell.textLabel?.text = cate.name
-            cell.detailTextLabel?.text = cate.info
+            cell.detailTextLabel?.text = cate.address_detail
         }
 
         return cell
@@ -55,13 +54,15 @@ class ShopListTableViewController: UITableViewController{
    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     let vc = ShopDetailViewController.CreateFromStoryboard("Main") as! ShopDetailViewController
+    let cate = self.data[indexPath.row] as! Shop
+    vc.shopId = cate.shop_id
     vc.hidesBottomBarWhenPushed = true
     self.navigationController?.pushViewController(vc, animated: true)
 
     }
     //MARK: - Private Method
     func fetchData (){
-        QNNetworkTool.fetchShopList("", page: "", business_cat_id: "", need_shop_address: "", page_size: "", order: "") { (array, error, errorMsg) -> Void in
+        QNNetworkTool.fetchShopList("", page: "1", business_cat_id: "", need_shop_address: "", page_size: "10", order: "") { (array, error, errorMsg) -> Void in
             if array != nil {
                 if array?.count>=0 {
                     self.data = array!

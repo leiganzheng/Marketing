@@ -9,5 +9,6 @@
 import UIKit
 
 class MarketCollectionViewCell: UICollectionViewCell {
-    
+    @IBOutlet weak var nameLB: UILabel!
+    @IBOutlet weak var goodPic: UIImageView!
 }

@@ -37,6 +37,14 @@ class Shop: QN_Base {
     private(set) var pass_time: String?
     private(set) var sort: String?
     
+    private(set) var address: String?
+    private(set) var address_detail: String?
+    private(set) var longitude: String?
+    private(set) var latitude: String?
+    
+    var goods=[Good]()
+    var category = [ShopCategory]()
+    
     required init!(_ dictionary: NSDictionary) {
         // 先判断存在性
         if !QN_Base.existValue(dictionary, keys: "shop_id") {
@@ -69,6 +77,26 @@ class Shop: QN_Base {
         self.credential = dictionary["credential"] as? String
         self.pass_time = dictionary["pass_time"] as? String
         self.sort = dictionary["sort"] as? String
+        
+        self.address = dictionary["address"] as? String
+        self.address_detail = dictionary["address_detail"] as? String
+        self.longitude = dictionary["longitude"] as? String
+        self.latitude = dictionary["latitude"] as? String
+        
+        if QN_Base.existValue(dictionary, keys: "shop_category"){
+            for cateDictionary in dictionary["shop_category"] as! NSArray {
+                if let dictionary = cateDictionary as? NSDictionary, let cate = ShopCategory(dictionary) {
+                    self.category.append(cate)
+                }
+            }
+        }
+        if QN_Base.existValue(dictionary, keys: "goods"){
+            for goodDictionary in dictionary["goods"] as! NSArray {
+                if let dictionary = goodDictionary as? NSDictionary, let good = Good(dictionary) {
+                    self.goods.append(good)
+                }
+            }
+        }
         super.init(dictionary)
     }
     
@@ -102,6 +130,26 @@ class Shop: QN_Base {
         dictionary.setValue(self.pass_time, forKey:"pass_time")
         dictionary.setValue(self.sort, forKey:"sort")
         
+        dictionary.setValue(self.address, forKey:"address")
+        dictionary.setValue(self.address_detail, forKey:"address_detail")
+        dictionary.setValue(self.longitude, forKey:"longitude")
+        dictionary.setValue(self.latitude, forKey:"latitude")
+        //
+        if QN_Base.existValue(dictionary, keys: "shop_category"){
+            let cates = NSMutableArray()
+            for cate in self.category {
+                cates.addObject(cate.dictionary())
+            }
+            dictionary.setValue(cates, forKey: "shop_category")
+        }
+        //
+        if QN_Base.existValue(dictionary, keys: "goods"){
+            let goods = NSMutableArray()
+            for good in self.goods {
+                goods.addObject(good.dictionary())
+            }
+            dictionary.setValue(goods, forKey: "goods")
+        }
         return dictionary
     }
     

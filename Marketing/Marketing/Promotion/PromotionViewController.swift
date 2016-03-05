@@ -11,12 +11,11 @@ import UIKit
 class PromotionViewController: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet var collectionView: UICollectionView!
-    var titleArray: NSArray!
+    var titleArray: [Good] =  NSArray() as! [Good]
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "促销"
         //数据
-        self.titleArray = NSArray()
         self.fetchData()
     }
 
@@ -38,48 +37,41 @@ class PromotionViewController: BaseViewController, UICollectionViewDataSource, U
         let identify:String = "PromotionCell"
         let cell = self.collectionView!.dequeueReusableCellWithReuseIdentifier(
             identify, forIndexPath: indexPath) as! PromotionCollectionViewCell
-        
-//        cell.customView.layer.masksToBounds = true
-//        cell.customView.layer.cornerRadius = 3
-//        let object = self.titleArray.objectAtIndex(indexPath.row) as! NSDictionary
-        
-//        // 配置选中时候的变色
-//        let selectedBgView = UIView(frame: cell.contentView.bounds)
-//        cell.selectedBackgroundView = selectedBgView
-//        let selectedView = UIView(frame: cell.customView.frame)
-//        selectedView.autoresizingMask = cell.customView.autoresizingMask
-//        selectedView.backgroundColor = UIColor(white: 240.0/255.0, alpha: 1)
-//        selectedView.layer.masksToBounds = true
-//        selectedView.layer.cornerRadius = cell.customView.layer.cornerRadius
-//        selectedBgView.addSubview(selectedView)
-        
         cell.customView.layer.borderColor = defaultLineColor.CGColor
         cell.customView.layer.borderWidth = 0.5
-//        "id": "2",
-//        "name": "促销2",
-//        "description": "促销2"
-        if self.titleArray.count>0{
-            
+            if self.titleArray.count != 0{
+                let good = self.titleArray[indexPath.row] as Good
+                cell.info.text = good.descriptionStr
+                cell.buyNum.text = "\(good.buy_num)人已购买"
+                cell.price.text  = "$\(good.price)"
+                cell.pic.sd_setImageWithURL(NSURL(string: good.picture!), placeholderImage: UIImage(named: ""), options: .ProgressiveDownload)
         }
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         self.collectionView.deselectItemAtIndexPath(indexPath, animated: true)
-//        let object = self.titleArray.objectAtIndex(indexPath.row) as! NSDictionary
+        if self.titleArray.count != 0{
+            let vc = ShopDetailViewController.CreateFromStoryboard("Main") as! ShopDetailViewController
+            let good = self.titleArray[indexPath.row]
+            vc.shopId = good.shop_id
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-            return CGSizeMake(collectionView.frame.width/2.0-10, 245)
+            return CGSizeMake(collectionView.frame.width/2.0-14, 245)
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(2, 2, 2, 2)
+        return UIEdgeInsetsMake(2,8 , 2, 8)
     }
     //MARK: Private Method
     func fetchData (){
+        //promotion_type 促销类型ID
         QNNetworkTool.fetchGoodList("", cat_id: "", shop_cat_id: "", promotion_type: "2", name: "", verify: "", status: "", page: "", page_size: "", order: "") { (goods, error, errorMsg) -> Void in
             if goods != nil {
-                self.titleArray = goods
+                self.titleArray = goods!
                 self.collectionView.reloadData()
             }else{
                 QNTool.showErrorPromptView(nil, error: error)

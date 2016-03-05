@@ -23,7 +23,7 @@ class ShopCategory: QN_Base {
             return nil
         }
         // 所需要的数据都存在，则开始真正的数据初始化
-        self.shop_cat_id = dictionary["business_cat_id"] as! String
+        self.shop_cat_id = dictionary["shop_cat_id"] as! String
         self.name = dictionary["name"] as? String
         self.picture = dictionary["picture"] as? String
         self.descriptionStr = dictionary["description"] as? String

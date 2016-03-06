@@ -71,7 +71,7 @@ class PayOrderViewController: BaseViewController , UITableViewDataSource, UITabl
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let vc = ConfirmOrderViewController.CreateFromStoryboard("Main") as! ConfirmOrderViewController
+        let vc = OrderInfoViewController.CreateFromStoryboard("Main") as! OrderInfoViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
     //微信支付

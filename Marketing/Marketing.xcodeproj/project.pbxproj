@@ -15,6 +15,8 @@
 		714B0DF01C8B3ACB00DD5EEB /* TableViewCell4.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B0DEF1C8B3ACB00DD5EEB /* TableViewCell4.swift */; };
 		714B0DF21C8B3AD400DD5EEB /* TableViewCell5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B0DF11C8B3AD400DD5EEB /* TableViewCell5.swift */; };
 		714B0DF41C8B3ADC00DD5EEB /* TableViewCell6.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B0DF31C8B3ADC00DD5EEB /* TableViewCell6.swift */; };
+		714B0DF61C8BF10E00DD5EEB /* OrderInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B0DF51C8BF10E00DD5EEB /* OrderInfoViewController.swift */; };
+		714B0DF81C8BF55F00DD5EEB /* OrderDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B0DF71C8BF55F00DD5EEB /* OrderDetailTableViewCell.swift */; };
 		7172AFED1C87347300E37337 /* ShopDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7172AFEC1C87347300E37337 /* ShopDetailViewController.swift */; };
 		7172AFEF1C8739DA00E37337 /* OrderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7172AFEE1C8739DA00E37337 /* OrderDetailViewController.swift */; };
 		7194D5A71C5A591700294A8A /* PersonInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7194D5A61C5A591700294A8A /* PersonInfoViewController.swift */; };
@@ -95,6 +97,8 @@
 		714B0DEF1C8B3ACB00DD5EEB /* TableViewCell4.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell4.swift; sourceTree = "<group>"; };
 		714B0DF11C8B3AD400DD5EEB /* TableViewCell5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell5.swift; sourceTree = "<group>"; };
 		714B0DF31C8B3ADC00DD5EEB /* TableViewCell6.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell6.swift; sourceTree = "<group>"; };
+		714B0DF51C8BF10E00DD5EEB /* OrderInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderInfoViewController.swift; sourceTree = "<group>"; };
+		714B0DF71C8BF55F00DD5EEB /* OrderDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailTableViewCell.swift; sourceTree = "<group>"; };
 		7172AFEC1C87347300E37337 /* ShopDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
 		7172AFEE1C8739DA00E37337 /* OrderDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
 		7194D5A61C5A591700294A8A /* PersonInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonInfoViewController.swift; sourceTree = "<group>"; };
@@ -215,6 +219,7 @@
 				714B0DEF1C8B3ACB00DD5EEB /* TableViewCell4.swift */,
 				714B0DF11C8B3AD400DD5EEB /* TableViewCell5.swift */,
 				714B0DF31C8B3ADC00DD5EEB /* TableViewCell6.swift */,
+				714B0DF71C8BF55F00DD5EEB /* OrderDetailTableViewCell.swift */,
 			);
 			name = OrderCell;
 			sourceTree = "<group>";
@@ -275,6 +280,7 @@
 				7194D5A61C5A591700294A8A /* PersonInfoViewController.swift */,
 				7172AFEE1C8739DA00E37337 /* OrderDetailViewController.swift */,
 				714B0DE61C8B2F4F00DD5EEB /* ConfirmOrderViewController.swift */,
+				714B0DF51C8BF10E00DD5EEB /* OrderInfoViewController.swift */,
 			);
 			path = UserCenter;
 			sourceTree = "<group>";
@@ -610,6 +616,7 @@
 				BB643BEC1C30EF0E00BE6790 /* QNNetworkTool.swift in Sources */,
 				71C3A4181C3175980042F851 /* LoginViewController.swift in Sources */,
 				71C3A4171C3175980042F851 /* ForgetPasswordViewController.swift in Sources */,
+				714B0DF61C8BF10E00DD5EEB /* OrderInfoViewController.swift in Sources */,
 				BB643BE81C30EF0E00BE6790 /* UIImageExtension.swift in Sources */,
 				BB643BEB1C30EF0E00BE6790 /* QNStyleAttribute.swift in Sources */,
 				BB1128251C5868AA00297DAD /* NSString+AES.m in Sources */,
@@ -626,6 +633,7 @@
 				BBE32FD11C328E5A0095BA88 /* OrderTableViewCell.swift in Sources */,
 				7172AFEF1C8739DA00E37337 /* OrderDetailViewController.swift in Sources */,
 				714B0DF21C8B3AD400DD5EEB /* TableViewCell5.swift in Sources */,
+				714B0DF81C8BF55F00DD5EEB /* OrderDetailTableViewCell.swift in Sources */,
 				71C3A4191C3175980042F851 /* RegisterViewController.swift in Sources */,
 				BB52E9731C47369600E0D1EC /* QNSharedDatas.swift in Sources */,
 				BB033B451C59E3C3007DB94D /* Category.swift in Sources */,

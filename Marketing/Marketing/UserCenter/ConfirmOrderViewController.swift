@@ -44,7 +44,7 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             if indexPath.row == 0{
-                let cellId = "Cell1"
+                let cellId = "TableViewCell1"
                 var cell = self.customTableView.dequeueReusableCellWithIdentifier(cellId) as! TableViewCell1!
                 if cell == nil {
                     cell = TableViewCell1(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
@@ -52,14 +52,14 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
                 return cell
 
             }else if(indexPath.row == 1){
-                let cellId = "Cell2"
+                let cellId = "TableViewCell2"
                 var cell = self.customTableView.dequeueReusableCellWithIdentifier(cellId) as! TableViewCell2!
                 if cell == nil {
                     cell = TableViewCell2(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
                 }
                 return cell
             }else if(indexPath.row == 2){
-                let cellId = "Cell3"
+                let cellId = "TableViewCell3"
                 var cell = self.customTableView.dequeueReusableCellWithIdentifier(cellId) as! TableViewCell3!
                 if cell == nil {
                     cell = TableViewCell3(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
@@ -67,7 +67,7 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
                 return cell
 
             }else if(indexPath.row == 3){
-                let cellId = "Cell4"
+                let cellId = "TableViewCell4"
                 var cell = self.customTableView.dequeueReusableCellWithIdentifier(cellId) as! TableViewCell4!
                 if cell == nil {
                     cell = TableViewCell4(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
@@ -75,7 +75,7 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
                 return cell
 
             }else{
-                let cellId = "Cell5"
+                let cellId = "TableViewCell5"
                 var cell = self.customTableView.dequeueReusableCellWithIdentifier(cellId) as! TableViewCell5!
                 if cell == nil {
                     cell = TableViewCell5(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
@@ -85,7 +85,7 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
             }
             
         }else{
-            let cellId = "Cell6"
+            let cellId = "TableViewCell6"
             var cell = self.customTableView.dequeueReusableCellWithIdentifier(cellId) as! TableViewCell6!
             if cell == nil {
                 cell = TableViewCell6(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)

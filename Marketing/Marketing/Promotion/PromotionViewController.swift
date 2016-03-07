@@ -46,25 +46,34 @@ class PromotionViewController: BaseViewController, UICollectionViewDataSource, U
                 cell.price.text  = "$\(good.price)"
                 cell.pic.sd_setImageWithURL(NSURL(string: good.picture!), placeholderImage: UIImage(named: ""), options: .ProgressiveDownload)
         }
+        print(cell)
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         self.collectionView.deselectItemAtIndexPath(indexPath, animated: true)
-        if self.titleArray.count != 0{
-            let vc = ShopDetailViewController.CreateFromStoryboard("Main") as! ShopDetailViewController
-            let good = self.titleArray[indexPath.row]
-            vc.shopId = good.shop_id
-            vc.hidesBottomBarWhenPushed = true
+//        if self.titleArray.count != 0{
+        
+            let vc = OrderInfoViewController.CreateFromStoryboard("Main") as! OrderInfoViewController
+             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
-        }
+
+            
+//            let vc = ShopDetailViewController.CreateFromStoryboard("Main") as! ShopDetailViewController
+//            let good = self.titleArray[indexPath.row]
+//            vc.shopId = good.shop_id
+//            vc.hidesBottomBarWhenPushed = true
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-            return CGSizeMake(collectionView.frame.width/2.0-14, 245)
+        print(collectionView)
+            return CGSizeMake((collectionView.frame.width-4)/2.0-4, 245)
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(2,8 , 2, 8)
+         print(collectionView)
+        return UIEdgeInsetsMake(6, 4, 6, 0)
     }
     //MARK: Private Method
     func fetchData (){

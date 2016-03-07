@@ -71,7 +71,7 @@ extension UIView {
     }
     
     //MARK : - 加线条
-    func addLine(x: CGFloat = 0,y:CGFloat, width: CGFloat,height : CGFloat = 1) {
+    func addLine(x: CGFloat = 0,y:CGFloat, width: CGFloat,height : CGFloat = 0.5) {
         let line = UIView(frame: CGRectMake(x,y,width, height))
         line.backgroundColor = UIColor.lightGrayColor()
         self.addSubview(line)
@@ -83,7 +83,7 @@ extension UIView {
         let frontToBackWindows = UIApplication.sharedApplication().windows.reverse()
         for window in frontToBackWindows {
             let windowOnMainScreen = window.screen == UIScreen.mainScreen()
-            let windowIsVisible = !(window as! UIWindow).hidden && window.alpha > 0
+            let windowIsVisible = !(window).hidden && window.alpha > 0
             let windowLevelNormal = window.windowLevel == UIWindowLevelNormal
             if (windowOnMainScreen && windowIsVisible && windowLevelNormal) {
                 window.addSubview(self)

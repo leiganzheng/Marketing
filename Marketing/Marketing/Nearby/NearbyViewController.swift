@@ -19,6 +19,7 @@ class NearbyViewController: BaseViewController, UICollectionViewDataSource, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "附近"
+        self.collectionView.backgroundColor = defaultBackgroundGrayColor
         //数据
         self.fetchData()
         self.fetchAds()
@@ -31,9 +32,6 @@ class NearbyViewController: BaseViewController, UICollectionViewDataSource, UICo
     //MARK:- 解决iOS7下约束导致视图frame变化
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-//        if SYSTEM_VERSION_FLOAT < 8.0 {
-//            self.collectionView.frame = CGRectMake(2, collectionView.frame.origin.y, screenWidth, collectionView.frame.size.height)
-//        }
     }
 
     //MARK:- UICollectionDelegate, UICollectionDataSource
@@ -46,28 +44,18 @@ class NearbyViewController: BaseViewController, UICollectionViewDataSource, UICo
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-//        if indexPath.section == 1 {
-//            let identify:String = "NearbyCollectionCell2"
-//            let cell = self.collectionView!.dequeueReusableCellWithReuseIdentifier(
-//                identify, forIndexPath: indexPath) as! NearbyBCollectionViewCell
-//            cell.customView.layer.borderColor = defaultLineColor.CGColor
-//            cell.customView.layer.borderWidth = 0.5
-//            return cell
-//        }else {
-            let identify:String = "NearbyCollectionCell1"
-            let cell = self.collectionView!.dequeueReusableCellWithReuseIdentifier(
-                identify, forIndexPath: indexPath) as! NearbySCollectionViewCell
-            cell.customView.layer.borderColor = defaultLineColor.CGColor
-            cell.customView.layer.borderWidth = 0.5
-            if self.titleArray.count != 0 {
-                let buss = self.titleArray.objectAtIndex(indexPath.row) as! BusinessCategory
-                cell.pic.sd_setImageWithURL(NSURL(string: buss.picture!), placeholderImage: UIImage(named: ""), options: .ProgressiveDownload)
-                cell.name.text = buss.name
-                cell.descr.text = buss.descriptionStr
-            }
-            return cell
-//        }
-       
+        let identify:String = "NearbyCollectionCell1"
+        let cell = self.collectionView!.dequeueReusableCellWithReuseIdentifier(
+            identify, forIndexPath: indexPath) as! NearbySCollectionViewCell
+        cell.customView.layer.borderColor = defaultLineColor.CGColor
+        cell.customView.layer.borderWidth = 0.5
+        if self.titleArray.count != 0 {
+            let buss = self.titleArray.objectAtIndex(indexPath.row) as! BusinessCategory
+            cell.pic.sd_setImageWithURL(NSURL(string: buss.picture!), placeholderImage: UIImage(named: ""), options: .ProgressiveDownload)
+            cell.name.text = buss.name
+            cell.descr.text = buss.descriptionStr
+        }
+        return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
@@ -81,16 +69,12 @@ class NearbyViewController: BaseViewController, UICollectionViewDataSource, UICo
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-//        if indexPath.section == 1 {
-//            return CGSizeMake(collectionView.frame.width/2.0-6, 150)
-//        }else {
-            return CGSizeMake(collectionView.frame.width/2.0-14, 78)
-//        }
+            return CGSizeMake((collectionView.frame.width-4)/2.0-6, 78)
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(2, 8, 2, 8)
+        return UIEdgeInsetsMake(6, 6, 6, 0)
     }
-
+    
     //MARK: - Private Method
     func fetchData (){
         QNNetworkTool.fetchBusinessCategoryList { (array, error, errorMsg) -> Void in

@@ -36,7 +36,7 @@ class PersonInfoViewController:  BaseViewController ,QNInterceptorProtocol, UITa
     var phoneLB: UILabel!
     var zoneLB: UILabel!
     var saveButton: UIButton!
-    
+    var changeButton: UIButton!
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +70,7 @@ class PersonInfoViewController:  BaseViewController ,QNInterceptorProtocol, UITa
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch self.userCenterData[indexPath.section][indexPath.row] {
-        case .HeadImage: return 82
+        case .HeadImage: return 80
         default: return 50
         }
     }
@@ -96,7 +96,7 @@ class PersonInfoViewController:  BaseViewController ,QNInterceptorProtocol, UITa
         switch content {
         case .HeadImage:
             if self.headerView == nil {
-                self.headerView = UIImageView(frame: CGRectMake(cell.contentView.bounds.size.width - 80, 6, 70, 70))
+                self.headerView = UIImageView(frame: CGRectMake(cell.contentView.bounds.size.width - 78, 6, 70, 70))
                 self.headerView.autoresizingMask = UIViewAutoresizing.FlexibleLeftMargin
                 self.headerView.layer.masksToBounds = true
                 QNTool.configViewLayer(self.headerView)
@@ -113,19 +113,41 @@ class PersonInfoViewController:  BaseViewController ,QNInterceptorProtocol, UITa
             }
             self.nameLB.text = g_user?.nickname
         case .phone:
-            self.phoneLB = UILabel(frame: CGRectMake(0, 0, 160, 50))
+            self.phoneLB = UILabel(frame: CGRectMake(40, 0, 160, 50))
             self.phoneLB.font = UIFont.systemFontOfSize(14)
             self.phoneLB.textAlignment = NSTextAlignment.Right
             self.phoneLB.textColor = UIColor(white: 66/255, alpha: 1)
-            cell.accessoryView = self.phoneLB
             self.phoneLB.text = g_user?.mobile
-//        case .Address:
-//            self.zoneLB = UILabel(frame: CGRectMake(0, 0, 160, 50))
-//            self.zoneLB.font = UIFont.systemFontOfSize(14)
-//            self.zoneLB.textAlignment = NSTextAlignment.Right
-//            self.zoneLB.textColor = UIColor(white: 66/255, alpha: 1)
-//            cell.accessoryView = self.zoneLB
-////            self.zoneLB.text = g_user?.location
+            cell.contentView.addSubview(self.phoneLB)
+            
+            self.changeButton = UIButton(type: .Custom)
+            changeButton.backgroundColor = UIColor.clearColor()
+            changeButton.setTitle("更改", forState: .Normal)
+            changeButton.setTitleColor(appThemeColor, forState: .Normal)
+            changeButton.titleLabel?.font = UIFont.systemFontOfSize(14)
+            changeButton.titleLabel?.textAlignment = .Center
+            changeButton.frame =  CGRectMake(0, 0, 44 , cell.contentView.frame.size.height)
+            changeButton.rac_signalForControlEvents(.TouchUpInside).subscribeNext { (sender) -> Void in
+                let alertController = UIAlertController(title: "更换手机号",
+                    message: "请输入用新手机号", preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addTextFieldWithConfigurationHandler {
+                    (textField: UITextField!) -> Void in
+                    textField.placeholder = "新手机号"
+                    textField.keyboardType = UIKeyboardType.NumberPad
+                }
+                let cancelAction = UIAlertAction(title: "取消", style: .Cancel, handler: nil)
+                let okAction = UIAlertAction(title: "好的", style: .Default,
+                    handler: {
+                        action in
+                        //也可以用下标的形式获取textField let login = alertController.textFields![0]
+                        let phoneNum = alertController.textFields!.first! as UITextField
+                        self.phoneLB.text = phoneNum.text
+                })
+                alertController.addAction(cancelAction)
+                alertController.addAction(okAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
+            }
+            cell.accessoryView = self.changeButton
         case .Save:
             cell.textLabel?.text = ""
             self.saveButton = UIButton(type: .Custom)

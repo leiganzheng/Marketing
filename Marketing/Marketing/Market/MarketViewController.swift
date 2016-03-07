@@ -17,6 +17,7 @@ class MarketViewController: BaseViewController, UICollectionViewDataSource, UICo
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "商城"
+        self.customTableView.backgroundColor = defaultBackgroundGrayColor
         //数据
        self.fetchCategoryData()
     }
@@ -50,20 +51,23 @@ class MarketViewController: BaseViewController, UICollectionViewDataSource, UICo
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         self.collectionView.deselectItemAtIndexPath(indexPath, animated: true)
         //        let object = self.titleArray.objectAtIndex(indexPath.row) as! NSDictionary
+        let vc = GoodsListViewController()
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(collectionView.frame.width/3.0-8, 85)
+        return CGSizeMake((collectionView.frame.width-4)/3.0-8, 85)
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(2, 2, 2, 2)
+        return UIEdgeInsetsMake(4, 4, 4, 4)
     }
     // MARK: UITableViewDataSource, UITableViewDelegate
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categorys.count
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 66
+        return 44
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellId = "cell"
@@ -73,9 +77,9 @@ class MarketViewController: BaseViewController, UICollectionViewDataSource, UICo
         }
         let category = self.categorys[indexPath.row]
         cell.textLabel?.text = category.name
-        let lb = UILabel(frame: CGRectMake(0,65,85, 1))
-        lb.backgroundColor = UIColor(white: 136/255, alpha: 1)
-        cell.addSubview(lb)
+        cell.textLabel?.font = UIFont.systemFontOfSize(13)
+        cell.textLabel?.textAlignment = .Center
+        cell.addLine(0, y:43 , width: screenWidth, height: 1)
 
         return cell
     }

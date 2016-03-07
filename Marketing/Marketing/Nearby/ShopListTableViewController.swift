@@ -16,6 +16,7 @@ class ShopListTableViewController: UITableViewController{
         super.viewDidLoad()
         self.title = "附近商家"
         self.view.backgroundColor = defaultBackgroundGrayColor
+        self.tableView.separatorStyle = .None
         self.configBackButton()
         self.fetchData()
     }
@@ -33,7 +34,7 @@ class ShopListTableViewController: UITableViewController{
         return self.data.count
     }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 60
+        return 55
     }
   
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -41,6 +42,7 @@ class ShopListTableViewController: UITableViewController{
         var cell: UITableViewCell! = self.tableView.dequeueReusableCellWithIdentifier(cellId)
         if cell == nil {
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: cellId)
+             cell.addLine(0, y: 54, width: screenWidth, height: 0.5)
         }
         if self.data.count>0{
             let cate = self.data[indexPath.row] as! Shop
@@ -48,15 +50,24 @@ class ShopListTableViewController: UITableViewController{
             cell.detailTextLabel?.text = cate.address_detail
             
             
-            let imgV = UIImageView(frame: CGRectMake(tableView.bounds.size.width - 35, 15, 15, 15))
-            imgV.image = UIImage(named: "nav_nearby1")
+            let imgV = UIImageView(frame: CGRectMake(tableView.bounds.size.width - 45, 16, 8, 12))
+            imgV.image = UIImage(named: "location")
             cell.contentView.addSubview(imgV)
+            
+            let lb1 = UILabel(frame:CGRectMake(imgV.frame.origin.x+12, 12, 25, 20))
+            lb1.backgroundColor = UIColor.clearColor()
+            lb1.textColor = tableViewCellDefaultTextColor
+            lb1.textAlignment = NSTextAlignment.Left
+            lb1.font = UIFont.systemFontOfSize(12)
+            lb1.text = "距离"
+            cell.contentView.addSubview(lb1)
 
-            let lb = UILabel(frame:CGRectMake(tableView.bounds.size.width - 35, 35, 30, 30))
+
+            let lb = UILabel(frame:CGRectMake(tableView.bounds.size.width - 40, 25, 30, 30))
             lb.backgroundColor = UIColor.clearColor()
             lb.textColor = tableViewCellDefaultTextColor
             lb.textAlignment = NSTextAlignment.Left
-            lb.font = UIFont.systemFontOfSize(13)
+            lb.font = UIFont.systemFontOfSize(12)
             lb.text = "\(NSString(format: "%i", cate.distance!))km"
             cell.contentView.addSubview(lb)
         

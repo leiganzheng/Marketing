@@ -11,11 +11,13 @@ import UIKit
 class PayOrderViewController: BaseViewController , UITableViewDataSource, UITableViewDelegate,QNInterceptorProtocol {
     
     var titles: NSArray!
+    var subTitles: NSArray!
     @IBOutlet weak var customTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "订单支付"
-        self.titles = ["微信支付","快捷支付"]
+        self.titles = ["微信支付","支付宝"]
+        self.subTitles = ["微信安全支付","支付宝快捷支付"]
     }
     
     override func didReceiveMemoryWarning() {
@@ -29,7 +31,7 @@ class PayOrderViewController: BaseViewController , UITableViewDataSource, UITabl
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 54
+        return 50
     }
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
@@ -50,7 +52,7 @@ class PayOrderViewController: BaseViewController , UITableViewDataSource, UITabl
         lb1.textColor = tableViewCellDefaultTextColor
         lb1.textAlignment = NSTextAlignment.Right
         lb1.font = UIFont.systemFontOfSize(15)
-        lb1.text = "¥200"
+        lb1.text = "¥200元"
         customView.addSubview(lb1)
         
         return customView
@@ -62,17 +64,17 @@ class PayOrderViewController: BaseViewController , UITableViewDataSource, UITabl
         let cellId = "cell1"
         var cell: UITableViewCell! = self.customTableView.dequeueReusableCellWithIdentifier(cellId)
         if cell == nil {
-            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
+            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: cellId)
             cell.accessoryType = .DisclosureIndicator
         }
         cell.textLabel?.text = self.titles[indexPath.row] as? String
 //        cell.imageView?.image = UIImage(named: (iconsArray[indexPath.row] as? String)!)
+        cell.detailTextLabel?.text = self.subTitles[indexPath.row] as? String
         return cell
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let vc = OrderInfoViewController.CreateFromStoryboard("Main") as! OrderInfoViewController
-        self.navigationController?.pushViewController(vc, animated: true)
+      
     }
     //微信支付
 //    private func wxPayCheck(){

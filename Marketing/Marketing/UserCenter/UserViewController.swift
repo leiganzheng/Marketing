@@ -38,7 +38,7 @@ class UserViewController: BaseViewController , UITableViewDataSource, UITableVie
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 112
+            return 80
         }else {
             return 48
         }
@@ -58,13 +58,15 @@ class UserViewController: BaseViewController , UITableViewDataSource, UITableVie
                 cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
             }
             let img = cell.viewWithTag(100) as! UIImageView
+            img.layer.masksToBounds = true
+            img.layer.cornerRadius = img.bounds.size.width/2
             if g_user?.picture != nil {
                 img.sd_setImageWithURL(NSURL(string: (g_user?.picture)!), placeholderImage: nil)
             }
             let name = cell.viewWithTag(101) as! UILabel
             name.text = g_user?.nickname!
-            let addres = cell.viewWithTag(102) as! UILabel
-            addres.text = "地址：\(g_user?.role!)"
+//            let addres = cell.viewWithTag(102) as! UILabel
+//            addres.text = "地址：\(g_user?.role!)"
             let btn = cell.viewWithTag(103) as! UIButton
             btn.rac_signalForControlEvents(.TouchUpInside).subscribeNext { (sender) -> Void in
                 let vc = PersonInfoViewController()

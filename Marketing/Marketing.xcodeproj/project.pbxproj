@@ -38,6 +38,7 @@
 		71D834BA1C8DD98700B9C6F3 /* GoodsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D834B91C8DD98700B9C6F3 /* GoodsListViewController.swift */; };
 		71D834BD1C8DDDDA00B9C6F3 /* GoodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D834BB1C8DDDDA00B9C6F3 /* GoodTableViewCell.swift */; };
 		71D834BE1C8DDDDA00B9C6F3 /* GoodTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71D834BC1C8DDDDA00B9C6F3 /* GoodTableViewCell.xib */; };
+		71D834C01C8F04C000B9C6F3 /* QNFormatTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D834BF1C8F04C000B9C6F3 /* QNFormatTool.swift */; };
 		BB033B451C59E3C3007DB94D /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB033B441C59E3C3007DB94D /* Category.swift */; };
 		BB033B471C59E5DF007DB94D /* Good.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB033B461C59E5DF007DB94D /* Good.swift */; };
 		BB033B491C59EA88007DB94D /* AdModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB033B481C59EA88007DB94D /* AdModel.swift */; };
@@ -128,6 +129,7 @@
 		71D834B91C8DD98700B9C6F3 /* GoodsListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodsListViewController.swift; sourceTree = "<group>"; };
 		71D834BB1C8DDDDA00B9C6F3 /* GoodTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoodTableViewCell.swift; sourceTree = "<group>"; };
 		71D834BC1C8DDDDA00B9C6F3 /* GoodTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodTableViewCell.xib; sourceTree = "<group>"; };
+		71D834BF1C8F04C000B9C6F3 /* QNFormatTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNFormatTool.swift; sourceTree = "<group>"; };
 		87E2F1119F1545FD344AD0A5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB033B441C59E3C3007DB94D /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		BB033B461C59E5DF007DB94D /* Good.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Good.swift; sourceTree = "<group>"; };
@@ -454,6 +456,7 @@
 		BB643BE11C30EF0E00BE6790 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				71D834BF1C8F04C000B9C6F3 /* QNFormatTool.swift */,
 				71C3A41E1C31771E0042F851 /* QNInterceptor.swift */,
 				BB643BE21C30EF0E00BE6790 /* QNNetworkTool.swift */,
 				BB643BE31C30EF0E00BE6790 /* QNTool.swift */,
@@ -675,6 +678,7 @@
 				BBE32FC91C328BD60095BA88 /* PayOrderViewController.swift in Sources */,
 				714B0DEA1C8B3AAC00DD5EEB /* TableViewCell1.swift in Sources */,
 				71C3A4291C31851E0042F851 /* PromotionViewController.swift in Sources */,
+				71D834C01C8F04C000B9C6F3 /* QNFormatTool.swift in Sources */,
 				71C3A41F1C31771E0042F851 /* QNInterceptor.swift in Sources */,
 				BBF93C391C33B8490058894C /* MarketCollectionViewCell.swift in Sources */,
 				BBE32FC51C3227EE0095BA88 /* MyOrderViewController.swift in Sources */,

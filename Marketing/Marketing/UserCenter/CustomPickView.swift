@@ -16,9 +16,9 @@ class CustomPickView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
     var dataArray : NSMutableArray! = NSMutableArray()
     var cityArray : NSMutableArray! = NSMutableArray()
     var areaArray : NSMutableArray! = NSMutableArray()
-    var selectProvincial : String!
-    var selectCity : String!
-    var selectData: String!
+    var selectProvincial : NSInteger = 0
+    var selectCity : NSInteger = 0
+    var selectArea: NSInteger = 0
     var finished: ((data: String) -> Void)? // 完成的回调
     var selected: ((parent: String,level: String) -> Void)? // 完成的回调
     var cusViewController : UIViewController!
@@ -56,7 +56,10 @@ class CustomPickView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
         button2.titleLabel?.font = UIFont.systemFontOfSize(17)
         button2.rac_command = RACCommand(signalBlock: { [weak self](sender) -> RACSignal! in
             if let strongSelf = self {
-                strongSelf.finished!(data :(self?.selectData)!)
+                let p = self?.dataArray[(self?.selectProvincial)!] as! CityData
+                let c = self?.cityArray[(self?.selectCity)!] as! CityData
+                let a = self?.areaArray[(self?.selectArea)!] as! CityData
+                strongSelf.finished!(data :(p.name!+c.name!+a.name!))
                 strongSelf.hideAsPop()
             }
             return RACSignal.empty()
@@ -117,15 +120,13 @@ class CustomPickView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
         if component == 0{
             let data = dataArray[row] as? CityData
             self.selected!(parent: data!.id!,level: "2")
-            self.selectProvincial = data?.name
+            self.selectProvincial = row
         } else if(component == 1){
             let data = cityArray[row] as? CityData
             self.selected!(parent: data!.id!,level: "3")
-            self.selectCity = data?.name
+            self.selectCity = row
         }else{
-            let data = areaArray[row] as? CityData
-            self.selected!(parent: data!.parent!,level: "")
-            self.selectData = self.selectProvincial+self.selectCity+(data?.name!)!
+            self.selectArea = row
         }
     }
 }

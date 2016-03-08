@@ -16,6 +16,7 @@ class MyOrderViewController: BaseViewController , UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "我的订单"
+        self.customTableView.separatorStyle = .None
         //
         self.fetchData()
     }
@@ -40,17 +41,30 @@ class MyOrderViewController: BaseViewController , UITableViewDataSource, UITable
             cell = OrderTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
         }
         if self.dataArray.count != 0{
-            let order = self.dataArray[indexPath.row]
-            cell.name.text = order.name
-            
-        }
-        cell.addLine(0, y: 34, width: tableView.frame.size.width, height: 0.5)
-        cell.payBtn.rac_command = RACCommand(signalBlock: { (sender) -> RACSignal! in
-            let vc = PayOrderViewController.CreateFromStoryboard("Main") as! PayOrderViewController
-            self.navigationController?.pushViewController(vc, animated: true)
-            return RACSignal.empty()
-            })
+            let order = self.dataArray[indexPath.row] as! Order
+            cell.name.text = order.shopInfo!.name
+            if order.goods.count > 0{
+                let good = order.goods[0]
+                cell.name1.text = good.good_name
+                cell.imageV.sd_setImageWithURL(NSURL(string: good.good_pic!), placeholderImage: UIImage(named: ""), options: .ProgressiveDownload)
+                cell.detail.text = "消费：\(good.price!)"
+                cell.time.text = "时间：\(order.create_time!)"
+            }
+            if order.status == "0" {
+                cell.payBtn.setTitle("马上支付", forState: .Normal)
+                cell.payBtn.rac_command = RACCommand(signalBlock: { (sender) -> RACSignal! in
+                    let vc = PayOrderViewController.CreateFromStoryboard("Main") as! PayOrderViewController
+                    self.navigationController?.pushViewController(vc, animated: true)
+                    return RACSignal.empty()
+                })
 
+            }else if(order.status == "1"){
+                cell.payBtn.setTitle("已经支付", forState: .Normal)
+                cell.payBtn.setTitleColor(UIColor.blackColor(), forState: .Normal)
+            }
+        }
+        cell.customV.addLine(0, y: 34, width: tableView.frame.size.width, height: 0.5)
+       
         return cell
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

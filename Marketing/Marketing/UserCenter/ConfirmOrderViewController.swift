@@ -20,7 +20,7 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
 
     @IBOutlet weak var customTableView: UITableView!
     @IBOutlet weak var okButton: UIButton!
-    var cell4:TableViewCell4!
+    var address:UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "确认订单"
@@ -80,6 +80,7 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
                 var cell = self.customTableView.dequeueReusableCellWithIdentifier(cellId) as! TableViewCell4!
                 if cell == nil {
                     cell = TableViewCell4(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
+                    self.address = cell.lb
                 }
                 return cell
 
@@ -136,7 +137,7 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
         pickView.areaArray = tmpData2
         pickView.showAsPop()
         pickView.finished = { (data) -> Void in
-            self.cell4.cityTF.text = data
+           
         }
         pickView.selected = { (parent,level) -> Void in
             if level == "2" {

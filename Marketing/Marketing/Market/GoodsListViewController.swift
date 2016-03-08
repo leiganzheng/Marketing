@@ -17,9 +17,7 @@ class GoodsListViewController: BaseViewController{
     var countrySearchController = UISearchController()
     
     //原始数据集
-    let schoolArray = ["清华大学","北京大学","中国人民大学","北京交通大学","北京工业大学",
-        "北京航空航天大学","北京理工大学","北京科技大学","中国政法大学","中央财经大学","华北电力大学",
-        "北京体育大学","上海外国语大学","复旦大学","华东师范大学","上海大学","河北工业大学"]
+    var goods: [Good] =  NSArray() as! [Good]
     
     //搜索过滤后的结果集
     var searchArray:[String] = [String](){
@@ -27,6 +25,7 @@ class GoodsListViewController: BaseViewController{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "检索"
         self.configBackButton()
         //创建表视图
         self.tableView = UITableView(frame: self.view.bounds,
@@ -63,7 +62,20 @@ class GoodsListViewController: BaseViewController{
     }
     //MARK: Private Method
     func fetchData (){
-        
+        QNNetworkTool.fetchGoodList("", cat_id: "", shop_cat_id: "", promotion_type: "", name: "", verify: "", status: "", page: "", page_size: "", order: "") { (goods, error, errorMsg) -> Void in
+            if goods != nil {
+                if goods?.count>=0 {
+                    self.goods = goods!
+                    self.tableView.reloadData()
+                    
+                }else{
+                    QNTool.showPromptView("没有数据")
+                }
+            }else{
+                QNTool.showErrorPromptView(nil, error: error)
+            }
+
+        }
     }
 
 }
@@ -76,7 +88,7 @@ extension GoodsListViewController: UITableViewDataSource
             return self.searchArray.count
         } else
         {
-            return self.schoolArray.count
+            return 5
         }
     }
     
@@ -122,7 +134,7 @@ extension GoodsListViewController: UISearchResultsUpdating
         
         let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@",
             searchController.searchBar.text!)
-        let array = (self.schoolArray as NSArray)
+        let array = (self.goods as NSArray)
             .filteredArrayUsingPredicate(searchPredicate)
         self.searchArray = array as! [String]
     }

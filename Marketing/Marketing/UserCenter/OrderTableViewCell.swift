@@ -16,6 +16,7 @@ class OrderTableViewCell: UITableViewCell {
     @IBOutlet weak var name1: UILabel!
     @IBOutlet weak var detail: UILabel!
     @IBOutlet weak var time: UILabel!
+    @IBOutlet weak var customV: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

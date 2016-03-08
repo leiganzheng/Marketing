@@ -30,6 +30,11 @@ class Good: QN_Base {
     private(set) var update_time: String?
     private(set) var status: String?
     
+    //
+    private(set) var good_name: String?
+    private(set) var good_pic: String?
+    
+    
     required init!(_ dictionary: NSDictionary) {
         // 先判断存在性
         if !QN_Base.existValue(dictionary, keys: "good_id") {
@@ -58,6 +63,10 @@ class Good: QN_Base {
         self.create_time = dictionary["update_time"] as? String
         self.status = dictionary["status"] as? String
         
+        self.good_name = dictionary["good_name"] as? String
+        self.good_pic = dictionary["good_pic"] as? String
+
+        
         super.init(dictionary)
     }
     
@@ -84,6 +93,9 @@ class Good: QN_Base {
         dictionary.setValue(self.create_time, forKey:"create_time")
         dictionary.setValue(self.create_time, forKey:"create_time")
         dictionary.setValue(self.status, forKey:"status")
+        
+        dictionary.setValue(self.good_name, forKey:"good_name")
+        dictionary.setValue(self.good_pic, forKey:"good_pic")
         
         return dictionary
     }

@@ -19,7 +19,7 @@ class PayOrderViewController: BaseViewController , UITableViewDataSource, UITabl
         self.title = "订单支付"
         self.titles = ["微信支付","支付宝"]
         self.subTitles = ["微信安全支付","支付宝快捷支付"]
-        self.icons = ["pay_weixn","pay_zhifubao"]
+        self.icons = ["advisory_doctor_Pay_wechat","advisory_doctor_Pay_Alipay"]
     }
     
     override func didReceiveMemoryWarning() {
@@ -33,7 +33,7 @@ class PayOrderViewController: BaseViewController , UITableViewDataSource, UITabl
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 55
+        return 50
     }
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40

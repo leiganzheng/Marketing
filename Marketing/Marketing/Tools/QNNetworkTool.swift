@@ -538,7 +538,6 @@ extension QNNetworkTool {
     class func fetchOrderList(order_id:String,shop_id:String,uid:String,payment_id:String,pay_sn:String,evaluation_status:String,shipping_code:String,customer_address:String,status:String,need_order_goods:String, accesstoken: String,page: String,page_size: String, completion: ([Order]?, NSError?, String?) -> Void) {
         requestGET(kServerAddress + "/Orderapi/orderGetList", parameters: ["order_id" : order_id, "page" : page,"page_size":page_size, "accesstoken" : accesstoken,"shop_id" : shop_id,"uid" : uid,"payment_id" : payment_id,"pay_sn" : pay_sn,"evaluation_status" : evaluation_status,"shipping_code" : shipping_code,"customer_address" : customer_address,"status" : status,"need_order_goods" : need_order_goods]) { (_, _, _, dictionary, error) -> Void in
             if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
-                print(dictionary)
                 let list = dictionary?["data"] as? NSArray
                 var result = [Order]()
                 for object in list! {
@@ -552,7 +551,6 @@ extension QNNetworkTool {
             else {
                 completion(nil, error, dictionary?["errorMsg"] as? String)
             }
-            
             
         }
     }

@@ -46,7 +46,7 @@
 		BB1128241C5868AA00297DAD /* NSData+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1128211C5868AA00297DAD /* NSData+AES.m */; };
 		BB1128251C5868AA00297DAD /* NSString+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1128231C5868AA00297DAD /* NSString+AES.m */; };
 		BB47B29F1C8E736D00323AD5 /* CustomPickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB47B29E1C8E736D00323AD5 /* CustomPickView.swift */; };
-		BB47B2A11C8E75C500323AD5 /* address.db in Resources */ = {isa = PBXBuildFile; fileRef = BB47B2A01C8E75C500323AD5 /* address.db */; };
+		BB47B2A31C8E94F300323AD5 /* address.db in Resources */ = {isa = PBXBuildFile; fileRef = BB47B2A21C8E94F300323AD5 /* address.db */; };
 		BB52E9711C47328200E0D1EC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB52E9701C47328200E0D1EC /* User.swift */; };
 		BB52E9731C47369600E0D1EC /* QNSharedDatas.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB52E9721C47369600E0D1EC /* QNSharedDatas.swift */; };
 		BB52E9751C47764900E0D1EC /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB52E9741C47764900E0D1EC /* Shop.swift */; };
@@ -140,7 +140,7 @@
 		BB1128231C5868AA00297DAD /* NSString+AES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AES.m"; sourceTree = "<group>"; };
 		BB1128271C586A8800297DAD /* Marketing-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Marketing-Bridging-Header.h"; sourceTree = "<group>"; };
 		BB47B29E1C8E736D00323AD5 /* CustomPickView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPickView.swift; sourceTree = "<group>"; };
-		BB47B2A01C8E75C500323AD5 /* address.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = address.db; sourceTree = "<group>"; };
+		BB47B2A21C8E94F300323AD5 /* address.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = address.db; sourceTree = "<group>"; };
 		BB52E9701C47328200E0D1EC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		BB52E9721C47369600E0D1EC /* QNSharedDatas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QNSharedDatas.swift; sourceTree = "<group>"; };
 		BB52E9741C47764900E0D1EC /* Shop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
@@ -446,7 +446,7 @@
 		BB643BE01C30EF0E00BE6790 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				BB47B2A01C8E75C500323AD5 /* address.db */,
+				BB47B2A21C8E94F300323AD5 /* address.db */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -549,7 +549,7 @@
 				BB643BBC1C30EE4C00BE6790 /* LaunchScreen.storyboard in Resources */,
 				BB643BB91C30EE4C00BE6790 /* Assets.xcassets in Resources */,
 				71C3A41D1C3175B50042F851 /* Login.storyboard in Resources */,
-				BB47B2A11C8E75C500323AD5 /* address.db in Resources */,
+				BB47B2A31C8E94F300323AD5 /* address.db in Resources */,
 				BB643BD21C30EEFE00BE6790 /* readme.txt in Resources */,
 				719861951C4B6EFC00803F26 /* read_me.txt in Resources */,
 				BB643BB71C30EE4C00BE6790 /* Main.storyboard in Resources */,

@@ -14,8 +14,13 @@ class CustomPickView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
     var pickerView: UIPickerView!
     var footView: UIView!
     var dataArray : NSMutableArray! = NSMutableArray()
-    var selectIndex : Int! = 0
-    var finished: ((index: Int) -> Void)? // 完成的回调
+    var cityArray : NSMutableArray! = NSMutableArray()
+    var areaArray : NSMutableArray! = NSMutableArray()
+    var selectProvincial : String!
+    var selectCity : String!
+    var selectData: String!
+    var finished: ((data: String) -> Void)? // 完成的回调
+    var selected: ((parent: String,level: String) -> Void)? // 完成的回调
     var cusViewController : UIViewController!
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -51,7 +56,7 @@ class CustomPickView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
         button2.titleLabel?.font = UIFont.systemFontOfSize(17)
         button2.rac_command = RACCommand(signalBlock: { [weak self](sender) -> RACSignal! in
             if let strongSelf = self {
-                strongSelf.finished!(index : strongSelf.selectIndex)
+                strongSelf.finished!(data :(self?.selectData)!)
                 strongSelf.hideAsPop()
             }
             return RACSignal.empty()
@@ -78,22 +83,50 @@ class CustomPickView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
     // MARK: UIPickerViewDelegate, UIPickerViewDataSource
     // 设置列数
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
+        return 3
     }
     
     // 设置行数
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.dataArray.count
+        if component == 0{
+             return self.dataArray.count
+        }else if(component == 1){
+             return self.cityArray.count
+        }else{
+             return self.areaArray.count
+        }
+       
     }
     
     // 设置每行具体内容（titleForRow 和 viewForRow 二者实现其一即可）
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return  dataArray[row] as? String
+        if component == 0{
+            let data = dataArray[row] as? CityData
+            return data!.name
+        } else if(component == 1){
+            let data = cityArray[row] as? CityData
+            return data!.name
+        }else{
+            let data = areaArray[row] as? CityData
+            return  data!.name
+        }
     }
     
     // 选中行的操作
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.selectIndex = row
+        if component == 0{
+            let data = dataArray[row] as? CityData
+            self.selected!(parent: data!.id!,level: "2")
+            self.selectProvincial = data?.name
+        } else if(component == 1){
+            let data = cityArray[row] as? CityData
+            self.selected!(parent: data!.id!,level: "3")
+            self.selectCity = data?.name
+        }else{
+            let data = areaArray[row] as? CityData
+            self.selected!(parent: data!.parent!,level: "")
+            self.selectData = self.selectProvincial+self.selectCity+(data?.name!)!
+        }
     }
 }
 

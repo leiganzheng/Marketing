@@ -12,12 +12,14 @@ class PayOrderViewController: BaseViewController , UITableViewDataSource, UITabl
     
     var titles: NSArray!
     var subTitles: NSArray!
+    var icons: NSArray!
     @IBOutlet weak var customTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "订单支付"
         self.titles = ["微信支付","支付宝"]
         self.subTitles = ["微信安全支付","支付宝快捷支付"]
+        self.icons = ["advisory_doctor_Pay_wechat","advisory_doctor_Pay_Alipay"]
     }
     
     override func didReceiveMemoryWarning() {
@@ -68,7 +70,7 @@ class PayOrderViewController: BaseViewController , UITableViewDataSource, UITabl
             cell.accessoryType = .DisclosureIndicator
         }
         cell.textLabel?.text = self.titles[indexPath.row] as? String
-//        cell.imageView?.image = UIImage(named: (iconsArray[indexPath.row] as? String)!)
+        cell.imageView?.image = UIImage(named: (icons[indexPath.row] as? String)!)
         cell.detailTextLabel?.text = self.subTitles[indexPath.row] as? String
         return cell
     }

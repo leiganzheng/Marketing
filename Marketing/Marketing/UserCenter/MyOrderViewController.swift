@@ -40,8 +40,8 @@ class MyOrderViewController: BaseViewController , UITableViewDataSource, UITable
             cell = OrderTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
         }
         if self.dataArray.count != 0{
-//            let order = self.dataArray[indexPath.row]
-//            cell.name.text = order.name
+            let order = self.dataArray[indexPath.row]
+            cell.name.text = order.name
             
         }
         cell.addLine(0, y: 34, width: tableView.frame.size.width, height: 0.5)

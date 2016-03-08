@@ -25,6 +25,7 @@ class Order: QN_Base {
     private(set) var create_time: String?
     private(set) var update_time: String?
     private(set) var status: String?
+    private(set) var shop_info:String?
     var goods=[Good]()
     
     required init!(_ dictionary: NSDictionary) {
@@ -50,6 +51,7 @@ class Order: QN_Base {
         self.create_time = dictionary["create_time"] as? String
         self.create_time = dictionary["update_time"] as? String
         self.status = dictionary["status"] as? String
+        self.shop_info = dictionary["shop_info"] as? String
         if QN_Base.existValue(dictionary, keys: "order_goods") {
             for goodsDictionary in dictionary["order_goods"] as! NSArray {
                 if let dictionary = goodsDictionary as? NSDictionary, let good = Good(dictionary) {
@@ -79,6 +81,7 @@ class Order: QN_Base {
         dictionary.setValue(self.create_time, forKey:"create_time")
         dictionary.setValue(self.create_time, forKey:"create_time")
         dictionary.setValue(self.status, forKey:"status")
+        dictionary.setValue(self.shop_info, forKey:"shop_info")
         if QN_Base.existValue(dictionary, keys: "order_goods") {
             let goods = NSMutableArray()
             for good in self.goods {

@@ -4,6 +4,7 @@ pod "Aspects"
 pod "IQKeyboardManager"
 pod 'ReactiveCocoa'
 pod "MWPhotoBrowser"
+pod 'FMDB', :git => 'https://github.com/ccgus/fmdb.git'
 use_frameworks!
 pod "SDWebImage"
 pod 'Alamofire'

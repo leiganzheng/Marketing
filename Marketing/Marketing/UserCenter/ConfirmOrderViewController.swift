@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FMDB
 
 class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UITableViewDelegate,QNInterceptorProtocol {
 
@@ -95,9 +96,53 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
+        if indexPath.section == 0 && indexPath.row == 3 {
+            self.showPickerView()
+        }
     }
     //MARK: Action Method
+    func showPickerView(){
+        let tmpData = NSMutableArray()
+        
+        if tmpData.count == 0 {
+           
+            return
+        }
+        let pickView = CustomPickView(frame: CGRectMake(0, 0, screenWidth, screenHeight))
+        pickView.dataArray = tmpData
+        pickView.showAsPop()
+        pickView.finished = { (index) -> Void in
+//            self.disSelect = self.scheduleData[index] as! QN_Disease
+//            if index < self.scheduleData.count {
+//                self.disArray.addObject(self.disSelect)
+//                self.scheduleData.removeObjectAtIndex(index)
+//                self.tableView.reloadData()
+//            }
+        }
+    }
+     func getDb(){
+//        let filemgr = NSFileManager.defaultManager()
+//        let dirPaths =
+//        NSSearchPathForDirectoriesInDomains(.DocumentDirectory,
+//            .UserDomainMask, true)
+//        let docsDir = dirPaths[0] as String
+//        let databasePath = NSURL(fileURLWithPath:docsDir).URLByAppendingPathComponent("address.db").absoluteString
+//        if !filemgr.fileExistsAtPath(databasePath) {
+            let db = FMDatabase(path: "/Resources/address.db")
+            if db == nil {
+                println("Error: \(db.lastErrorMessage())")
+            }
+            if db.open() {
+                let s = db.executeQuery("SELECT * FROM address")
+                while (s.next()) {
+                    //retrieve values for each record
+                }
+            } else {
+                println("Error: \(db.lastErrorMessage())")
+            }
+//        }
+       
+    }
     @IBAction func postOrder(sender: AnyObject) {
     }
     //MARK: Private Method

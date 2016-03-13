@@ -12,17 +12,37 @@ class OrderDetailViewController: BaseViewController , UITableViewDataSource, UIT
     
     var titles: NSArray!
     var moneyLbl : UILabel!
+    var orderId: String!
     @IBOutlet weak var customTableView: UITableView!
     var usrName : UILabel!
     var imgV : UIImageView!
+    var order: NSDictionary!
+    var staus: String = "0"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "我的订单"
         self.configBackButton()
         self.titles = [["店名"],["收货信息","快递单号","订单状态"]]
         self.navigationController?.navigationBar.translucent = false // 关闭透明度效果
+        
+        // 获取验证码的按钮
+        let payButton = UIButton(frame: CGRect(x: 0, y: 0, width:50, height: 44))
+        payButton.backgroundColor = UIColor.clearColor()
+        payButton.setTitle("支付", forState: .Normal)
+        payButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        payButton.titleLabel?.font = UIFont.systemFontOfSize(16)
+        payButton.rac_signalForControlEvents(.TouchUpInside).subscribeNext { [weak self](sender) -> Void in
+            if let strongSelf = self {
+               
+            }
+        }
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: payButton)
+        
         // 让导航栏支持向右滑动手势
         QNTool.addInteractive(self.navigationController)
+        //
+        self.fetchData()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -31,7 +51,14 @@ class OrderDetailViewController: BaseViewController , UITableViewDataSource, UIT
     
     // MARK: UITableViewDataSource, UITableViewDelegate
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return titles[section].count
+        if section == 0 {
+            return 1
+        }else{
+            if self.staus == "1" {
+                return 2
+            }
+            return 3
+        }
     }
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return self.titles.count
@@ -40,13 +67,23 @@ class OrderDetailViewController: BaseViewController , UITableViewDataSource, UIT
         if indexPath.section == 0 {
             return 150
         }else {
-            if(indexPath.row == 0){
-                return 130
-            }else if(indexPath.row == 1){
-                return 70
+            if self.staus == "1" {
+                if(indexPath.row == 0){
+                    return 130
+                }else{
+                    return 55
+                }
+
             }else{
-                return 55
+                if(indexPath.row == 0){
+                    return 130
+                }else if(indexPath.row == 1){
+                    return 70
+                }else{
+                    return 55
+                }
             }
+
         }
     }
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -64,8 +101,19 @@ class OrderDetailViewController: BaseViewController , UITableViewDataSource, UIT
                 cell = OrderTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
             }
             cell.addLine(0, y: 34, width: tableView.frame.size.width, height: 0.5)
+            if self.order != nil {
+                cell.name.text = self.order["shop_info"]!["name"] as? String
+                let goods = order["order_goods"] as? NSArray
+                if goods!.count > 0{
+                    let good = goods![0] as! NSDictionary
+                    cell.name1.text = good["good_name"] as? String
+                    cell.imageV.sd_setImageWithURL(NSURL(string: (good["good_pic"] as? String)!), placeholderImage: UIImage(named: ""), options: .ProgressiveDownload)
+                    cell.detail.text = "消费：\((good["price"] as? String)!)"
+                    cell.time.text = "时间：\((self.order["create_time"] as? String)!)"
+                }
+            }
             return cell
-        }else {
+        }else if (indexPath.section == 1){
             if(indexPath.row == 0){
                 let cellId = "OrderTableViewCell1"
                 var cell = tableView.dequeueReusableCellWithIdentifier(cellId) as UITableViewCell!
@@ -74,31 +122,83 @@ class OrderDetailViewController: BaseViewController , UITableViewDataSource, UIT
                     QNTool.configTableViewCellDefault(cell)
                     cell.selectionStyle = .None
                 }
-                return cell
-            }else if(indexPath.row == 1){
-                let cellId = "OrderTableViewCell2"
-                var cell = tableView.dequeueReusableCellWithIdentifier(cellId) as UITableViewCell!
-                if cell == nil{
-                    cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
-                    QNTool.configTableViewCellDefault(cell)
-                    cell.selectionStyle = .None
+                if self.order != nil{
+                    let lb1 = cell.viewWithTag(100) as! UILabel
+                    lb1.text = "收件人：\((self.order["receiver"] as? String)!)"
+                    let lb2 = cell.viewWithTag(101) as! UILabel
+                    lb2.text = "联系电话：\((self.order["receiver_phone"] as? String)!)"
+                    let lb3 = cell.viewWithTag(102) as! UILabel
+                    lb3.text = "通讯地址：\((self.order["customer_address"] as? String)!)"
                 }
                 return cell
-            }else{
-                let cellId = "OrderTableViewCell3"
-                var cell = tableView.dequeueReusableCellWithIdentifier(cellId) as UITableViewCell!
-                if cell == nil{
-                    cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
-                    QNTool.configTableViewCellDefault(cell)
-                    cell.selectionStyle = .None
+            }else {
+                if self.staus == "1" {// 1 已支付
+                    let cellId = "OrderTableViewCell3"
+                    var cell = tableView.dequeueReusableCellWithIdentifier(cellId) as UITableViewCell!
+                    if cell == nil{
+                        cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
+                        QNTool.configTableViewCellDefault(cell)
+                        cell.selectionStyle = .None
+                    }
+                    if self.order != nil{
+                        let lb1 = cell.viewWithTag(104) as! UILabel
+                        lb1.text =  "已经签收"
+                        
+                    }
+                    return cell
+                }else{
+                    if(indexPath.row == 1){
+                        let cellId = "OrderTableViewCell2"
+                        var cell = tableView.dequeueReusableCellWithIdentifier(cellId) as UITableViewCell!
+                        if cell == nil{
+                            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
+                            QNTool.configTableViewCellDefault(cell)
+                            cell.selectionStyle = .None
+                            
+                        }
+                        if self.order != nil{
+                            let lb1 = cell.viewWithTag(103) as! UILabel
+                            lb1.text = (self.order["shipping_company"] as? String)! + "  " + (self.order["shipping_code"] as? String)!
+                            
+                        }
+                        return cell
+                    }else{
+                        let cellId = "OrderTableViewCell3"
+                        var cell = tableView.dequeueReusableCellWithIdentifier(cellId) as UITableViewCell!
+                        if cell == nil{
+                            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
+                            QNTool.configTableViewCellDefault(cell)
+                            cell.selectionStyle = .None
+                        }
+                        if self.order != nil{
+                            let lb1 = cell.viewWithTag(104) as! UILabel
+                            lb1.text = "已经签收"
+                            
+                        }
+                        return cell
+                    }
                 }
-                return cell
             }
         }
+        return UITableViewCell()
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
     }
-    
+    //MARK: Private Method
+    func fetchData(){
+        QNNetworkTool.fetchOrderInfo(self.orderId, accesstoken: (g_user?.accesstoken)!) { (order, error, errorMsg) -> Void in
+            if order != nil {
+                self.order = order!
+                self.staus = (self.order["status"] as? String)!
+                if self.staus == "1" {
+                    self.navigationItem.rightBarButtonItem=nil
+                }
+                self.customTableView.reloadData()
+            }else{
+                QNTool.showErrorPromptView(nil, error: error, errorMsg: errorMsg)
+            }
+        }
+    }
 }

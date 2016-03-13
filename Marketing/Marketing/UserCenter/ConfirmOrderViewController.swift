@@ -193,7 +193,14 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
     }
     //MARK: Private Method
     func fetchData (){
-        
+        QNNetworkTool.orderAdd("", accesstoken: (g_user?.accesstoken)!, uid: (g_user?.uid)!, goods_price: "", order_price: "", customer_address_id: "", order_goods: "") { (order, error, errorMsg) -> Void in
+            if order != nil {
+                QNTool.showPromptView("订单已经提交")
+            }else{
+                QNTool.showErrorPromptView(nil, error: error, errorMsg: errorMsg)
+            }
+
+        }
     }
 
 

@@ -561,13 +561,13 @@ extension QNNetworkTool {
     }
     /**
      订单详情
+     :param: order_id 订单ID
      :param: completion 完成的回调
      */
-    class func fetchOrderInfo(order_id:String, accesstoken: String, completion: (Order?, NSError?, String?) -> Void) {
+    class func fetchOrderInfo(order_id:String, accesstoken: String, completion: (NSDictionary?, NSError?, String?) -> Void) {
         requestGET(kServerAddress + "/Orderapi/orderGetInfo", parameters: ["order_id" : order_id,"accesstoken" : accesstoken]) { (_, _, _, dictionary, error) -> Void in
             if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
-                let order = Order(dictionary!)
-                completion(order, error, dictionary?["errmsg"] as? String)
+                completion(dictionary, error, nil)
             }
             else {
                 completion(nil, error, dictionary?["errmsg"] as? String)
@@ -586,11 +586,11 @@ extension QNNetworkTool {
      :param:  order_goods 订单商品，为数组json化格式
      :param: completion 完成的回调
      */
-    class func orderAdd(shop_id:String, accesstoken: String,uid: String,goods_price: String,order_price: String,customer_address_id: String, order_goods: String, completion: (Order?, NSError?, String?) -> Void) {
+    class func orderAdd(shop_id:String, accesstoken: String,uid: String,goods_price: String,order_price: String,customer_address_id: String, order_goods: String, completion: (NSDictionary?, NSError?, String?) -> Void) {
         requestGET(kServerAddress + "/Orderapi/orderAdd", parameters: ["shop_id" : shop_id,"uid" : uid,"goods_price" : goods_price,"order_price" : order_price,"customer_address_id" : customer_address_id,"accesstoken" : accesstoken,"order_goods" : order_goods]) { (_, _, _, dictionary, error) -> Void in
             if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
-                let order = Order(dictionary!)
-                completion(order, error, dictionary?["errmsg"] as? String)
+//                let order = Order(dictionary!)
+                completion(dictionary, error, nil)
             }
             else {
                 completion(nil, error, dictionary?["errmsg"] as? String)

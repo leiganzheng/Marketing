@@ -844,7 +844,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="505"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="OrderTableViewCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrderTableViewCell" rowHeight="150" id="BOZ-KE-KLL" customClass="OrderTableViewCell" customModule="Marketing" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="OrderTableViewCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="OrderTableViewCell" rowHeight="150" id="BOZ-KE-KLL" customClass="OrderTableViewCell" customModule="Marketing" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="320" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BOZ-KE-KLL" id="PSz-vL-unk">
@@ -868,14 +868,6 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="27X-ly-MA5">
-                                                    <rect key="frame" x="260" y="4" width="45" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="45" id="YoK-AN-dZn"/>
-                                                        <constraint firstAttribute="height" constant="30" id="tFo-dT-Q8c"/>
-                                                    </constraints>
-                                                    <state key="normal" title="请支付"/>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时间：2015-10-10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XcQ-cG-9mx">
                                                     <rect key="frame" x="116" y="113" width="144" height="21"/>
                                                     <constraints>
@@ -906,7 +898,6 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="27X-ly-MA5" firstAttribute="top" secondItem="PSz-vL-unk" secondAttribute="top" constant="4" id="0bX-pD-U2S"/>
                                                 <constraint firstItem="XcQ-cG-9mx" firstAttribute="leading" secondItem="see-4I-ZHd" secondAttribute="trailing" constant="8" id="3a9-75-nLP"/>
                                                 <constraint firstItem="D1d-Wa-q80" firstAttribute="top" secondItem="PSz-vL-unk" secondAttribute="top" constant="8" id="8zy-J2-zaf"/>
                                                 <constraint firstAttribute="trailing" secondItem="XcQ-cG-9mx" secondAttribute="trailing" constant="60" id="FOj-kS-SWe"/>
@@ -916,9 +907,8 @@
                                                 <constraint firstItem="see-4I-ZHd" firstAttribute="top" secondItem="D1d-Wa-q80" secondAttribute="bottom" constant="11" id="dLy-XM-338"/>
                                                 <constraint firstAttribute="trailing" secondItem="n6X-8V-zcr" secondAttribute="trailing" constant="60" id="drB-SN-h2d"/>
                                                 <constraint firstItem="D1d-Wa-q80" firstAttribute="leading" secondItem="PSz-vL-unk" secondAttribute="leading" constant="8" id="jU9-6A-xPB"/>
-                                                <constraint firstItem="EFU-VY-Tsl" firstAttribute="top" secondItem="27X-ly-MA5" secondAttribute="bottom" constant="10" id="k05-In-oJr"/>
-                                                <constraint firstAttribute="trailing" secondItem="27X-ly-MA5" secondAttribute="trailing" constant="15" id="nIi-a8-Udd"/>
                                                 <constraint firstAttribute="trailing" secondItem="EFU-VY-Tsl" secondAttribute="trailing" constant="14" id="u1m-1U-3Ao"/>
+                                                <constraint firstItem="EFU-VY-Tsl" firstAttribute="top" secondItem="D1d-Wa-q80" secondAttribute="bottom" constant="15" id="wLL-Ye-Uqh"/>
                                                 <constraint firstItem="EFU-VY-Tsl" firstAttribute="leading" secondItem="see-4I-ZHd" secondAttribute="trailing" constant="8" id="xvR-pd-DtT"/>
                                                 <constraint firstItem="see-4I-ZHd" firstAttribute="leading" secondItem="PSz-vL-unk" secondAttribute="leading" constant="8" id="zVg-pg-Gc0"/>
                                             </constraints>
@@ -928,18 +918,17 @@
                                             <outlet property="imageV" destination="see-4I-ZHd" id="SYp-0G-RJY"/>
                                             <outlet property="name" destination="D1d-Wa-q80" id="Abc-3p-qgW"/>
                                             <outlet property="name1" destination="EFU-VY-Tsl" id="5dl-wB-1IB"/>
-                                            <outlet property="payBtn" destination="27X-ly-MA5" id="SSP-XB-b1t"/>
                                             <outlet property="time" destination="XcQ-cG-9mx" id="IKh-M4-i0Y"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrderTableViewCell1" rowHeight="130" id="bvV-cP-hh0">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OrderTableViewCell1" rowHeight="130" id="bvV-cP-hh0">
                                         <rect key="frame" x="0.0" y="200" width="320" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bvV-cP-hh0" id="aO4-Dj-vJe">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="通讯地址：广东松山湖" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntj-Yn-tPy">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="通讯地址：广东松山湖" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntj-Yn-tPy">
                                                     <rect key="frame" x="8" y="95" width="304" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="rzy-Od-oKN"/>
@@ -958,19 +947,19 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收件人：李飞" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="986-mV-v2c">
-                                                    <rect key="frame" x="8" y="42" width="190" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="联系电话：156790988888" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tqw-pf-jvO">
+                                                    <rect key="frame" x="8" y="66" width="172" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="kWG-Ty-pHH"/>
+                                                        <constraint firstAttribute="height" constant="21" id="SYy-gI-5ew"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="联系电话：156790988888" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tqw-pf-jvO">
-                                                    <rect key="frame" x="8" y="66" width="172" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="收件人：李飞" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="986-mV-v2c">
+                                                    <rect key="frame" x="8" y="42" width="190" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="SYy-gI-5ew"/>
+                                                        <constraint firstAttribute="height" constant="21" id="kWG-Ty-pHH"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -992,7 +981,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrderTableViewCell2" rowHeight="69" id="SAX-Sp-kdQ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OrderTableViewCell2" rowHeight="69" id="SAX-Sp-kdQ">
                                         <rect key="frame" x="0.0" y="330" width="320" height="69"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SAX-Sp-kdQ" id="pUI-bz-O1a">
@@ -1008,7 +997,7 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="顺丰快递 86868768686868687" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebL-uG-PdQ">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="顺丰快递 86868768686868687" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ebL-uG-PdQ">
                                                     <rect key="frame" x="8" y="39" width="207" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="sGU-5A-nuC"/>
@@ -1028,7 +1017,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrderTableViewCell3" rowHeight="55" id="W3R-Nz-lEX">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="OrderTableViewCell3" rowHeight="55" id="W3R-Nz-lEX">
                                         <rect key="frame" x="0.0" y="399" width="320" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W3R-Nz-lEX" id="MVh-be-cdw">
@@ -1044,7 +1033,7 @@
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="顺丰快递 86868768686868687" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ond-XI-0Aw">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="顺丰快递 86868768686868687" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ond-XI-0Aw">
                                                     <rect key="frame" x="8" y="29" width="207" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="0PY-tx-p4I"/>

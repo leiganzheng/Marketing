@@ -38,7 +38,10 @@ class User: QN_Base {
         // 所需要的数据都存在，则开始真正的数据初始化
         self.uid = dictionary["uid"] as! String
         self.nickname = dictionary["nickname"] as? String
-        self.accesstoken = dictionary["accesstoken"] as! String
+        if QN_Base.existValue(dictionary, keys: "accesstoken") {
+            self.accesstoken = dictionary["accesstoken"] as! String
+        }
+        
         self.adminuser = dictionary["adminuser"] as? String
         self.adminpass = dictionary["adminpass"] as? String
         self.picture = dictionary["picture"] as? String

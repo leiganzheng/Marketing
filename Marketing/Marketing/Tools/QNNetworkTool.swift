@@ -136,7 +136,7 @@ extension QNNetworkTool {
                 completion(user, nil, nil)
             }
             else {
-                completion(nil, error, dictionary?["errorMsg"] as? String)
+                completion(nil, error, dictionary?["errmsg"] as? String)
             }
         }
     }
@@ -152,7 +152,7 @@ extension QNNetworkTool {
             else {
                 succeed = false
             }
-            completion(succeed: succeed, error, dictionary?["errorMsg"] as? String)
+            completion(succeed: succeed, error, dictionary?["errmsg"] as? String)
           }
     }
 
@@ -195,7 +195,7 @@ extension QNNetworkTool {
                 g_user = user
                 completion(user, nil, nil)
             }else {
-                completion(nil, error, dictionary?["errormsg"] as? String)
+                completion(nil, error, dictionary?["errmsg"] as? String)
             }
         }
     }
@@ -211,30 +211,35 @@ extension QNNetworkTool {
                 completion(user, nil, nil)
             }
             else {
-                completion(nil, error, dictionary?["errorMsg"] as? String)
+                completion(nil, error, dictionary?["errmsg"] as? String)
             }
 
         }
     }
     /**
-     获取用户信息
-     :param: string accesstoken 登录状态校验令牌
-     :param: string accesstoken 登录状态校验令牌
-     :param: string accesstoken 登录状态校验令牌
-     :param: string accesstoken 登录状态校验令牌
-     :param: string accesstoken 登录状态校验令牌
-     :param: string accesstoken 登录状态校验令牌
+     更新用户信息
+     :param:  accesstoken 登录状态校验令牌（修改时[必选项]）
+     :param:  code 验证码（注册时[必选项]）
+     :param:  uid 用户ID（修改时[必选项]）
+     :param:  adminuser 帐号（手机号码）[必选项]
+     :param:  adminpass 密码（MD5）[必选项]
+     :param:  nickname 昵称
+     :param:  mobile 手机
+     :param:  birthday 出生日期
+     :param:  gender 性别
+     :param:  picture 头像
+     :param:  status 状态默认0为正常
      
      :param: completion 完成的回调 
      */
-    class func updateUserinfo(role: String, type: String,target: String, completion: (User?, NSError?, String?) -> Void) {
-        requestPOST(kServerAddress + "/Customersapi/customerSave", parameters: ["type" : type, "target" : target,"role":role]) { (_, _, _, dictionary, error) -> Void in
+    class func updateUserInfo(uid:String,adminuser:String,nickname:String,mobile:String,picture:String,completion: (User?, NSError?, String?) -> Void) {
+        requestPOST(kServerAddress + "/Customersapi/customerSave", parameters: ["accesstoken" : (g_user?.accesstoken)!, "uid" : uid,"adminuser":adminuser,"adminpass":(g_user?.adminpass?.MD5())!,"nickname":nickname,"mobile":mobile,"picture":picture]) { (_, _, _, dictionary, error) -> Void in
             if dictionary != nil, let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
                 let user = User(dictionary!)
                 completion(user, nil, nil)
             }
             else {
-                completion(nil, error, dictionary?["errorMsg"] as? String)
+                completion(nil, error, dictionary?["errmsg"] as? String)
             }
             
         }
@@ -256,7 +261,7 @@ extension QNNetworkTool {
             else {
                 succeed = false
             }
-            completion(succeed: succeed, error, dictionary?["errorMsg"] as? String)
+            completion(succeed: succeed, error, dictionary?["errmsg"] as? String)
         }
     }
     /**
@@ -277,7 +282,7 @@ extension QNNetworkTool {
             else {
                 succeed = false
             }
-            completion(succeed: succeed, error, dictionary?["errorMsg"] as? String)
+            completion(succeed: succeed, error, dictionary?["errmsg"] as? String)
         }
     }
 }
@@ -303,10 +308,10 @@ extension QNNetworkTool {
                         result.append(shop)
                     }
                 }
-                completion(result, error, dictionary?["errorMsg"] as? String)
+                completion(result, error, dictionary?["errmsg"] as? String)
             }
             else {
-                completion(nil, error, dictionary?["errorMsg"] as? String)
+                completion(nil, error, dictionary?["errmsg"] as? String)
             }
 
             
@@ -326,7 +331,7 @@ extension QNNetworkTool {
                 completion(shop, nil, nil)
             }
             else {
-                completion(nil, error, dictionary?["errorMsg"] as? String)
+                completion(nil, error, dictionary?["errmsg"] as? String)
             }
         }
     }
@@ -343,7 +348,7 @@ extension QNNetworkTool {
                 completion(shop, nil, nil)
             }
             else {
-                completion(nil, error, dictionary?["errorMsg"] as? String)
+                completion(nil, error, dictionary?["errmsg"] as? String)
             }
         }
     }
@@ -361,10 +366,10 @@ extension QNNetworkTool {
                         result.append(category)
                     }
                 }
-                completion(result, error, dictionary?["errorMsg"] as? String)
+                completion(result, error, dictionary?["errmsg"] as? String)
             }
             else {
-                completion(nil, error, dictionary?["errorMsg"] as? String)
+                completion(nil, error, dictionary?["errmsg"] as? String)
             }
             
             
@@ -393,10 +398,10 @@ extension QNNetworkTool {
                         result.append(good)
                     }
                 }
-                completion(result, error, dictionary?["errorMsg"] as? String)
+                completion(result, error, dictionary?["errmsg"] as? String)
             }
             else {
-                completion(nil, error, dictionary?["errorMsg"] as? String)
+                completion(nil, error, dictionary?["errmsg"] as? String)
             }
         }
     }
@@ -412,7 +417,7 @@ extension QNNetworkTool {
                 completion(shop, nil, nil)
             }
             else {
-                completion(nil, error, dictionary?["errorMsg"] as? String)
+                completion(nil, error, dictionary?["errmsg"] as? String)
             }
         }
     }
@@ -430,10 +435,10 @@ extension QNNetworkTool {
                         result.append(category)
                     }
                 }
-                completion(result, error, dictionary?["errorMsg"] as? String)
+                completion(result, error, dictionary?["errmsg"] as? String)
             }
             else {
-                completion(nil, error, dictionary?["errorMsg"] as? String)
+                completion(nil, error, dictionary?["errmsg"] as? String)
             }
             
             
@@ -450,10 +455,10 @@ extension QNNetworkTool {
         requestGET(kServerAddress + "/Promotionapi/promotionGetList", parameters: nil) { (_, _, _, dictionary, error) -> Void in
             if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
                 let userList = dictionary?["data"] as? NSArray
-                completion(userList, error, dictionary?["errorMsg"] as? String)
+                completion(userList, error, dictionary?["errmsg"] as? String)
             }
             else {
-                completion(nil, error, dictionary?["errorMsg"] as? String)
+                completion(nil, error, dictionary?["errmsg"] as? String)
             }
             
             
@@ -477,10 +482,10 @@ extension QNNetworkTool {
                         result.append(category)
                     }
                 }
-                completion(result, error, dictionary?["errorMsg"] as? String)
+                completion(result, error, dictionary?["errmsg"] as? String)
             }
             else {
-                completion(nil, error, dictionary?["errorMsg"] as? String)
+                completion(nil, error, dictionary?["errmsg"] as? String)
             }
             
             
@@ -493,10 +498,10 @@ extension QNNetworkTool {
     class func businessCategoryAdd(accesstoken:String,name:String,description:String,picture:String,parent:String,sort:String, completion: (BusinessCategory?, NSError?, String?) -> Void) {
         requestGET(kServerAddress + "/BusinessCategoryapi/businessCategoryAdd", parameters: ["accesstoken":accesstoken,"name":name,"description":description,"picture":picture,"parent":parent,"sort":sort]) { (_, _, _, dictionary, error) -> Void in
             if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
-                completion(BusinessCategory(dictionary!), error, dictionary?["errorMsg"] as? String)
+                completion(BusinessCategory(dictionary!), error, dictionary?["errmsg"] as? String)
             }
             else {
-                completion(nil, error, dictionary?["errorMsg"] as? String)
+                completion(nil, error, dictionary?["errmsg"] as? String)
             }
         }
     }
@@ -507,10 +512,10 @@ extension QNNetworkTool {
     class func businessCategoryUpdate(accesstoken:String,name:String,description:String,picture:String,parent:String,sort:String, completion: (BusinessCategory?, NSError?, String?) -> Void) {
         requestGET(kServerAddress + "/BusinessCategoryapi/businessCategoryUpdate", parameters: ["accesstoken":accesstoken,"name":name,"description":description,"picture":picture,"parent":parent,"sort":sort]) { (_, _, _, dictionary, error) -> Void in
             if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
-                completion(BusinessCategory(dictionary!), error, dictionary?["errorMsg"] as? String)
+                completion(BusinessCategory(dictionary!), error, dictionary?["errmsg"] as? String)
             }
             else {
-                completion(nil, error, dictionary?["errorMsg"] as? String)
+                completion(nil, error, dictionary?["errmsg"] as? String)
             }
         }
     }
@@ -546,10 +551,10 @@ extension QNNetworkTool {
                     }
                 }
 
-                completion(result, error, dictionary?["errorMsg"] as? String)
+                completion(result, error, dictionary?["errmsg"] as? String)
             }
             else {
-                completion(nil, error, dictionary?["errorMsg"] as? String)
+                completion(nil, error, dictionary?["errmsg"] as? String)
             }
             
         }
@@ -562,10 +567,10 @@ extension QNNetworkTool {
         requestGET(kServerAddress + "/Orderapi/orderGetInfo", parameters: ["order_id" : order_id,"accesstoken" : accesstoken]) { (_, _, _, dictionary, error) -> Void in
             if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
                 let order = Order(dictionary!)
-                completion(order, error, dictionary?["errorMsg"] as? String)
+                completion(order, error, dictionary?["errmsg"] as? String)
             }
             else {
-                completion(nil, error, dictionary?["errorMsg"] as? String)
+                completion(nil, error, dictionary?["errmsg"] as? String)
             }
             
         }
@@ -585,10 +590,10 @@ extension QNNetworkTool {
         requestGET(kServerAddress + "/Orderapi/orderAdd", parameters: ["shop_id" : shop_id,"uid" : uid,"goods_price" : goods_price,"order_price" : order_price,"customer_address_id" : customer_address_id,"accesstoken" : accesstoken,"order_goods" : order_goods]) { (_, _, _, dictionary, error) -> Void in
             if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
                 let order = Order(dictionary!)
-                completion(order, error, dictionary?["errorMsg"] as? String)
+                completion(order, error, dictionary?["errmsg"] as? String)
             }
             else {
-                completion(nil, error, dictionary?["errorMsg"] as? String)
+                completion(nil, error, dictionary?["errmsg"] as? String)
             }
             
         }
@@ -611,10 +616,10 @@ extension QNNetworkTool {
                         result.append(order)
                     }
                 }
-                completion(result, error, dictionary?["errorMsg"] as? String)
+                completion(result, error, dictionary?["errmsg"] as? String)
             }
             else {
-                completion(nil, error, dictionary?["errorMsg"] as? String)
+                completion(nil, error, dictionary?["errmsg"] as? String)
             }
             
         }
@@ -639,10 +644,10 @@ extension QNNetworkTool {
                         result.append(address)
                     }
                 }
-                completion(result, error, dictionary?["errorMsg"] as? String)
+                completion(result, error, dictionary?["errmsg"] as? String)
             }
             else {
-                completion(nil, error, dictionary?["errorMsg"] as? String)
+                completion(nil, error, dictionary?["errmsg"] as? String)
             }
             
         }
@@ -658,10 +663,10 @@ extension QNNetworkTool {
         requestGET(kServerAddress + "/Customeraddressapi/customerAddressGetInfo", parameters: ["accesstoken":accesstoken,"status":status,"id":id]) { (_, _, _, dictionary, error) -> Void in
             if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
                 let address = Address(dictionary!)
-                completion(address, error, dictionary?["errorMsg"] as? String)
+                completion(address, error, dictionary?["errmsg"] as? String)
             }
             else {
-                completion(nil, error, dictionary?["errorMsg"] as? String)
+                completion(nil, error, dictionary?["errmsg"] as? String)
             }
             
         }
@@ -680,10 +685,10 @@ extension QNNetworkTool {
         requestGET(kServerAddress + "/Customeraddressapi/CustomerAddressAdd", parameters: ["accesstoken":accesstoken,"mobile":mobile,"longitude":longitude,"latitude":latitude,"address":address,"address_detail":address_detail]) { (_, _, _, dictionary, error) -> Void in
             if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
                 let address = Address(dictionary!)
-                completion(address, error, dictionary?["errorMsg"] as? String)
+                completion(address, error, dictionary?["errmsg"] as? String)
             }
             else {
-                completion(nil, error, dictionary?["errorMsg"] as? String)
+                completion(nil, error, dictionary?["errmsg"] as? String)
             }
             
         }
@@ -704,10 +709,10 @@ extension QNNetworkTool {
         requestGET(kServerAddress + "/Customeraddressapi/customerAddressUpdate", parameters: ["accesstoken":accesstoken,"mobile":mobile,"longitude":longitude,"latitude":latitude,"address":address,"address_detail":address_detail,"id":id,"status":status]) { (_, _, _, dictionary, error) -> Void in
             if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
                 let address = Address(dictionary!)
-                completion(address, error, dictionary?["errorMsg"] as? String)
+                completion(address, error, dictionary?["errmsg"] as? String)
             }
             else {
-                completion(nil, error, dictionary?["errorMsg"] as? String)
+                completion(nil, error, dictionary?["errmsg"] as? String)
             }
             
         }

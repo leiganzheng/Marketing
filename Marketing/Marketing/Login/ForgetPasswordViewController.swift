@@ -38,16 +38,20 @@ class ForgetPasswordViewController: UIViewController, QNInterceptorNavigationBar
         self.textField2.rightView = authCodeButton
         authCodeButton.rac_signalForControlEvents(.TouchUpInside).subscribeNext { [weak self](sender) -> Void in
             if let strongSelf = self {
-//                strongSelf.fetchAuthCode(strongSelf, phone: { () -> String? in
-//                    if !QNTool.stringCheck(strongSelf.textField1.text) {
-////                        QNTool.showPromptView("请填写手机号码")
-//                        strongSelf.textField1.text = nil; strongSelf.textField1.becomeFirstResponder()
-//                        return nil
-//                    }
-//                    else {
-//                        return strongSelf.textField1.text!
-//                    }
-//                }, authCodeButton: authCodeButton, isRegister: false)
+                if !QNTool.stringCheck(strongSelf.textField1.text) {
+                    QNTool.showPromptView("请填写手机号码")
+                    strongSelf.textField1.text = nil; strongSelf.textField1.becomeFirstResponder()
+                }
+                else {
+                    QNNetworkTool.fetchAuthCode("", type: "", flag: "", target: strongSelf.textField1.text!, completion: { (code, error, erroMsg) -> Void in
+                        if code != nil {
+                            QNTool.showPromptView("验证码已经发送到你手机,请注意查收")
+                        }else{
+                         QNTool.showPromptView(erroMsg)
+                        }
+                        
+                    })
+                }
             }
         }
         
@@ -67,17 +71,14 @@ class ForgetPasswordViewController: UIViewController, QNInterceptorNavigationBar
     // MARK: 重置密码
     @IBAction func resetPassword(sender: UIButton!){
         if self.check() {
-//            QNNetworkTool.resetPassword(self.textField1.text!, authcode: self.textField2.text!, password: self.textField3.text!, completion: { [weak self](succeed, error, errorMsg) -> Void in
-//                if let strongSelf = self {
-//                    if succeed {
-//                        QNTool.showPromptView("密码修改成功，请登录")
-//                        self?.navigationController?.popViewControllerAnimated(true)
-//                    }
-//                    else {
-//                        QNTool.showErrorPromptView(nil, error: error, errorMsg: errorMsg)
-//                    }
-//                }
-//            })
+            QNNetworkTool.findPassWord("", type: "", account: self.textField1.text!, code: self.textField2.text!, new_password: self.textField3.text!, completion: { (succeed, error, errorMsg) -> Void in
+                if succeed == true {
+                    QNTool.showPromptView("密码修改成功，请登录")
+                    self.navigationController?.popViewControllerAnimated(true)
+                }else{
+                    QNTool.showErrorPromptView(nil, error: error, errorMsg: errorMsg)
+                }
+            })
         }
     }
     

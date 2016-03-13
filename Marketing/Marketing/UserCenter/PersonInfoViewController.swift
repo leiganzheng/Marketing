@@ -156,9 +156,9 @@ class PersonInfoViewController:  BaseViewController ,QNInterceptorProtocol, UITa
             saveButton.setTitleColor(appThemeColor, forState: .Normal)
             saveButton.titleLabel?.font = UIFont.systemFontOfSize(14)
             saveButton.titleLabel?.textAlignment = .Center
-            saveButton.frame =  CGRectMake(0, 0, cell.contentView.frame.size.width , cell.contentView.frame.size.height)
+            saveButton.frame =  CGRectMake(0, 0, cell.contentView.frame.size.width , 50)
             saveButton.rac_signalForControlEvents(.TouchUpInside).subscribeNext { (sender) -> Void in
-                
+                self.savePersonInfo()
             }
             cell.contentView.addSubview(saveButton)
 
@@ -169,5 +169,14 @@ class PersonInfoViewController:  BaseViewController ,QNInterceptorProtocol, UITa
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-
+  //MARK: Private Method
+    func savePersonInfo(){
+        QNNetworkTool.updateUserInfo((g_user?.uid)!, adminuser: (g_user?.adminuser)!, nickname: (g_user?.nickname)!, mobile: self.phoneLB.text!, picture: "") { (user, error, errorMsg) -> Void in
+            if user != nil {
+                QNTool.showPromptView("保存成功")
+            }else{
+                QNTool.showErrorPromptView(nil, error: error, errorMsg: errorMsg)
+            }
+        }
+    }
 }

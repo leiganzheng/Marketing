@@ -52,19 +52,13 @@ class PromotionViewController: BaseViewController, UICollectionViewDataSource, U
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         self.collectionView.deselectItemAtIndexPath(indexPath, animated: true)
-//        if self.titleArray.count != 0{
-        
+        if self.titleArray.count != 0{
+            let good = self.titleArray[indexPath.row] as Good
             let vc = OrderInfoViewController.CreateFromStoryboard("Main") as! OrderInfoViewController
-             vc.hidesBottomBarWhenPushed = true
+            vc.hidesBottomBarWhenPushed = true
+            vc.goodId = good.good_id
             self.navigationController?.pushViewController(vc, animated: true)
-
-            
-//            let vc = ShopDetailViewController.CreateFromStoryboard("Main") as! ShopDetailViewController
-//            let good = self.titleArray[indexPath.row]
-//            vc.shopId = good.shop_id
-//            vc.hidesBottomBarWhenPushed = true
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }
+        }
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {

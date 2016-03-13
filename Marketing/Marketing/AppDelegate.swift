@@ -9,7 +9,7 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate ,WXApiDelegate{
 
     var window: UIWindow?
 
@@ -46,6 +46,80 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        let str = url.absoluteString
+        if  str.hasPrefix("wx") {
+            return WXApi.handleOpenURL(url, delegate: self)
+        }
+        return false
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        AlipaySDK.defaultService().processOrderWithPaymentResult(url) { (resultDic) -> Void in
+            print("reslut = \(resultDic)")
+        }
+        let str = url.absoluteString
+        if str.hasPrefix("wx") {
+            return WXApi.handleOpenURL(url, delegate: self)
+        }
+        return false
+    }
+
+    func submitOrder(dic: NSDictionary, vc: UIViewController){
+//        self.outTradeNo = dic["outTradeNo"] as! String
+//        self.viewContro = vc
+        WXApi.registerApp(dic["appid"] as! String, withDescription: "Test")
+        let request = PayReq()
+        request.partnerId = dic["partnerid"] as! String
+        request.openID = dic["appid"] as! String
+        request.prepayId = dic["prepayid"] as! String
+        request.package = dic["package"] as! String
+        request.nonceStr = dic["noncestr"] as! String
+        request.timeStamp = dic["timestamp"]!.unsignedIntValue
+        request.sign = dic["sign"] as! String
+        WXApi.sendReq(request)
+    }
+
+    //MARK:- WXApiDelegate
+    func onResp(resp: BaseResp!) {
+        if resp is PayResp{
+            let response = resp as! PayResp
+            switch(response.errCode){
+            case 0:
+                //服务器端查询支付通知或查询API返回的结果再提示成功
+//                QNNetworkTool.queryWxpayResult(self.outTradeNo!, completion: { (dictionary, error, errorMsg) -> Void in
+//                    if dictionary != nil {
+//                        for vc in self.viewContro.navigationController?.viewControllers as! NSArray {
+//                            if vc is DoctorDetailInfoViewController {
+//                                self.viewContro.navigationController?.popToViewController(vc as! UIViewController, animated: false)
+//                            }else if (vc is ScheduleViewController){
+//                                self.viewContro.navigationController?.popToViewController(vc as! UIViewController, animated: false)
+//                            }
+//                        }
+//                        QNTool.showPromptView("支付成功")
+//                    }else {
+//                        QNTool.showPromptView(errorMsg!)
+//                    }
+//                })
+                break
+            case -2:
+                QNTool.showPromptView("支付取消")
+                break
+            case -3:
+                QNTool.showPromptView( "发送失败")
+                break
+            case -4:
+                QNTool.showPromptView( "授权失败")
+                break
+            case -5:
+                QNTool.showPromptView( "微信不支持")
+                break
+            default:
+                QNTool.showPromptView( "支付失败，retcode=\(resp.errCode)")
+                break
+            }
+        }
     }
 
 

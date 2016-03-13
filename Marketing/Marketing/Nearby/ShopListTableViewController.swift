@@ -16,6 +16,11 @@ class ShopListTableViewController: UITableViewController{
         super.viewDidLoad()
         self.title = "附近商家"
         self.view.backgroundColor = defaultBackgroundGrayColor
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.rac_signalForControlEvents(UIControlEvents.ValueChanged).subscribeNext({ (input) -> Void in
+            self.refreshControl?.endRefreshing()
+        })
+
         self.tableView.separatorStyle = .None
         self.configBackButton()
         self.fetchData()

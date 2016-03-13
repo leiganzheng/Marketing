@@ -13,14 +13,18 @@ class OrderInfoViewController:  BaseViewController , UITableViewDataSource, UITa
     @IBOutlet weak var customTableView: UITableView!
     @IBOutlet weak var priceLB: UILabel!
     @IBOutlet weak var buyButton: UIButton!
+    var imgV:UIImageView!
+    var good: Good!
+    var goodId:String!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "确认订单"
-        let imgV = UIImageView(frame: CGRectMake(0, 0, screenWidth, 162))
+        self.imgV = UIImageView(frame: CGRectMake(0, 0, screenWidth, 162))
         imgV.image = UIImage(named: "nav_nearby1")
         imgV.backgroundColor = UIColor.lightGrayColor()
         self.customTableView.tableHeaderView = imgV
-
+        //
+        self.fetchData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -51,6 +55,19 @@ class OrderInfoViewController:  BaseViewController , UITableViewDataSource, UITa
 
     }
     //MARK: Private Method
-   
+    func fetchData(){
+        if self.goodId == nil {
+            return
+        }
+        QNNetworkTool.fetchGoodDetailInfo(self.goodId) { (good, error, errorMsg) -> Void in
+            if good != nil {
+                self.good = good!
+//                self.priceLB.te
+                self.customTableView.reloadData()
+            }else{
+                 QNTool.showErrorPromptView(nil, error: error, errorMsg: errorMsg)
+            }
+        }
+    }
 
 }

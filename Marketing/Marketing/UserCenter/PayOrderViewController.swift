@@ -79,8 +79,8 @@ class PayOrderViewController: BaseViewController , UITableViewDataSource, UITabl
       
     }
     //微信支付
-//    private func wxPayCheck(){
-//        if WXApi.isWXAppInstalled() {
+    private func wxPayCheck(){
+        if WXApi.isWXAppInstalled() {
 //            QNNetworkTool.wxpayOrderCheck(self.order!.orderNo, completion: { (dictionary, error, errorMsg) -> Void in
 //                if dictionary != nil {
 //                    let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -89,10 +89,48 @@ class PayOrderViewController: BaseViewController , UITableViewDataSource, UITabl
 //                    QNTool.showPromptView( errorMsg!)
 //                }
 //            })
-//        }else{
-//            QNTool.showPromptView( "请安装微信客户端")
-//        }
-//    }
+        }else{
+            QNTool.showPromptView( "请安装微信客户端")
+        }
+    }
+    //支付宝支付
+    private func aliPayCheck(){
+        if WXApi.isWXAppInstalled() {
+//            QNNetworkTool.wxpayOrderCheck(self.order!.orderNo, completion: { (dictionary, error, errorMsg) -> Void in
+//                if dictionary != nil {
+//                    let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//                    delegate.submitOrder(dictionary!, vc: self)
+//                }else {
+//                    QNTool.showPromptView( errorMsg!)
+//                }
+//            })
+        }else{
+            QNTool.showPromptView( "请安装支付宝客户端")
+        }
+    }
+    private func submitAliOrder(dic: NSDictionary){
+        //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
+        let appScheme: String = "alipayForMarket"
+        let orderString = dic["payInfo"] as! String
+        AlipaySDK.defaultService().payOrder(orderString, fromScheme: appScheme, callback: { (resultDic) -> Void in
+            if let Alipayjson = resultDic as? NSDictionary {
+                let resultStatus = Alipayjson.valueForKey("resultStatus") as! String
+                if resultStatus == "9000"{
+                 QNTool.showPromptView( "支付成功")
+                }else if resultStatus == "8000" {
+                    QNTool.showPromptView( "正在处理中")
+                }else if resultStatus == "4000" {
+                    QNTool.showPromptView( "订单支付失败")
+                }else if resultStatus == "6001" {
+                    QNTool.showPromptView( "用户中途取消")
+                }else if resultStatus == "6002" {
+                    QNTool.showPromptView( "网络连接出错")
+                }
+            }
+        })
+    }
+
+
 
 }
 

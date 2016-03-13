@@ -13,5 +13,5 @@
 #import "WXApi.h"
 #import "WXApiObject.h"
 #import <CommonCrypto/CommonDigest.h>   // MD5
-//#import "FMDB.h"
+#import <AlipaySDK/AlipaySDK.h>
 #endif /* Marketing_Bridging_Header_h */

@@ -63,12 +63,13 @@ class ShopDetailViewController: BaseViewController, UICollectionViewDataSource, 
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         self.collectionView.deselectItemAtIndexPath(indexPath, animated: true)
-        //        let object = self.titleArray.objectAtIndex(indexPath.row) as! NSDictionary
-        let vc = OrderInfoViewController.CreateFromStoryboard("Main") as! OrderInfoViewController
+        if self.goods.count != 0{
+            let good = self.goods[indexPath.row] as Good
+            let vc = OrderInfoViewController.CreateFromStoryboard("Main") as! OrderInfoViewController
+            vc.goodId = good.good_id
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
         
-        self.navigationController?.pushViewController(vc, animated: true)
-//        let vc = GoodsListViewController()
-//        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {

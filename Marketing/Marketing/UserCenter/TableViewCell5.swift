@@ -10,6 +10,7 @@ import UIKit
 
 class TableViewCell5: UITableViewCell {
 
+    @IBOutlet weak var addressLB: UITextField!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

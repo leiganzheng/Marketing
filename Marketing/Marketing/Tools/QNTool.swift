@@ -236,4 +236,25 @@ extension QNTool {
         }
         return false
     }
+    // 电话按钮被
+   class func tel(mobile: String) {
+    if mobile.characters.count>0 {
+            let phoneUrl = NSURL(string: "tel://" + mobile)
+            let iphoneAlertView = UIAlertView(title: "确认要拨打" + mobile + "的电话吗？", message: "电话：" + mobile, delegate: nil, cancelButtonTitle: "取消")
+            iphoneAlertView.addButtonWithTitle("确认")
+            iphoneAlertView.rac_buttonClickedSignal().subscribeNext({(indexNumber) -> Void in
+                if indexNumber as? Int != 0 {
+                    if !UIApplication.sharedApplication().openURL(phoneUrl!) {
+                        let alert = UIAlertView(title: "", message: "无法打开程序", delegate: nil, cancelButtonTitle: "确认")
+                        alert.show()
+                    }
+                }
+            })
+            
+            iphoneAlertView.show()
+            return
+        }
+        QNTool.showPromptView("暂没有提供电话号码")
+    }
+
 }

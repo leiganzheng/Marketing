@@ -20,6 +20,7 @@ class ShopDetailViewController: BaseViewController, UICollectionViewDataSource, 
     var goods: [Good] =  NSArray() as! [Good]
     var shop: Shop!
     var shopId: String!
+    var telNum: String!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "商家详情"
@@ -113,6 +114,9 @@ class ShopDetailViewController: BaseViewController, UICollectionViewDataSource, 
             self.fetchGoods(category.shop_cat_id)
         }
     }
+    @IBAction func mobile(sender: AnyObject) {
+        QNTool.tel(self.telNum)
+    }
     //MARK: - Private Method
     func fetchCategoryData (){
         QNNetworkTool.fetchShopDetailInfo(self.shopId,needCategory: "1", needGoods: "1") { (shop, error, errMsg) -> Void in
@@ -122,6 +126,7 @@ class ShopDetailViewController: BaseViewController, UICollectionViewDataSource, 
                 self.name.text = self.shop.name
                 self.info.text = self.shop.info
                 self.address.text = self.shop.address_detail
+                self.telNum = self.shop.tel
                 self.customTableView.reloadData()
                 self.collectionView.reloadData()
             }else {
@@ -132,7 +137,7 @@ class ShopDetailViewController: BaseViewController, UICollectionViewDataSource, 
     func fetchGoods(cateId:String){
         QNNetworkTool.fetchGoodList("", cat_id: "", shop_cat_id: cateId, promotion_type: "", name: "", verify: "", status: "", page: "", page_size: "", order: "") { (array, error, errorMsg) -> Void in
             if array != nil {
-                if array?.count>=0 {
+                if array?.count>0 {
                     self.goods = array!
                     self.collectionView.reloadData()
                 }else{

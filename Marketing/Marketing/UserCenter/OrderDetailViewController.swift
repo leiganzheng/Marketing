@@ -34,7 +34,8 @@ class OrderDetailViewController: BaseViewController , UITableViewDataSource, UIT
         payButton.titleLabel?.font = UIFont.systemFontOfSize(16)
         payButton.rac_signalForControlEvents(.TouchUpInside).subscribeNext { [weak self](sender) -> Void in
             if let strongSelf = self {
-               
+                let vc = PayOrderViewController.CreateFromStoryboard("Main") as! PayOrderViewController
+                strongSelf.navigationController?.pushViewController(vc, animated: true)
             }
         }
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: payButton)

@@ -14,7 +14,7 @@ class OrderInfoViewController:  BaseViewController , UITableViewDataSource, UITa
     @IBOutlet weak var priceLB: UILabel!
     @IBOutlet weak var buyButton: UIButton!
     var imgV:UIImageView!
-    var good: Good!
+    var good: ShopGood!
     var goodId:String!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,15 +45,22 @@ class OrderInfoViewController:  BaseViewController , UITableViewDataSource, UITa
         if cell == nil {
             cell = OrderDetailTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
         }
-//        cell.shopNameLb.text = self.good.name as? String
-        cell.buyNumlb.text = self.good.buy_num! as String
-        cell.addressLb.text = self.good.descriptionStr! as String
-//        cell.effectiveLb.text = self.good
+        if self.good != nil {
+            cell.shopNameLb.text = self.good.shop_name! as String
+            cell.buyNumlb.text = self.good.buy_num! as String
+            cell.addressLb.text = self.good.descriptionStr! as String
+//            cell.effectiveLb.text = self.good
+            cell.mobileBtn.rac_signalForControlEvents(.TouchUpInside).subscribeNext { (sender) -> Void in
+                    QNTool.tel("")
+            }
+
+        }
         return cell
     }
     //MARK: Action Method
     @IBAction func buyAction(sender: AnyObject) {
         let vc = ConfirmOrderViewController.CreateFromStoryboard("Main") as! ConfirmOrderViewController
+        vc.shopGood = self.good
         self.navigationController?.pushViewController(vc, animated: true)
 
     }
@@ -64,8 +71,8 @@ class OrderInfoViewController:  BaseViewController , UITableViewDataSource, UITa
         }
         QNNetworkTool.fetchGoodDetailInfo(self.goodId) { (good, error, errorMsg) -> Void in
             if good != nil {
-                self.good = good!
-                self.priceLB.text = self.good.price
+                self.good = good! 
+                self.priceLB.text = "￥\(self.good.discounted_price!)"
                 self.imgV.sd_setImageWithURL(NSURL(string: self.good.big_pic!), placeholderImage: UIImage(named: "nav_nearby1"), options: .ProgressiveDownload)
                 self.customTableView.reloadData()
             }else{

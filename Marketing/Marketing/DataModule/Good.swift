@@ -50,7 +50,7 @@ class Good: QN_Base {
         self.picture = dictionary["picture"] as? String
         self.big_pic = dictionary["big_pic"] as? String
         self.price = dictionary["price"] as? String
-        self.descriptionStr = dictionary["descriptionStr"] as? String
+        self.descriptionStr = dictionary["description"] as? String
         self.discounted_price = dictionary["discounted_price"] as? String
         self.buy_num = dictionary["buy_num"] as? String
         self.fav_num = dictionary["fav_num"] as? String
@@ -60,7 +60,7 @@ class Good: QN_Base {
         self.rate = dictionary["rate"] as? String
         self.sort = dictionary["sort"] as? String
         self.create_time = dictionary["create_time"] as? String
-        self.create_time = dictionary["update_time"] as? String
+        self.update_time = dictionary["update_time"] as? String
         self.status = dictionary["status"] as? String
         
         self.good_name = dictionary["good_name"] as? String
@@ -80,7 +80,7 @@ class Good: QN_Base {
         dictionary.setValue(self.name, forKey:"name")
         dictionary.setValue(self.picture, forKey:"picture")
         dictionary.setValue(self.big_pic, forKey:"big_pic")
-        dictionary.setValue(self.descriptionStr, forKey:"descriptionStr")
+        dictionary.setValue(self.descriptionStr, forKey:"description")
         dictionary.setValue(self.price, forKey:"price")
         dictionary.setValue(self.discounted_price, forKey:"discounted_price")
         dictionary.setValue(self.buy_num, forKey:"buy_num")
@@ -91,7 +91,7 @@ class Good: QN_Base {
         dictionary.setValue(self.sort, forKey:"sort")
         dictionary.setValue(self.rate, forKey:"rate")
         dictionary.setValue(self.create_time, forKey:"create_time")
-        dictionary.setValue(self.create_time, forKey:"create_time")
+        dictionary.setValue(self.update_time, forKey:"update_time")
         dictionary.setValue(self.status, forKey:"status")
         
         dictionary.setValue(self.good_name, forKey:"good_name")

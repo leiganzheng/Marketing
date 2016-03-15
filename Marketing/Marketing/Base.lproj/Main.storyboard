@@ -1145,7 +1145,7 @@
                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
                                                 </button>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rV2-zS-hrs">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rV2-zS-hrs">
                                                     <rect key="frame" x="140" y="5" width="42" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="42" id="6qe-qT-znV"/>
@@ -1167,6 +1167,11 @@
                                                 <constraint firstItem="gOn-3E-JKe" firstAttribute="leading" secondItem="rV2-zS-hrs" secondAttribute="trailing" constant="1" id="krL-FT-FzT"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="numAddBtn" destination="gOn-3E-JKe" id="dIt-F1-5Eb"/>
+                                            <outlet property="numDBtn" destination="Pju-GG-uA3" id="OYh-0V-PmC"/>
+                                            <outlet property="totalNum" destination="rV2-zS-hrs" id="eZf-DE-fNS"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableViewCell2" id="sFo-uk-FVl" customClass="TableViewCell2" customModule="Marketing" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="94" width="320" height="44"/>
@@ -1202,6 +1207,9 @@
                                                 <constraint firstItem="68p-uN-coc" firstAttribute="leading" secondItem="dIb-lC-lgg" secondAttribute="leading" constant="8" id="obH-pe-kpG"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="reciverLb" destination="FeX-ab-YZy" id="ZxI-CR-xlw"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableViewCell3" id="9O0-au-jUT" customClass="TableViewCell3" customModule="Marketing" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="138" width="320" height="44"/>
@@ -1237,6 +1245,9 @@
                                                 <constraint firstItem="eg2-UQ-gu6" firstAttribute="top" secondItem="ZBL-ut-BRd" secondAttribute="top" constant="7" id="tXk-P1-azL"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="mobileLb" destination="eg2-UQ-gu6" id="toU-oV-YHt"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TableViewCell4" id="8XB-7H-4aX" customClass="TableViewCell4" customModule="Marketing" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="182" width="320" height="44"/>
@@ -1311,6 +1322,9 @@
                                                 <constraint firstAttribute="trailing" secondItem="0tg-fj-zUV" secondAttribute="trailing" constant="24" id="hFw-Q6-mE1"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="addressLB" destination="0tg-fj-zUV" id="id5-Ev-jPz"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableViewCell6" rowHeight="105" id="j1S-GJ-tG3" customClass="TableViewCell6" customModule="Marketing" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="270" width="320" height="105"/>
@@ -1335,6 +1349,9 @@
                                                 <constraint firstItem="xeO-7M-C0L" firstAttribute="leading" secondItem="mYT-4g-Im0" secondAttribute="leading" constant="8" id="uXi-MO-APK"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="memoLb" destination="xeO-7M-C0L" id="Ta8-Uu-zni"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -1564,7 +1581,7 @@
                                             <outlet property="buyNumlb" destination="GEO-f8-mAY" id="xVw-Ah-yjx"/>
                                             <outlet property="effectiveLb" destination="8Yl-s9-XpB" id="2fs-Oh-MYH"/>
                                             <outlet property="mobileBtn" destination="aaj-7R-WoB" id="hSS-PQ-Xwe"/>
-                                            <outlet property="shopNameLb" destination="VX2-Pm-Tiz" id="hIc-Kd-r2v"/>
+                                            <outlet property="shopNameLb" destination="aHL-Ps-F6y" id="by1-ZG-1f8"/>
                                             <outlet property="time" destination="6vS-Yu-gQ6" id="5aP-fe-Vkm"/>
                                             <outlet property="tipsLb" destination="mcH-7s-leq" id="OvV-DX-Lbs"/>
                                         </connections>
@@ -1675,6 +1692,9 @@
                                             <constraint firstAttribute="width" constant="39" id="hRF-0d-C6b"/>
                                         </constraints>
                                         <state key="normal" image="mobile"/>
+                                        <connections>
+                                            <action selector="mobile:" destination="Q1l-sf-7cN" eventType="touchUpInside" id="nWE-DT-yzz"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="松山湖工业北路8号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lDU-FD-aTd">
                                         <rect key="frame" x="28" y="125" width="200" height="21"/>

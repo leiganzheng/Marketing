@@ -31,7 +31,7 @@ class MarketViewController: BaseViewController, UICollectionViewDataSource, UICo
     }
     //MARK:- UICollectionDelegate, UICollectionDataSource
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return self.goods.count
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -69,8 +69,7 @@ class MarketViewController: BaseViewController, UICollectionViewDataSource, UICo
     }
     // MARK: UITableViewDataSource, UITableViewDelegate
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
-//        return categorys.count
+        return categorys.count
     }
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 44
@@ -111,7 +110,7 @@ class MarketViewController: BaseViewController, UICollectionViewDataSource, UICo
     func fetchCategoryData (){
         QNNetworkTool.fetchCategoryList { (array, error, errorMsg) -> Void in
             if array != nil {
-                if array?.count>=0 {
+                if array?.count>0 {
                     self.categorys = array!
                     self.customTableView.reloadData()
                     if self.categorys.count != 0{
@@ -129,7 +128,7 @@ class MarketViewController: BaseViewController, UICollectionViewDataSource, UICo
     func fetchGoods(cateId:String){
         QNNetworkTool.fetchGoodList("", cat_id: "", shop_cat_id: "", promotion_type: "", name: "", verify: "", status: "", page: "", page_size: "", order: "") { (array, error, errorMsg) -> Void in
             if array != nil {
-                if array?.count>=0 {
+                if array?.count>0 {
                     self.goods = array!
                     self.collectionView.reloadData()
                 }else{

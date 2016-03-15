@@ -10,6 +10,7 @@ import UIKit
 
 class TableViewCell3: UITableViewCell {
 
+    @IBOutlet weak var mobileLb: UITextField!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

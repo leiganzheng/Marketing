@@ -93,7 +93,7 @@ class ShopListTableViewController: UITableViewController{
     func fetchData (){
         QNNetworkTool.fetchShopList("", page: "1", business_cat_id: "", need_shop_address: "", page_size: "10", order: "") { (array, error, errorMsg) -> Void in
             if array != nil {
-                if array?.count>=0 {
+                if array?.count>0 {
                     self.data = array!
                     self.tableView.reloadData()
                 }else{

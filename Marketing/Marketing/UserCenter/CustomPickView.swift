@@ -59,7 +59,7 @@ class CustomPickView: UIView,UIPickerViewDelegate,UIPickerViewDataSource {
                 let p = self?.dataArray[(self?.selectProvincial)!] as! CityData
                 let c = self?.cityArray[(self?.selectCity)!] as! CityData
                 let a = self?.areaArray[(self?.selectArea)!] as! CityData
-                strongSelf.finished!(data :(p.name!+c.name!+a.name!))
+                strongSelf.finished!(data :(p.name!+" "+c.name!+" "+a.name!))
                 strongSelf.hideAsPop()
             }
             return RACSignal.empty()

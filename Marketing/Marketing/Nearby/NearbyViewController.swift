@@ -69,17 +69,17 @@ class NearbyViewController: BaseViewController, UICollectionViewDataSource, UICo
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-            return CGSizeMake((collectionView.frame.width-4)/2.0-6, 78)
+            return CGSizeMake((collectionView.frame.width-4)/2.0-12, 78)
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(6, 6, 6, 0)
+        return UIEdgeInsetsMake(6, 6, 6, 6)
     }
     
     //MARK: - Private Method
     func fetchData (){
         QNNetworkTool.fetchBusinessCategoryList { (array, error, errorMsg) -> Void in
         if array != nil {
-            if array?.count>=0 {
+            if array?.count>0 {
                 self.titleArray = array!
                 self.collectionView.reloadData()
             }else{

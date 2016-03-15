@@ -61,10 +61,10 @@ class PromotionViewController: BaseViewController, UICollectionViewDataSource, U
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-            return CGSizeMake((collectionView.frame.width-4)/2.0-4, 245)
+            return CGSizeMake((collectionView.frame.width-4)/2.0-8, 245)
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(6, 4, 6, 0)
+        return UIEdgeInsetsMake(6, 4, 6, 4)
     }
     //MARK: Private Method
     func fetchData (){

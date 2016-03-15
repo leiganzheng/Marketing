@@ -21,6 +21,14 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
     @IBOutlet weak var customTableView: UITableView!
     @IBOutlet weak var okButton: UIButton!
     var address:UILabel!
+    var shopGood:ShopGood!
+    
+    var total:String!
+    var reciever: String!
+    var mobiel:String!
+    var memo:String!
+    var addressDetail:String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "确认订单"
@@ -58,6 +66,23 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
                 if cell == nil {
                     cell = TableViewCell1(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
                 }
+                self.total = cell.totalNum.text
+                //
+                cell.numAddBtn.rac_signalForControlEvents(.TouchUpInside).subscribeNext { [weak self](sender) -> Void in
+                    if let strongSelf = self {
+                        cell.totalNum.text = String(Int(cell.totalNum.text!)!+1)
+                        strongSelf.total = cell.totalNum.text
+                    }
+                }
+                //
+                cell.numDBtn.rac_signalForControlEvents(.TouchUpInside).subscribeNext { [weak self](sender) -> Void in
+                    if let strongSelf = self {
+                        let num = Int(cell.totalNum.text!)!-1 <= 0 ? 0 : Int(cell.totalNum.text!)!-1
+                        cell.totalNum.text = String(num)
+                        strongSelf.total = cell.totalNum.text
+                    }
+                }
+
                 return cell
 
             }else if(indexPath.row == 1){
@@ -66,6 +91,7 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
                 if cell == nil {
                     cell = TableViewCell2(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
                 }
+                self.reciever = cell.reciverLb.text
                 return cell
             }else if(indexPath.row == 2){
                 let cellId = "TableViewCell3"
@@ -73,6 +99,7 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
                 if cell == nil {
                     cell = TableViewCell3(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
                 }
+                self.mobiel = cell.mobileLb.text
                 return cell
 
             }else if(indexPath.row == 3){
@@ -80,8 +107,8 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
                 var cell = self.customTableView.dequeueReusableCellWithIdentifier(cellId) as! TableViewCell4!
                 if cell == nil {
                     cell = TableViewCell4(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
-                    self.address = cell.lb
                 }
+                self.address = cell.lb
                 return cell
 
             }else{
@@ -90,6 +117,7 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
                 if cell == nil {
                     cell = TableViewCell5(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
                 }
+                self.addressDetail = cell.addressLB.text
                 return cell
 
             }
@@ -100,6 +128,7 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
             if cell == nil {
                 cell = TableViewCell6(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
             }
+            self.memo = cell.memoLb.text
             return cell
         }
     }
@@ -137,7 +166,7 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
         pickView.areaArray = tmpData2
         pickView.showAsPop()
         pickView.finished = { (data) -> Void in
-           
+           self.address.text = data
         }
         pickView.selected = { (parent,level) -> Void in
             if level == "2" {
@@ -190,10 +219,23 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
         return nameArray
     }
     @IBAction func postOrder(sender: AnyObject) {
+        self.fetchData()
     }
     //MARK: Private Method
+    private  func paramsToJsonDataParams(params: [String : AnyObject]) -> String {
+        do {
+            let jsonData = try NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions())
+            let jsonDataString = NSString(data: jsonData, encoding: NSUTF8StringEncoding) as! String
+            return jsonDataString
+        }catch{
+            return ""
+        }
+    }
+
     func fetchData (){
-        QNNetworkTool.orderAdd("", accesstoken: (g_user?.accesstoken)!, uid: (g_user?.uid)!, goods_price: "", order_price: "", customer_address_id: "", order_goods: "") { (order, error, errorMsg) -> Void in
+        if self.shopGood == nil {return}
+        let goods = self.paramsToJsonDataParams(["good_id": self.shopGood.good_id, "total": self.total])
+        QNNetworkTool.orderAdd(self.shopGood.shop_id!, accesstoken: (g_user?.accesstoken)!, uid: (g_user?.uid)!, receiver:self.reciever,receiver_phone:self.mobiel, customer_address_id: (self.address.text! + self.addressDetail), order_goods: goods,memo: self.memo, good_id: self.shopGood.good_id, total: self.total) { (order, error, errorMsg) -> Void in
             if order != nil {
                 QNTool.showPromptView("订单已经提交")
             }else{

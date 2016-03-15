@@ -10,6 +10,7 @@ import UIKit
 
 class TableViewCell2: UITableViewCell {
 
+    @IBOutlet weak var reciverLb: UITextField!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

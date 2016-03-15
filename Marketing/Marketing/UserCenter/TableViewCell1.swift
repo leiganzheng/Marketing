@@ -10,6 +10,9 @@ import UIKit
 
 class TableViewCell1: UITableViewCell {
 
+    @IBOutlet weak var totalNum: UITextField!
+    @IBOutlet weak var numAddBtn: UIButton!
+    @IBOutlet weak var numDBtn: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

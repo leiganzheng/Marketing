@@ -410,10 +410,10 @@ extension QNNetworkTool {
      :param: good_id ID
      :param: completion 完成的回调
      */
-    class func fetchGoodDetailInfo(good_id: String, completion: (Good?, NSError?, String?) -> Void) {
+    class func fetchGoodDetailInfo(good_id: String, completion: (ShopGood?, NSError?, String?) -> Void) {
         requestPOST(kServerAddress + "/Goodsapi/goodsGetInfo", parameters: ["good_id" : good_id]) { (_, _, _, dictionary, error) -> Void in
             if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
-                let shop = Good(dictionary!)
+                let shop = ShopGood(dictionary!)
                 completion(shop, nil, nil)
             }
             else {
@@ -586,8 +586,8 @@ extension QNNetworkTool {
      :param:  order_goods 订单商品，为数组json化格式
      :param: completion 完成的回调
      */
-    class func orderAdd(shop_id:String, accesstoken: String,uid: String,goods_price: String,order_price: String,customer_address_id: String, order_goods: String, completion: (NSDictionary?, NSError?, String?) -> Void) {
-        requestGET(kServerAddress + "/Orderapi/orderAdd", parameters: ["shop_id" : shop_id,"uid" : uid,"goods_price" : goods_price,"order_price" : order_price,"customer_address_id" : customer_address_id,"accesstoken" : accesstoken,"order_goods" : order_goods]) { (_, _, _, dictionary, error) -> Void in
+    class func orderAdd(shop_id:String, accesstoken: String,uid: String,receiver:String,receiver_phone:String,customer_address_id: String, order_goods: String,memo: String,good_id: String,total: String,  completion: (NSDictionary?, NSError?, String?) -> Void) {
+        requestGET(kServerAddress + "/Orderapi/orderAdd", parameters: ["shop_id" : shop_id,"uid" : uid,"receiver" : receiver,"receiver_phone" : receiver_phone,"customer_address_id" : customer_address_id,"accesstoken" : accesstoken,"order_goods" : order_goods,"memo" : memo,"good_id" : good_id,"total" : total]) { (_, _, _, dictionary, error) -> Void in
             if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
 //                let order = Order(dictionary!)
                 completion(dictionary, error, nil)

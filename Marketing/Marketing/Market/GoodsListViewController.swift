@@ -64,7 +64,7 @@ class GoodsListViewController: BaseViewController{
     func fetchData (){
         QNNetworkTool.fetchGoodList("", cat_id: "", shop_cat_id: "", promotion_type: "", name: "", verify: "", status: "", page: "", page_size: "", order: "") { (goods, error, errorMsg) -> Void in
             if goods != nil {
-                if goods?.count>=0 {
+                if goods?.count>0 {
                     self.goods = goods!
                     self.tableView.reloadData()
                     

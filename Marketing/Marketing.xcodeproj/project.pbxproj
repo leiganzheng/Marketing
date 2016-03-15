@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4593F54EBD719CB1A6930695 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E2F1119F1545FD344AD0A5 /* Pods.framework */; };
+		71105C7C1C983DEB009A7A10 /* ShopGood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71105C7B1C983DEB009A7A10 /* ShopGood.swift */; };
 		714B0DE71C8B2F4F00DD5EEB /* ConfirmOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B0DE61C8B2F4F00DD5EEB /* ConfirmOrderViewController.swift */; };
 		714B0DEA1C8B3AAC00DD5EEB /* TableViewCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B0DE91C8B3AAC00DD5EEB /* TableViewCell1.swift */; };
 		714B0DEC1C8B3AB500DD5EEB /* TableViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714B0DEB1C8B3AB500DD5EEB /* TableViewCell2.swift */; };
@@ -106,6 +107,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		71105C7B1C983DEB009A7A10 /* ShopGood.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopGood.swift; sourceTree = "<group>"; };
 		714B0DE61C8B2F4F00DD5EEB /* ConfirmOrderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmOrderViewController.swift; sourceTree = "<group>"; };
 		714B0DE91C8B3AAC00DD5EEB /* TableViewCell1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell1.swift; sourceTree = "<group>"; };
 		714B0DEB1C8B3AB500DD5EEB /* TableViewCell2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell2.swift; sourceTree = "<group>"; };
@@ -456,6 +458,7 @@
 				BBFF7C851C8533970092C7CB /* BusinessCategory.swift */,
 				BBFF7C871C8575250092C7CB /* ShopCategory.swift */,
 				BBFF7C8B1C8583BA0092C7CB /* Address.swift */,
+				71105C7B1C983DEB009A7A10 /* ShopGood.swift */,
 			);
 			path = DataModule;
 			sourceTree = "<group>";
@@ -727,6 +730,7 @@
 				714B0DEA1C8B3AAC00DD5EEB /* TableViewCell1.swift in Sources */,
 				71C3A4291C31851E0042F851 /* PromotionViewController.swift in Sources */,
 				71D834C01C8F04C000B9C6F3 /* QNFormatTool.swift in Sources */,
+				71105C7C1C983DEB009A7A10 /* ShopGood.swift in Sources */,
 				71C3A41F1C31771E0042F851 /* QNInterceptor.swift in Sources */,
 				BBF93C391C33B8490058894C /* MarketCollectionViewCell.swift in Sources */,
 				BBE32FC51C3227EE0095BA88 /* MyOrderViewController.swift in Sources */,

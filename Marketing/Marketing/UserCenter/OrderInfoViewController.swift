@@ -18,9 +18,8 @@ class OrderInfoViewController:  BaseViewController , UITableViewDataSource, UITa
     var goodId:String!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "确认订单"
+        self.title = "商品详情"
         self.imgV = UIImageView(frame: CGRectMake(0, 0, screenWidth, 162))
-        imgV.image = UIImage(named: "nav_nearby1")
         imgV.backgroundColor = UIColor.lightGrayColor()
         self.customTableView.tableHeaderView = imgV
         //
@@ -46,6 +45,10 @@ class OrderInfoViewController:  BaseViewController , UITableViewDataSource, UITa
         if cell == nil {
             cell = OrderDetailTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
         }
+//        cell.shopNameLb.text = self.good.name as? String
+        cell.buyNumlb.text = self.good.buy_num! as String
+        cell.addressLb.text = self.good.descriptionStr! as String
+//        cell.effectiveLb.text = self.good
         return cell
     }
     //MARK: Action Method
@@ -62,7 +65,8 @@ class OrderInfoViewController:  BaseViewController , UITableViewDataSource, UITa
         QNNetworkTool.fetchGoodDetailInfo(self.goodId) { (good, error, errorMsg) -> Void in
             if good != nil {
                 self.good = good!
-//                self.priceLB.te
+                self.priceLB.text = self.good.price
+                self.imgV.sd_setImageWithURL(NSURL(string: self.good.big_pic!), placeholderImage: UIImage(named: "nav_nearby1"), options: .ProgressiveDownload)
                 self.customTableView.reloadData()
             }else{
                  QNTool.showErrorPromptView(nil, error: error, errorMsg: errorMsg)

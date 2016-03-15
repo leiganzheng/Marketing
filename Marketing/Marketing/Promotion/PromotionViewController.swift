@@ -26,11 +26,11 @@ class PromotionViewController: BaseViewController, UICollectionViewDataSource, U
     
     //MARK:- UICollectionDelegate, UICollectionDataSource
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return self.titleArray.count
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        return 4
+        return 1
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -46,7 +46,6 @@ class PromotionViewController: BaseViewController, UICollectionViewDataSource, U
                 cell.price.text  = "$\(good.price)"
                 cell.pic.sd_setImageWithURL(NSURL(string: good.picture!), placeholderImage: UIImage(named: ""), options: .ProgressiveDownload)
         }
-        print(cell)
         return cell
     }
     
@@ -62,11 +61,9 @@ class PromotionViewController: BaseViewController, UICollectionViewDataSource, U
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        print(collectionView)
             return CGSizeMake((collectionView.frame.width-4)/2.0-4, 245)
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-         print(collectionView)
         return UIEdgeInsetsMake(6, 4, 6, 0)
     }
     //MARK: Private Method

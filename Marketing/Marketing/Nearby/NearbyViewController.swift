@@ -69,7 +69,7 @@ class NearbyViewController: BaseViewController, UICollectionViewDataSource, UICo
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-            return CGSizeMake((collectionView.frame.width-4)/2.0-12, 78)
+            return CGSizeMake((collectionView.frame.width)/2.0-8, 78)
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
         return UIEdgeInsetsMake(6, 6, 6, 6)

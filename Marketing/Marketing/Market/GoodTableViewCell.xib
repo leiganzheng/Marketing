@@ -14,37 +14,75 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="109"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bgd-R2-PNW">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bgd-R2-PNW">
                         <rect key="frame" x="4" y="4" width="312" height="102"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="22I-Su-HZ7">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="22I-Su-HZ7">
                                 <rect key="frame" x="0.0" y="0.0" width="102" height="102"/>
                                 <color key="backgroundColor" red="0.76862745099999996" green="0.6588235294" blue="0.086274509799999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="102" id="fuV-ch-9cJ"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="微软自拍，听说媚眼相机有很多黑科技" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5B-gd-tuZ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微软自拍，听说媚眼相机有很多黑科技" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H5B-gd-tuZ">
                                 <rect key="frame" x="110" y="0.0" width="194" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="A5b-Rn-Km8"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="￥34.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JYr-7r-VJ7">
-                                <rect key="frame" x="110" y="78" width="55" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥34.5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JYr-7r-VJ7">
+                                <rect key="frame" x="110" y="78" width="67" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="67" id="Gnf-S8-T9B"/>
+                                    <constraint firstAttribute="height" constant="21" id="cea-Fh-JKo"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="1" green="0.40000000000000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="120人购买" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRU-6j-S4M">
-                                <rect key="frame" x="230" y="78" width="74" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="120人购买" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRU-6j-S4M">
+                                <rect key="frame" x="222" y="78" width="82" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="82" id="SpX-7n-2Ta"/>
+                                    <constraint firstAttribute="height" constant="21" id="xhc-BF-TZ5"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="H5B-gd-tuZ" secondAttribute="trailing" constant="8" id="2x6-KS-VE7"/>
+                            <constraint firstItem="JYr-7r-VJ7" firstAttribute="top" secondItem="H5B-gd-tuZ" secondAttribute="bottom" constant="36" id="IhM-gW-NlF"/>
+                            <constraint firstItem="JYr-7r-VJ7" firstAttribute="leading" secondItem="22I-Su-HZ7" secondAttribute="trailing" constant="8" id="L3S-s0-7jF"/>
+                            <constraint firstItem="H5B-gd-tuZ" firstAttribute="leading" secondItem="22I-Su-HZ7" secondAttribute="trailing" constant="8" id="L9d-nV-LHe"/>
+                            <constraint firstAttribute="trailing" secondItem="fRU-6j-S4M" secondAttribute="trailing" constant="8" id="UWv-0V-Hg2"/>
+                            <constraint firstItem="22I-Su-HZ7" firstAttribute="leading" secondItem="Bgd-R2-PNW" secondAttribute="leading" id="WNI-lN-3Oa"/>
+                            <constraint firstItem="H5B-gd-tuZ" firstAttribute="top" secondItem="Bgd-R2-PNW" secondAttribute="top" id="XM5-PG-ia8"/>
+                            <constraint firstItem="22I-Su-HZ7" firstAttribute="top" secondItem="Bgd-R2-PNW" secondAttribute="top" id="fLa-al-h9Q"/>
+                            <constraint firstAttribute="bottom" secondItem="22I-Su-HZ7" secondAttribute="bottom" id="ufM-qu-su1"/>
+                            <constraint firstAttribute="bottom" secondItem="fRU-6j-S4M" secondAttribute="bottom" constant="3" id="wrt-lI-3DC"/>
+                        </constraints>
                     </view>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="Bgd-R2-PNW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="JTe-hl-Vk5"/>
+                    <constraint firstAttribute="bottom" secondItem="Bgd-R2-PNW" secondAttribute="bottom" constant="3" id="NMu-dB-gKq"/>
+                    <constraint firstItem="Bgd-R2-PNW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="4" id="Srg-Rq-4hD"/>
+                    <constraint firstAttribute="trailing" secondItem="Bgd-R2-PNW" secondAttribute="trailing" constant="4" id="x7M-r9-4p3"/>
+                </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="buyNum" destination="fRU-6j-S4M" id="dsc-RX-xMr"/>
+                <outlet property="imageV" destination="22I-Su-HZ7" id="8Ha-ph-WDg"/>
+                <outlet property="price" destination="JYr-7r-VJ7" id="UP3-dQ-Ahe"/>
+                <outlet property="title" destination="H5B-gd-tuZ" id="l8M-6h-eTK"/>
+            </connections>
             <point key="canvasLocation" x="235" y="242"/>
         </tableViewCell>
     </objects>

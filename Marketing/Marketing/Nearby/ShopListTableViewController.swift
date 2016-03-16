@@ -18,7 +18,8 @@ class ShopListTableViewController: UITableViewController{
         self.view.backgroundColor = defaultBackgroundGrayColor
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.rac_signalForControlEvents(UIControlEvents.ValueChanged).subscribeNext({ (input) -> Void in
-            self.refreshControl?.endRefreshing()
+            self.fetchData()
+            
         })
 
         self.tableView.separatorStyle = .None
@@ -102,6 +103,7 @@ class ShopListTableViewController: UITableViewController{
             }else{
                 QNTool.showErrorPromptView(nil, error: error)
             }
+            self.refreshControl?.endRefreshing()
         }
     }
 }

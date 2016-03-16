@@ -10,6 +10,10 @@ import UIKit
 
 class GoodTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var buyNum: UILabel!
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var imageV: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

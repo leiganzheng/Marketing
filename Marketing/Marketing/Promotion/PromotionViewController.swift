@@ -26,7 +26,7 @@ class PromotionViewController: BaseViewController, UICollectionViewDataSource, U
     
     //MARK:- UICollectionDelegate, UICollectionDataSource
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.titleArray.count
+        return 10
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -39,13 +39,13 @@ class PromotionViewController: BaseViewController, UICollectionViewDataSource, U
             identify, forIndexPath: indexPath) as! PromotionCollectionViewCell
         cell.customView.layer.borderColor = defaultLineColor.CGColor
         cell.customView.layer.borderWidth = 0.5
-            if self.titleArray.count != 0{
-                let good = self.titleArray[indexPath.row] as Good
-                cell.info.text = good.descriptionStr
-                cell.buyNum.text = "\(good.buy_num)人已购买"
-                cell.price.text  = "$\(good.price)"
-                cell.pic.sd_setImageWithURL(NSURL(string: good.picture!), placeholderImage: UIImage(named: ""), options: .ProgressiveDownload)
-        }
+//            if self.titleArray.count != 0{
+//                let good = self.titleArray[indexPath.row] as Good
+//                cell.info.text = good.descriptionStr
+//                cell.buyNum.text = "\(good.buy_num)人已购买"
+//                cell.price.text  = "$\(good.price)"
+//                cell.pic.sd_setImageWithURL(NSURL(string: good.picture!), placeholderImage: UIImage(named: ""), options: .ProgressiveDownload)
+//        }
         return cell
     }
     
@@ -64,7 +64,7 @@ class PromotionViewController: BaseViewController, UICollectionViewDataSource, U
             return CGSizeMake((collectionView.frame.width-4)/2.0-8, 245)
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(6, 4, 6, 4)
+        return UIEdgeInsetsMake(6, 6, 6, 6)
     }
     //MARK: Private Method
     func fetchData (){

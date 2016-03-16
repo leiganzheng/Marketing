@@ -8,9 +8,10 @@
 
 import UIKit
 
-class MarketViewController: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate,UITableViewDataSource, UITableViewDelegate ,UISearchBarDelegate  {
+class MarketViewController: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate,UITableViewDataSource, UITableViewDelegate   {
 
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var textF: UITextField!
+    @IBOutlet weak var searchBtn: UIButton!
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet weak var customTableView: UITableView!
     @IBOutlet weak var customV: UIView!
@@ -22,7 +23,7 @@ class MarketViewController: BaseViewController, UICollectionViewDataSource, UICo
         self.title = "商城"
         self.customTableView.backgroundColor = defaultBackgroundGrayColor
         //数据
-//       self.fetchCategoryData()
+       self.fetchCategoryData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -84,7 +85,6 @@ class MarketViewController: BaseViewController, UICollectionViewDataSource, UICo
             let category = self.categorys[indexPath.row]
             cell.textLabel?.text = category.name
         }
-        cell.textLabel?.text = "测试数据"
         cell.textLabel?.font = UIFont.systemFontOfSize(13)
         cell.textLabel?.textAlignment = .Center
 
@@ -97,14 +97,11 @@ class MarketViewController: BaseViewController, UICollectionViewDataSource, UICo
          let category = self.categorys[indexPath.row]
          self.fetchGoods(category.cat_id)
     }
-    // 搜索代理UISearchBarDelegate方法，每次改变搜索内容时都会调用
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+      //MARK: -
+    @IBAction func searchAction(sender: AnyObject) {
         //添加搜索数据
         let vc = GoodsListViewController()
         self.navigationController?.pushViewController(vc, animated: false)
-    }
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-       
     }
     //MARK: - Private Method
     func fetchCategoryData (){

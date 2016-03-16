@@ -22,6 +22,7 @@ class OrderInfoViewController:  BaseViewController , UITableViewDataSource, UITa
         self.imgV = UIImageView(frame: CGRectMake(0, 0, screenWidth, 162))
         imgV.backgroundColor = UIColor.lightGrayColor()
         self.customTableView.tableHeaderView = imgV
+        QNTool.configViewLayer(self.buyButton)
         //
         self.fetchData()
     }

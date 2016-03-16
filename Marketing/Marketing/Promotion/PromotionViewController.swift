@@ -26,7 +26,7 @@ class PromotionViewController: BaseViewController, UICollectionViewDataSource, U
     
     //MARK:- UICollectionDelegate, UICollectionDataSource
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return titleArray.count
     }
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -39,13 +39,13 @@ class PromotionViewController: BaseViewController, UICollectionViewDataSource, U
             identify, forIndexPath: indexPath) as! PromotionCollectionViewCell
         cell.customView.layer.borderColor = defaultLineColor.CGColor
         cell.customView.layer.borderWidth = 0.5
-//            if self.titleArray.count != 0{
-//                let good = self.titleArray[indexPath.row] as Good
-//                cell.info.text = good.descriptionStr
-//                cell.buyNum.text = "\(good.buy_num)人已购买"
-//                cell.price.text  = "$\(good.price)"
-//                cell.pic.sd_setImageWithURL(NSURL(string: good.picture!), placeholderImage: UIImage(named: ""), options: .ProgressiveDownload)
-//        }
+            if self.titleArray.count != 0{
+                let good = self.titleArray[indexPath.row] as Good
+                cell.info.text = good.descriptionStr!
+                cell.buyNum.text = "\(good.buy_num!)人已购买"
+                cell.price.text  = "$\(good.price!)"
+                cell.pic.sd_setImageWithURL(NSURL(string: good.picture!), placeholderImage: UIImage(named: ""), options: .ProgressiveDownload)
+        }
         return cell
     }
     
@@ -69,7 +69,7 @@ class PromotionViewController: BaseViewController, UICollectionViewDataSource, U
     //MARK: Private Method
     func fetchData (){
         //promotion_type 促销类型ID
-        QNNetworkTool.fetchGoodList("", cat_id: "", shop_cat_id: "", promotion_type: "2", name: "", verify: "", status: "", page: "", page_size: "", order: "") { (goods, error, errorMsg) -> Void in
+        QNNetworkTool.fetchGoodList("", cat_id: "", shop_cat_id: "", promotion_type: "1", name: "", verify: "", status: "", page: "", page_size: "", order: "") { (goods, error, errorMsg) -> Void in
             if goods != nil {
                 self.titleArray = goods!
                 self.collectionView.reloadData()

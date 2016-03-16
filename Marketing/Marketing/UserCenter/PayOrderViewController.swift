@@ -20,6 +20,7 @@ class PayOrderViewController: BaseViewController , UITableViewDataSource, UITabl
         self.titles = ["微信支付","支付宝"]
         self.subTitles = ["微信安全支付","支付宝快捷支付"]
         self.icons = ["advisory_doctor_Pay_wechat","advisory_doctor_Pay_Alipay"]
+        self.customTableView.backgroundColor = UIColor.whiteColor()
     }
     
     override func didReceiveMemoryWarning() {
@@ -33,7 +34,7 @@ class PayOrderViewController: BaseViewController , UITableViewDataSource, UITabl
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 50
+        return 44
     }
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
@@ -45,7 +46,7 @@ class PayOrderViewController: BaseViewController , UITableViewDataSource, UITabl
         lb.backgroundColor = UIColor.clearColor()
         lb.textColor = tableViewCellDefaultTextColor
         lb.textAlignment = NSTextAlignment.Left
-        lb.font = UIFont.systemFontOfSize(15)
+        lb.font = UIFont.systemFontOfSize(13)
         lb.text = "请支付"
         customView.addSubview(lb)
         
@@ -53,7 +54,7 @@ class PayOrderViewController: BaseViewController , UITableViewDataSource, UITabl
         lb1.backgroundColor = UIColor.clearColor()
         lb1.textColor = tableViewCellDefaultTextColor
         lb1.textAlignment = NSTextAlignment.Right
-        lb1.font = UIFont.systemFontOfSize(15)
+        lb1.font = UIFont.systemFontOfSize(13)
         lb1.text = "¥200元"
         customView.addSubview(lb1)
         

@@ -67,16 +67,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,WXApiDelegate{
     }
 
     func submitOrder(dic: NSDictionary, vc: UIViewController){
-//        self.outTradeNo = dic["outTradeNo"] as! String
-//        self.viewContro = vc
-        WXApi.registerApp(dic["appid"] as! String, withDescription: "Test")
+
+        WXApi.registerApp(dic["appId"] as! String, withDescription: "Test")
         let request = PayReq()
-        request.partnerId = dic["partnerid"] as! String
-        request.openID = dic["appid"] as! String
-        request.prepayId = dic["prepayid"] as! String
+        request.partnerId = dic["partnerId"] as! String
+        request.openID = dic["appId"] as! String
+        request.prepayId = dic["prepayId"] as! String
         request.package = dic["package"] as! String
-        request.nonceStr = dic["noncestr"] as! String
-        request.timeStamp = dic["timestamp"]!.unsignedIntValue
+        request.nonceStr = dic["nonceStr"] as! String
+        request.timeStamp = dic["timeStamp"]!.unsignedIntValue
         request.sign = dic["sign"] as! String
         WXApi.sendReq(request)
     }
@@ -88,20 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,WXApiDelegate{
             switch(response.errCode){
             case 0:
                 //服务器端查询支付通知或查询API返回的结果再提示成功
-//                QNNetworkTool.queryWxpayResult(self.outTradeNo!, completion: { (dictionary, error, errorMsg) -> Void in
-//                    if dictionary != nil {
-//                        for vc in self.viewContro.navigationController?.viewControllers as! NSArray {
-//                            if vc is DoctorDetailInfoViewController {
-//                                self.viewContro.navigationController?.popToViewController(vc as! UIViewController, animated: false)
-//                            }else if (vc is ScheduleViewController){
-//                                self.viewContro.navigationController?.popToViewController(vc as! UIViewController, animated: false)
-//                            }
-//                        }
-//                        QNTool.showPromptView("支付成功")
-//                    }else {
-//                        QNTool.showPromptView(errorMsg!)
-//                    }
-//                })
+                 QNTool.showPromptView("支付成功")
                 break
             case -2:
                 QNTool.showPromptView("支付取消")

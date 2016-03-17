@@ -77,47 +77,39 @@ class PayOrderViewController: BaseViewController , UITableViewDataSource, UITabl
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-      
+        if indexPath.row == 0 {
+            self.wxPayCheck()
+        }else{
+            self.aliPayCheck()
+        }
     }
     //微信支付
     private func wxPayCheck(){
         if WXApi.isWXAppInstalled() {
-//            QNNetworkTool.wxpayOrderCheck(self.order!.orderNo, completion: { (dictionary, error, errorMsg) -> Void in
-//                if dictionary != nil {
-//                    let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//                    delegate.submitOrder(dictionary!, vc: self)
-//                }else {
-//                    QNTool.showPromptView( errorMsg!)
-//                }
-//            })
+            QNNetworkTool.weChatPay("", out_trade_no: "", spbill_create_ip: "", completion: { (dictionary, error, errorMsg) -> Void in
+                if dictionary != nil {
+                    let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    delegate.submitOrder(dictionary!, vc: self)
+                }else {
+                    QNTool.showPromptView( errorMsg!)
+                }
+
+            })
         }else{
             QNTool.showPromptView( "请安装微信客户端")
         }
     }
     //支付宝支付
     private func aliPayCheck(){
-        if WXApi.isWXAppInstalled() {
-//            QNNetworkTool.wxpayOrderCheck(self.order!.orderNo, completion: { (dictionary, error, errorMsg) -> Void in
-//                if dictionary != nil {
-//                    let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-//                    delegate.submitOrder(dictionary!, vc: self)
-//                }else {
-//                    QNTool.showPromptView( errorMsg!)
-//                }
-//            })
-        }else{
-            QNTool.showPromptView( "请安装支付宝客户端")
-        }
-    }
-    private func submitAliOrder(dic: NSDictionary){
+        let orderString = String(format: "partner=\"%@\"&seller_id=\"%@\"&out_trade_no=\"%@\"&subject=\"%@\"&body=\"\"%@&total_fee=\"%@\"&notify_url=\"%@\"&service=\"%@\"&payment_type=\"%@\"&_input_charset=\"%@\"&it_b_pay=\"%@\"&sign=\"%@\"&sign_type=\"%@\"", "2088121819111753" ,"2564064860@qq.com","0819145412-6177","测试","测试测试","0.01","http://cvsapi.1g9f.com/Alipayapi/AliPayNotify","mobile.securitypay.pay","1","utf-8","30m","","RSA")
+        print(orderString)
         //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
         let appScheme: String = "alipayForMarket"
-        let orderString = dic["payInfo"] as! String
         AlipaySDK.defaultService().payOrder(orderString, fromScheme: appScheme, callback: { (resultDic) -> Void in
             if let Alipayjson = resultDic as? NSDictionary {
                 let resultStatus = Alipayjson.valueForKey("resultStatus") as! String
                 if resultStatus == "9000"{
-                 QNTool.showPromptView( "支付成功")
+                    QNTool.showPromptView( "支付成功")
                 }else if resultStatus == "8000" {
                     QNTool.showPromptView( "正在处理中")
                 }else if resultStatus == "4000" {
@@ -130,7 +122,6 @@ class PayOrderViewController: BaseViewController , UITableViewDataSource, UITabl
             }
         })
     }
-
 
 
 }

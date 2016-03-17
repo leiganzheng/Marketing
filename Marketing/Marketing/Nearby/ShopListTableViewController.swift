@@ -92,7 +92,7 @@ class ShopListTableViewController: UITableViewController{
     }
     //MARK: - Private Method
     func fetchData (){
-        QNNetworkTool.fetchShopList("", page: "1", business_cat_id: "", need_shop_address: "", page_size: "10", order: "") { (array, error, errorMsg) -> Void in
+        QNNetworkTool.fetchShopList("",longitude:"", latitude:"", page: "1", business_cat_id: "", page_size: "10", order: "") { (array, error, errorMsg) -> Void in
             if array != nil {
                 if array?.count>0 {
                     self.data = array!

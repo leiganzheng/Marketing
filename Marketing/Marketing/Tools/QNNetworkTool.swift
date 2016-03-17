@@ -295,11 +295,12 @@ extension QNNetworkTool {
      :param: page_size 页数默认10
      :param: order 排序默认按shop_id
      :param:  business_cat_id 行业ID
-     :param:  need_shop_address 1 返回店铺地址 0 不返回（当选择这个参数，只有有地址的店铺会被返回）
-     :param: completion 完成的回调 
+     :param: longitude   经度（经度和纬度大于或小于该商家0.28度(25.0516公里)范围内）
+     :param: latitude    纬度
+     :param: completion 完成的回调
      */
-    class func fetchShopList(search_key: String, page: String,business_cat_id: String,need_shop_address: String,page_size: String, order:String, completion: ([Shop]?, NSError?, String?) -> Void) {
-        requestPOST(kServerAddress + "/Shopsapi/shopGetList", parameters: ["search_key" : search_key, "page" : page,"page_size":page_size,"order":order,"need_shop_address":need_shop_address,"business_cat_id":business_cat_id]) { (_, _, _, dictionary, error) -> Void in
+    class func fetchShopList(search_key: String,longitude:String, latitude:String, page: String,business_cat_id: String,page_size: String, order:String, completion: ([Shop]?, NSError?, String?) -> Void) {
+        requestPOST(kServerAddress + "/Shopsapi/shopGetList", parameters: ["search_key" : search_key, "page" : page,"page_size":page_size,"order":order,"longitude":longitude,"business_cat_id":business_cat_id,"latitude":latitude]) { (_, _, _, dictionary, error) -> Void in
             if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0 {
                 let userList = dictionary?["data"] as? NSArray
                 var result = [Shop]()
@@ -717,7 +718,34 @@ extension QNNetworkTool {
             
         }
     }
+}
+//MARK: -Wechat (微信模块)
+extension QNNetworkTool {
+    /**
+    微信支付接口，获取prepay_id等参数
+     :param:   body 订单描述
+     :param:  out_trade_no 订单ID
+     :param:  spbill_create_ip 客户端IP
+     :param: completion 完成的回调
+    */
+    class func weChatPay(body:String,out_trade_no:String,spbill_create_ip:String, completion: (NSDictionary?, NSError?, String?) -> Void) {
+        requestGET(kServerAddress + "/Wechatapi/weChatPay", parameters: ["body":body,"out_trade_no":out_trade_no,"spbill_create_ip":spbill_create_ip]) { (_, _, _, dictionary, error) -> Void in
+//            * string appId 微信appid
+//                * string nonceStr 随机字符串
+//                    * string package 固定值
+//                        * string partnerId 商户ID
+//                            * string prepayId 预付单
+//                                * int timeStamp 时间戳
+//                                    * string sign 签名
+            
+            if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
+                completion(dictionary, error,nil)
+            }
+            else {
+                completion(nil, error, dictionary?["errmsg"] as? String)
+            }
+            
+        }
+    }
 
-
-    
 }

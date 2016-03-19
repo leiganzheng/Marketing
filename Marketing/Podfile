@@ -5,6 +5,7 @@ pod "IQKeyboardManager"
 pod 'ReactiveCocoa'
 pod "MWPhotoBrowser"
 pod 'FMDB', :git => 'https://github.com/ccgus/fmdb.git'
+pod 'AliyunOSSiOS'
 use_frameworks!
 pod "SDWebImage"
 pod 'Alamofire'

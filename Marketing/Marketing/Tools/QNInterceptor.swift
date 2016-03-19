@@ -97,7 +97,7 @@ class QNInterceptor : NSObject {
                     
                     // 键盘遮挡解决方案
                     if !(viewController is QNInterceptorKeyboardProtocol) {
-                        IQKeyboardManager.sharedManager().disableInViewControllerClass(viewController.classForCoder)
+//                        IQKeyboardManager.sharedManager().disableInViewControllerClass(viewController.classForCoder)
                     }
         
                     // 修改状态栏的样式

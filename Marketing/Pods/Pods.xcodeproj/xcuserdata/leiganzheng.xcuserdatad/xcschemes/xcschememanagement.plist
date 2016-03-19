@@ -6,77 +6,87 @@
 	<dict>
 		<key>Alamofire.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>AliyunOSSiOS.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Aspects.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Box.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>DACircularProgress.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>4</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>FMDB.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>14</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>IQKeyboardManager.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>5</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>MBProgressHUD.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>MWPhotoBrowser-MWPhotoBrowser.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>8</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>MWPhotoBrowser.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>7</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>OpenUDID.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>9</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>10</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>ReactiveCocoa.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>11</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Result.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>12</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>13</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>10E6B119A70AD857A164D5F3DE454CF0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>14E6E2E2484806AB62B60CA2EAD41F9B</key>
 		<dict>
 			<key>primary</key>
@@ -92,27 +102,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>36CCE52B78318066B4510E54966E98C8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3A2B6FD8668DCE375DECB0EFB25C24C8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>432ECC54282C84882B482CCB4CF227FC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>555B19FBE77E513D9B4A8D30D4BC770E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5855D213D188EE14086C1F827DE7B1FF</key>
+		<key>30D72187AB458826A451F9416987B94A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -127,17 +117,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>94624EC6C9739263AA965CFE2D8933F5</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A7C44D0913234915B177A0C975DCAA79</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B7EF972DF14A4E53E581AAD086A4AD4E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -152,12 +137,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C96661ACCB2CEE41B5BB53E5C233DB8B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>E61CE3B6DFA1FE6B3E296965C76C0E10</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F3B6ECF88C7FE1B0D591BACB9CB0CD85</key>
+		<key>EAB3BE1505AD242CE518DA03F97FC79A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F83DBCDAE48E8DBF42525DF5480AAC9F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

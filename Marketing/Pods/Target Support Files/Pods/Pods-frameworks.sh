@@ -85,6 +85,7 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/Alamofire.framework"
+  install_framework "Pods/AliyunOSSiOS.framework"
   install_framework "Pods/Aspects.framework"
   install_framework "Pods/Box.framework"
   install_framework "Pods/DACircularProgress.framework"
@@ -99,6 +100,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/Alamofire.framework"
+  install_framework "Pods/AliyunOSSiOS.framework"
   install_framework "Pods/Aspects.framework"
   install_framework "Pods/Box.framework"
   install_framework "Pods/DACircularProgress.framework"

@@ -22,7 +22,7 @@ class ShopListTableViewController: UITableViewController,CLLocationManagerDelega
         self.view.backgroundColor = defaultBackgroundGrayColor
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.rac_signalForControlEvents(UIControlEvents.ValueChanged).subscribeNext({ (input) -> Void in
-            self.fetchData()
+//            self.fetchData()
             
         })
 

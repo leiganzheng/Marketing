@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AliyunOSSiOS
 
 class PersonInfoViewController:  BaseViewController ,QNInterceptorProtocol,UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate{
     
@@ -212,24 +213,35 @@ class PersonInfoViewController:  BaseViewController ,QNInterceptorProtocol,UIIma
             return
         }
         QNTool.showActivityView("正在上传...", inView: self.view, nil)
+        
+        let endpoint = "cvs315.oss-cn-shenzhen.aliyuncs.com"
+        let   AccessKey = "M0hObeWrViBiUfuU"
+        let   SecretKey = "tO0Dvf5qNjbe6iKro5T8NT2QdXNcir"
+        
+        let credential = OSSPlainTextAKSKPairCredentialProvider(plainTextAccessKey: AccessKey, secretKey: SecretKey)
+        let  client = OSSClient(endpoint: endpoint, credentialProvider: credential)
+        let  put = OSSPutObjectRequest()
+        
+        put.bucketName = "cvs315"
+        put.objectKey = "images/icon"
 
-//        QNNetworkTool.uploadDoctorImage(imageData, fileName: (udid as String) + ".jpg", type: "groupUserFace") { (dictionary, error) -> Void in
-//            QNTool.hiddenActivityView()
-//            if dictionary != nil, let errorCode = dictionary?["errorCode"] as? String where errorCode == "0" {
-//                let dict = dictionary!["data"] as! NSDictionary
-//                let urlStr = dict["url"] as! String
-//                let fileName = dict["fileName"] as! String
-//                for temp in g_currentGroup!.users {
-//                    if temp.id == self.user.id {
-//                        temp.photoURL = urlStr
-//                    }
-//                }
-//                self.updateGroupPhoto(fileName,url: urlStr)
-//            }else {
-//                QNTool.showPromptView("上传失败,点击重试或者重新选择图片", nil)
-//            }
-//            
-//        }
+        put.uploadingData = imageData// 直接上传NSData
+        let putTask = client.putObject(put)
+        putTask.continueWithBlock { (task) -> AnyObject! in
+            QNTool.hiddenActivityView()
+            if (task.error == nil) {
+                QNTool.showPromptView("上传成功", nil)
+                let result = task.result as? OSSGetBucketResult
+                for  objectInfo in result!.contents {
+                    print("list object: %@", objectInfo)
+                }
+
+            }else{
+                print("task.error=%@",task.error)
+                QNTool.showPromptView("上传失败,点击重试或者重新选择图片", nil)
+            }
+            return nil
+        }
         
     }
 

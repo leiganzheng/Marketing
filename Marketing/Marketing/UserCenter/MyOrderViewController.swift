@@ -54,6 +54,7 @@ class MyOrderViewController: BaseViewController , UITableViewDataSource, UITable
                 cell.payBtn.setTitle("马上支付", forState: .Normal)
                 cell.payBtn.rac_command = RACCommand(signalBlock: { (sender) -> RACSignal! in
                     let vc = PayOrderViewController.CreateFromStoryboard("Main") as! PayOrderViewController
+                    vc.order = order
                     self.navigationController?.pushViewController(vc, animated: true)
                     return RACSignal.empty()
                 })

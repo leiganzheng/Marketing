@@ -13,6 +13,7 @@ class PayOrderViewController: BaseViewController , UITableViewDataSource, UITabl
     var titles: NSArray!
     var subTitles: NSArray!
     var icons: NSArray!
+    var order: Order!
     @IBOutlet weak var customTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,7 +102,33 @@ class PayOrderViewController: BaseViewController , UITableViewDataSource, UITabl
     }
     //支付宝支付
     private func aliPayCheck(){
-        let orderString = String(format: "partner=\"%@\"&seller_id=\"%@\"&out_trade_no=\"%@\"&subject=\"%@\"&body=\"\"%@&total_fee=\"%@\"&notify_url=\"%@\"&service=\"%@\"&payment_type=\"%@\"&_input_charset=\"%@\"&it_b_pay=\"%@\"&sign=\"%@\"&sign_type=\"%@\"", "2088121819111753" ,"2564064860@qq.com","0819145412-6177","测试","测试测试","0.01","http://cvsapi.1g9f.com/Alipayapi/AliPayNotify","mobile.securitypay.pay","1","utf-8","30m","","RSA")
+        let sign = "MIIEowIBAAKCAQEA0XNv9r11PUQ+5VBvioK98LWqJrpLtZ7Go22ltiACffn+S215" +
+        "5NjBmKtJXMjE8xHvY6PQXTsC7nZeIa1VHXvw+KkeV0BJCXeTUzhz3MzcTfsNfvtr" +
+        "rQeNSLNVPQ59sNiKLxO3Hsr3ldbTNNrkcgwPVRx1S76rT+huX5RTm1dKkZrCifEq" +
+        "OaJwNYzZPEivksDdEUgZPsRp46n0BSWeFfO3qNSoqpjEuM5gK0GZzpwJbWAQDc7y" +
+        "SqJ3/Dm1fzG5S/2fxF69uG2d3u08+LhrHAjW9OJrLcksI+ApWwbDNUEOI5JBx05/" +
+        "JmYgmWVyKXmh2T46hJ/KCFz/vgELJ7XgKF8XOwIDAQABAoIBAEZ59V6s+VoYMKGw" +
+        "oxeUTp1EQ3CslvUR6/zp1CyoMK57BBoVSEK8vMfGOvVBiSPRESAR6vaz+JSMt7fV" +
+        "PyKgpcDGBzOMqgbJeYUzJalSNX73zt6/csfSFrQzw6a7zYdIFZcppyBxY0XD92V9" +
+        "kgjeDfqxjLZj/fjxWNJIcql+gdTkBivkGqB0LbA4TGEaoNC51hBt8Bzy+hH4HaMe" +
+        "WAtTR1b8nenjDac79uNhCxhLR7H2YWIbMUOjkcHJPErtuB4lgj7ObGAAIQnw3ml6" +
+        "NP16J6qqsooN7Ac04E/VBw1TrnYIea0OmtXKxc5yCUvoPOrTMqo4oTg0EY5a3hGt" +
+        "w3QMuYECgYEA9Di6XjtiDs9ZAMvq5h5wIhOW1EhXUBRFdwKf09czp9dBChRM8l7d" +
+        "L3bCKDCp0RpOnciNGcU6mvfEF/ZJirffU8sGk2NjENES125UYh/L2IKFHyyJH4Ln" +
+        "c/PuUsG4uUU23xEbzuB7+ABOVoUJhdNCxl3CupNitFz5ieDgLG/y1PECgYEA241q" +
+        "LAQF/GWfSmwbFT6yoYSWkAP+93uwpb4rY7IauELVdHDbl4mFHBhhviCilTpXG4Xj" +
+        "lrBZW/T2K/N//ca24ULYJtJFvpO0gEKj8sru9/uN8o+d3ye3qGR6wa+6WGC23gby" +
+        "SJPcjr4ODlbTeOfYGU6e47Rwu0LLdW3jnp4XfusCgYB7ef8IS7/dOwqF85PVO0h4" +
+        "giz9MYIrs8QXUtVaNvEgCB4TKYZp+HqeV838ofYKCeH7tn1YrTZfSav0bYprP2ID" +
+        "rJ+rf1GEHCEJmPfDEM5wrjT+OPcvXnEFWCyD3Pw3d/4xNCY6J5emIQl6hxL0fYbC" +
+        "Yn9k88Ww6V0lT/Qno4ZEEQKBgQDG+6r/S4I1V9D/vWzqW1HAi4995PE/Ua4u+WUP" +
+        "zUrkN0aIawTKmcu3Q+3KSH+x6hcqjbVQTHIgoqo9+UnGMkRrco6+2JJ3gBz2pe87" +
+        "TGs6+5WSAlHd/3w3tSGAy4iDMtxp7DfISaJ7CItquYyeJto3TYc57r7BKW+G9Vp3" +
+        "1uaKkwKBgEM2MlDH1CF0V3Mbvm7wNwMGDjFiQCAb8WK3TUHl1kmFwdgc1mAsCdWO" +
+        "ZZvqIGlo/IUDrnHr9Hr1zG1B8jidLzTkQEyWdqTlQWlU+RTWzrv/bs8I/C5L83Z0" +
+        "OATH6/sqzxrCkIwoD3UDmkeUhCKU7pvCf/6CzJxXlpq0n3Nt5W3e"
+        
+        let orderString = String(format: "partner=\"%@\"&seller_id=\"%@\"&out_trade_no=\"%@\"&subject=\"%@\"&body=\"\"%@&total_fee=\"%@\"&notify_url=\"%@\"&service=\"%@\"&payment_type=\"%@\"&_input_charset=\"%@\"&it_b_pay=\"%@\"&sign=\"%@\"&sign_type=\"%@\"", "2088121819111753" ,"2564064860@qq.com","0819145412-6177","测试","测试测试","0.01","http://cvsapi.1g9f.com/Alipayapi/AliPayNotify","mobile.securitypay.pay","1","utf-8","30m",sign,"RSA")
         print(orderString)
         //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
         let appScheme: String = "alipayForMarket"

@@ -16,7 +16,7 @@ class OrderDetailViewController: BaseViewController , UITableViewDataSource, UIT
     @IBOutlet weak var customTableView: UITableView!
     var usrName : UILabel!
     var imgV : UIImageView!
-    var order: NSDictionary!
+    var order: Order!
     var staus: String = "0"
     
     override func viewDidLoad() {
@@ -35,6 +35,7 @@ class OrderDetailViewController: BaseViewController , UITableViewDataSource, UIT
         payButton.rac_signalForControlEvents(.TouchUpInside).subscribeNext { [weak self](sender) -> Void in
             if let strongSelf = self {
                 let vc = PayOrderViewController.CreateFromStoryboard("Main") as! PayOrderViewController
+                vc.order = strongSelf.order!
                 strongSelf.navigationController?.pushViewController(vc, animated: true)
             }
         }
@@ -103,14 +104,14 @@ class OrderDetailViewController: BaseViewController , UITableViewDataSource, UIT
             }
             cell.addLine(0, y: 34, width: tableView.frame.size.width, height: 0.5)
             if self.order != nil {
-                cell.name.text = self.order["shop_info"]!["name"] as? String
-                let goods = order["order_goods"] as? NSArray
-                if goods!.count > 0{
-                    let good = goods![0] as! NSDictionary
+                cell.name.text = self.order.shopInfo?.name
+                let goods = self.order.goods as NSArray
+                if goods.count > 0{
+                    let good = goods[0] as! NSDictionary
                     cell.name1.text = good["good_name"] as? String
                     cell.imageV.sd_setImageWithURL(NSURL(string: (good["good_pic"] as? String)!), placeholderImage: UIImage(named: ""), options: .ProgressiveDownload)
                     cell.detail.text = "消费：\((good["price"] as? String)!)"
-                    cell.time.text = "时间：\((self.order["create_time"] as? String)!)"
+                    cell.time.text = "时间：\(self.order.create_time!)"
                 }
             }
             return cell
@@ -125,11 +126,11 @@ class OrderDetailViewController: BaseViewController , UITableViewDataSource, UIT
                 }
                 if self.order != nil{
                     let lb1 = cell.viewWithTag(100) as! UILabel
-                    lb1.text = "收件人：\((self.order["receiver"] as? String)!)"
+                    lb1.text = "收件人：\(self.order.receiver!)"
                     let lb2 = cell.viewWithTag(101) as! UILabel
-                    lb2.text = "联系电话：\((self.order["receiver_phone"] as? String)!)"
+                    lb2.text = "联系电话：\(self.order.receiver_phone!)"
                     let lb3 = cell.viewWithTag(102) as! UILabel
-                    lb3.text = "通讯地址：\((self.order["customer_address"] as? String)!)"
+                    lb3.text = "通讯地址：\(self.order.customer_address!)"
                 }
                 return cell
             }else {
@@ -159,7 +160,7 @@ class OrderDetailViewController: BaseViewController , UITableViewDataSource, UIT
                         }
                         if self.order != nil{
                             let lb1 = cell.viewWithTag(103) as! UILabel
-                            lb1.text = (self.order["shipping_company"] as? String)! + "  " + (self.order["shipping_code"] as? String)!
+                            lb1.text = self.order.shipping_company! + "  " + self.order.shipping_code!
                             
                         }
                         return cell
@@ -192,7 +193,7 @@ class OrderDetailViewController: BaseViewController , UITableViewDataSource, UIT
         QNNetworkTool.fetchOrderInfo(self.orderId, accesstoken: (g_user?.accesstoken)!) { (order, error, errorMsg) -> Void in
             if order != nil {
                 self.order = order!
-                self.staus = (self.order["status"] as? String)!
+                self.staus = self.order.status!
                 if self.staus == "1" {
                     self.navigationItem.rightBarButtonItem=nil
                 }

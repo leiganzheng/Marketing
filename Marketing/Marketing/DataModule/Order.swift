@@ -21,10 +21,16 @@ class Order: QN_Base {
     private(set) var order_price: String?
     private(set) var refund_amount: String?
     private(set) var shipping_code: String?
-    private(set) var customer_address_id: String?
+    private(set) var customer_address: String?
     private(set) var create_time: String?
     private(set) var update_time: String?
     private(set) var status: String?
+    
+    private(set) var shipping_company: String?
+    private(set) var receiver: String?
+    private(set) var receiver_phone: String?
+    private(set) var memo: String?
+    
     private(set) var shopInfo:Shop?
     var goods=[Good]()
     
@@ -47,10 +53,17 @@ class Order: QN_Base {
         self.order_price = dictionary["order_price"] as? String
         self.refund_amount = dictionary["refund_amount"] as? String
         self.shipping_code = dictionary["shipping_code"] as? String
-        self.customer_address_id = dictionary["customer_address_id"] as? String
+        self.customer_address = dictionary["customer_address"] as? String
         self.create_time = dictionary["create_time"] as? String
         self.create_time = dictionary["update_time"] as? String
         self.status = dictionary["status"] as? String
+        
+        self.shipping_company = dictionary["shipping_company"] as? String
+        self.receiver = dictionary["receiver"] as? String
+        self.receiver_phone = dictionary["receiver_phone"] as? String
+        self.memo = dictionary["memo"] as? String
+
+        
         self.shopInfo = Shop(dictionary["shop_info"] as! NSDictionary)
         if QN_Base.existValue(dictionary, keys: "order_goods") {
             for goodsDictionary in dictionary["order_goods"] as! NSArray {
@@ -77,10 +90,16 @@ class Order: QN_Base {
         dictionary.setValue(self.order_price, forKey:"order_price")
         dictionary.setValue(self.refund_amount, forKey:"refund_amount")
         dictionary.setValue(self.shipping_code, forKey:"shipping_code")
-        dictionary.setValue(self.customer_address_id, forKey:"customer_address_id")
+        dictionary.setValue(self.customer_address, forKey:"customer_address")
         dictionary.setValue(self.create_time, forKey:"create_time")
         dictionary.setValue(self.create_time, forKey:"create_time")
         dictionary.setValue(self.status, forKey:"status")
+        
+        dictionary.setValue(self.shipping_company, forKey:"shipping_company")
+        dictionary.setValue(self.receiver, forKey:"receiver")
+        dictionary.setValue(self.receiver_phone, forKey:"receiver_phone")
+        dictionary.setValue(self.memo, forKey:"memo")
+        
         dictionary.setValue(self.shopInfo?.dictionary(), forKey:"shop_info")
         if QN_Base.existValue(dictionary, keys: "order_goods") {
             let goods = NSMutableArray()

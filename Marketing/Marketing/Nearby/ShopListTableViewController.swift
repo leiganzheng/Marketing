@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import CoreLocation
 
-class ShopListTableViewController: UITableViewController{
+class ShopListTableViewController: UITableViewController,CLLocationManagerDelegate{
 
     var data: NSArray =  NSArray() as! [Shop]
     var businessCategory:BusinessCategory!
+    //用于定位服务管理类，它能够给我们提供位置信息和高度信息，也可以监控设备进入或离开某个区域，还可以获得设备的运行方向
+    let locationManager : CLLocationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "附近商家"
@@ -24,9 +28,14 @@ class ShopListTableViewController: UITableViewController{
 
         self.tableView.separatorStyle = .None
         self.configBackButton()
-        self.fetchData()
+        self.configLocationManager()
     }
-
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        locationManager.stopUpdatingLocation()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -90,9 +99,26 @@ class ShopListTableViewController: UITableViewController{
     self.navigationController?.pushViewController(vc, animated: true)
 
     }
+    //MARK: -CLLocationManagerDelegate
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let currLocation : CLLocation! = locations.last
+        self.fetchData(currLocation)
+    }
+
     //MARK: - Private Method
-    func fetchData (){
-        QNNetworkTool.fetchShopList("",longitude:"", latitude:"", page: "1", business_cat_id: "", page_size: "10", order: "") { (array, error, errorMsg) -> Void in
+    func configLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = kCLLocationAccuracyKilometer
+        let version = (UIDevice.currentDevice().systemVersion as NSString).floatValue
+        if version > 8.0 {
+            locationManager.requestWhenInUseAuthorization()
+        }
+        locationManager.startUpdatingLocation()
+    }
+
+    func fetchData (currLocation : CLLocation){
+        QNNetworkTool.fetchShopList("",longitude:String(currLocation.coordinate.longitude), latitude:String(currLocation.coordinate.latitude), page: "1", business_cat_id: "", page_size: "10", order: "") { (array, error, errorMsg) -> Void in
             if array != nil {
                 if array?.count>0 {
                     self.data = array!

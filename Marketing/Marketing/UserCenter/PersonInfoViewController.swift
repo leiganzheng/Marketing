@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PersonInfoViewController:  BaseViewController ,QNInterceptorProtocol, UITableViewDataSource, UITableViewDelegate{
+class PersonInfoViewController:  BaseViewController ,QNInterceptorProtocol,UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate{
     
     private enum Content: Int {
         case HeadImage = 0       // 头像
@@ -168,8 +168,71 @@ class PersonInfoViewController:  BaseViewController ,QNInterceptorProtocol, UITa
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if indexPath.row == 0{
+            let actionSheet = UIActionSheet(title: nil, delegate: nil, cancelButtonTitle: "取消", destructiveButtonTitle: nil)
+            actionSheet.addButtonWithTitle("从手机相册选择")
+            actionSheet.addButtonWithTitle("拍照")
+            actionSheet.rac_buttonClickedSignal().subscribeNext({ (index) -> Void in
+                if let indexInt = index as? Int {
+                    switch indexInt {
+                    case 1, 2:
+                        if self.picker == nil {
+                            self.picker = UIImagePickerController()
+                            self.picker!.delegate = self
+                        }
+                        
+                        self.picker!.sourceType = (indexInt == 1) ? .SavedPhotosAlbum : .Camera
+                        self.picker!.allowsEditing = true
+                        self.presentViewController(self.picker!, animated: true, completion: nil)
+                    default: break
+                    }
+                }
+            })
+            actionSheet.showInView(self.view)
+        }
     }
+    //MARK: UIImagePickerControllerDelegate
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+        // 存储图片
+        let headImageData = UIImageJPEGRepresentation(image, 1)
+        self.uploadUserFace(headImageData)
+        
+        self.picker?.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        self.picker?.dismissViewControllerAnimated(true, completion: nil)
+    }
+
   //MARK: Private Method
+    // 上传头像
+    private func uploadUserFace(imageData: NSData!) {
+        if imageData == nil {
+            QNTool.showPromptView("上传图片数据损坏", nil)
+            return
+        }
+        QNTool.showActivityView("正在上传...", inView: self.view, nil)
+
+//        QNNetworkTool.uploadDoctorImage(imageData, fileName: (udid as String) + ".jpg", type: "groupUserFace") { (dictionary, error) -> Void in
+//            QNTool.hiddenActivityView()
+//            if dictionary != nil, let errorCode = dictionary?["errorCode"] as? String where errorCode == "0" {
+//                let dict = dictionary!["data"] as! NSDictionary
+//                let urlStr = dict["url"] as! String
+//                let fileName = dict["fileName"] as! String
+//                for temp in g_currentGroup!.users {
+//                    if temp.id == self.user.id {
+//                        temp.photoURL = urlStr
+//                    }
+//                }
+//                self.updateGroupPhoto(fileName,url: urlStr)
+//            }else {
+//                QNTool.showPromptView("上传失败,点击重试或者重新选择图片", nil)
+//            }
+//            
+//        }
+        
+    }
+
     func savePersonInfo(){
         QNNetworkTool.updateUserInfo((g_user?.uid)!, adminuser: (g_user?.adminuser)!, nickname: (g_user?.nickname)!, mobile: self.phoneLB.text!, picture: "") { (user, error, errorMsg) -> Void in
             if user != nil {

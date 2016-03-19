@@ -238,6 +238,9 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
         QNNetworkTool.orderAdd(self.shopGood.shop_id!, accesstoken: (g_user?.accesstoken)!, uid: (g_user?.uid)!, receiver:self.reciever,receiver_phone:self.mobiel, customer_address_id: (self.address.text! + self.addressDetail), order_goods: goods,memo: self.memo, good_id: self.shopGood.good_id, total: self.total) { (order, error, errorMsg) -> Void in
             if order != nil {
                 QNTool.showPromptView("订单已经提交")
+                let vc = PayOrderViewController.CreateFromStoryboard("Main") as! PayOrderViewController
+                vc.order = order!
+                self.navigationController?.pushViewController(vc, animated: true)
             }else{
                 QNTool.showErrorPromptView(nil, error: error, errorMsg: errorMsg)
             }

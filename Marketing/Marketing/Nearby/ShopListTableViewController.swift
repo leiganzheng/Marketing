@@ -118,7 +118,7 @@ class ShopListTableViewController: UITableViewController,CLLocationManagerDelega
     }
 
     func fetchData (currLocation : CLLocation){
-        QNNetworkTool.fetchShopList("",longitude:String(currLocation.coordinate.longitude), latitude:String(currLocation.coordinate.latitude), page: "1", business_cat_id: "", page_size: "10", order: "") { (array, error, errorMsg) -> Void in
+        QNNetworkTool.fetchShopList("",longitude:String(currLocation.coordinate.longitude), latitude:String(currLocation.coordinate.latitude), page: "1", business_cat_id: self.businessCategory.business_cat_id, page_size: "10", order: "") { (array, error, errorMsg) -> Void in
             if array != nil {
                 if array?.count>0 {
                     self.data = array!

@@ -29,10 +29,21 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
     var memo:String!
     var addressDetail:String!
     
+    var totalNumF: UITextField!
+    var recieverF: UITextField!
+    var mobielF: UITextField!
+    var addressDetailF: UITextField!
+    var memoF: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "确认订单"
-        //
+        // 键盘消失
+        let tap = UITapGestureRecognizer()
+        tap.rac_gestureSignal().subscribeNext { [weak self](tap) -> Void in
+            self?.view.endEditing(true)
+        }
+        self.view.addGestureRecognizer(tap)
     }
     
     override func didReceiveMemoryWarning() {
@@ -139,7 +150,15 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
         }
     }
     //MARK: Action Method
+    func regis(){
+        self.totalNumF.resignFirstResponder()
+        self.recieverF.resignFirstResponder()
+        self.mobielF.resignFirstResponder()
+        self.addressDetailF.resignFirstResponder()
+        self.memoF.resignFirstResponder()
+    }
     func showPickerView(){
+        self.regis()
         //获取省级数据
         let sql = "SELECT * from address WHERE level = ?"
         let tmpData = self.selectDB(sql, para: "1")

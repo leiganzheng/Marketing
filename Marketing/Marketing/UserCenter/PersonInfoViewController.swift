@@ -9,7 +9,7 @@
 import UIKit
 import AliyunOSSiOS
 
-class PersonInfoViewController:  BaseViewController ,QNInterceptorProtocol,UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate{
+class PersonInfoViewController:  BaseViewController ,QNInterceptorProtocol,UIImagePickerControllerDelegate,UINavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate,UIGestureRecognizerDelegate{
     
     private enum Content: Int {
         case HeadImage = 0       // 头像
@@ -33,7 +33,7 @@ class PersonInfoViewController:  BaseViewController ,QNInterceptorProtocol,UIIma
     var headerView: UIImageView!
     var picker: UIImagePickerController?
     
-    var nameLB: UILabel!
+    var nameLB: UITextField!
     var phoneLB: UILabel!
     var zoneLB: UILabel!
     var saveButton: UIButton!
@@ -55,6 +55,14 @@ class PersonInfoViewController:  BaseViewController ,QNInterceptorProtocol,UIIma
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.view.addSubview(self.tableView)
+        // 键盘消失
+        let tap = UITapGestureRecognizer()
+        tap.delegate = self
+        tap.rac_gestureSignal().subscribeNext { [weak self](tap) -> Void in
+            self?.nameLB.resignFirstResponder()
+        }
+        self.view.addGestureRecognizer(tap)
+
 
     }
     override func didReceiveMemoryWarning() {
@@ -106,7 +114,7 @@ class PersonInfoViewController:  BaseViewController ,QNInterceptorProtocol,UIIma
             cell.contentView.addSubview(self.headerView)
         case .NickName:
             if self.nameLB == nil {
-                self.nameLB = UILabel(frame: CGRectMake(0, 0, 160, 50))
+                self.nameLB = UITextField(frame: CGRectMake(0, 0, 160, 50))
                 self.nameLB.font = UIFont.systemFontOfSize(14)
                 self.nameLB.textAlignment = NSTextAlignment.Right
                 self.nameLB.textColor = UIColor(white: 66/255, alpha: 1)
@@ -169,7 +177,7 @@ class PersonInfoViewController:  BaseViewController ,QNInterceptorProtocol,UIIma
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if indexPath.row == 0{
+        if indexPath.section==0 && indexPath.row == 0{
             let actionSheet = UIActionSheet(title: nil, delegate: nil, cancelButtonTitle: "取消", destructiveButtonTitle: nil)
             actionSheet.addButtonWithTitle("从手机相册选择")
             actionSheet.addButtonWithTitle("拍照")
@@ -204,7 +212,14 @@ class PersonInfoViewController:  BaseViewController ,QNInterceptorProtocol,UIIma
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         self.picker?.dismissViewControllerAnimated(true, completion: nil)
     }
-
+    //MARK: UIGestureRecognizerDelegate
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+        if (NSStringFromClass((touch.view?.classForCoder)!) == "UITableViewCellContentView") {
+            //做自己想做的事
+            return false
+        }
+        return true
+    }
   //MARK: Private Method
     // 上传头像
     private func uploadUserFace(imageData: NSData!) {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MarketViewController: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate,UITableViewDataSource, UITableViewDelegate   {
+class MarketViewController: BaseViewController, UICollectionViewDataSource, UICollectionViewDelegate,UITableViewDataSource, UITableViewDelegate,UIScrollViewDelegate,UIGestureRecognizerDelegate  {
 
     @IBOutlet weak var textF: UITextField!
     @IBOutlet weak var searchBtn: UIButton!
@@ -22,6 +22,14 @@ class MarketViewController: BaseViewController, UICollectionViewDataSource, UICo
         super.viewDidLoad()
         self.title = "商城"
         self.customTableView.backgroundColor = defaultBackgroundGrayColor
+        // 键盘消失
+        let tap = UITapGestureRecognizer()
+        tap.delegate = self
+        tap.rac_gestureSignal().subscribeNext { [weak self](tap) -> Void in
+            self?.view.endEditing(true)
+        }
+        self.view.addGestureRecognizer(tap)
+
         //数据
        self.fetchCategoryData()
     }
@@ -29,6 +37,10 @@ class MarketViewController: BaseViewController, UICollectionViewDataSource, UICo
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.textF.resignFirstResponder()
     }
     //MARK:- UICollectionDelegate, UICollectionDataSource
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -97,8 +109,22 @@ class MarketViewController: BaseViewController, UICollectionViewDataSource, UICo
          let category = self.categorys[indexPath.row]
          self.fetchGoods(category.cat_id)
     }
+    //MARK: UIGestureRecognizerDelegate
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+        if (NSStringFromClass((touch.view?.classForCoder)!) == "UITableViewCellContentView") {
+            //做自己想做的事
+            return false
+        }
+        return true
+    }
+
+    // MARK: -
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        self.textF.resignFirstResponder()
+    }
       //MARK: -
     @IBAction func searchAction(sender: AnyObject) {
+         self.textF.resignFirstResponder()
         //添加搜索数据
         let vc = GoodsListViewController()
         self.navigationController?.pushViewController(vc, animated: false)

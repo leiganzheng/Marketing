@@ -111,8 +111,7 @@ class MarketViewController: BaseViewController, UICollectionViewDataSource, UICo
     }
     //MARK: UIGestureRecognizerDelegate
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
-        if (NSStringFromClass((touch.view?.classForCoder)!) == "UITableViewCellContentView") {
-            //做自己想做的事
+        if (NSStringFromClass((touch.view?.classForCoder)!) == "UITableViewCellContentView")||((touch.view != self.collectionView)) {
             return false
         }
         return true

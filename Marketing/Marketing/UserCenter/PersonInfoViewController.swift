@@ -109,7 +109,7 @@ class PersonInfoViewController:  BaseViewController ,QNInterceptorProtocol,UIIma
                 self.headerView.autoresizingMask = UIViewAutoresizing.FlexibleLeftMargin
                 self.headerView.layer.masksToBounds = true
                 QNTool.configViewLayer(self.headerView)
-                self.headerView.sd_setImageWithURL(NSURL(string: (g_user?.picture!)!), placeholderImage: UIImage(named: ""))
+                self.headerView.sd_setImageWithURL(NSURL(string: (g_user?.picture!)!), placeholderImage: UIImage(named: "avatar"))
             }
             cell.contentView.addSubview(self.headerView)
         case .NickName:

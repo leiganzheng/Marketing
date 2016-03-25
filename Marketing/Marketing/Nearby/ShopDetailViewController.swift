@@ -57,7 +57,7 @@ class ShopDetailViewController: BaseViewController, UICollectionViewDataSource, 
         if self.goods.count != 0{
             let good = self.goods[indexPath.row] as Good
             cell.nameLB.text = good.name
-            cell.goodPic.sd_setImageWithURL(NSURL(string: good.picture!), placeholderImage: UIImage(named: ""), options: .ProgressiveDownload)
+            cell.goodPic.sd_setImageWithURL(NSURL(string: good.picture!), placeholderImage: UIImage(named: "avatar"), options: .ProgressiveDownload)
         }
         return cell
     }

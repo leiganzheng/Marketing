@@ -46,7 +46,7 @@ class MyOrderViewController: BaseViewController , UITableViewDataSource, UITable
             if order.goods.count > 0{
                 let good = order.goods[0]
                 cell.name1.text = good.good_name
-                cell.imageV.sd_setImageWithURL(NSURL(string: good.good_pic!), placeholderImage: UIImage(named: ""), options: .ProgressiveDownload)
+                cell.imageV.sd_setImageWithURL(NSURL(string: good.good_pic!), placeholderImage: UIImage(named: "avatar"), options: .ProgressiveDownload)
                 cell.detail.text = "消费：\(good.price!)"
                 cell.time.text = "时间：\(order.create_time!)"
             }

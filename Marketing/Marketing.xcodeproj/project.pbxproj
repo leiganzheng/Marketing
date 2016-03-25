@@ -869,7 +869,7 @@
 			baseConfigurationReference = F372F1E61691C173103A6F51 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: QOOCC Information Technology Co., Ltd (Y52XLS57AB)";
+				CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Marketing/Librarys/Alipay",
@@ -883,7 +883,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ddd.Marketing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "948d0efa-fcb5-4202-9928-82ce1bbf9045";
+				PROVISIONING_PROFILE = "c9cd00e5-5246-4a32-b5e0-1f201733954d";
 				SWIFT_OBJC_BRIDGING_HEADER = "Marketing/Marketing-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 			};
@@ -894,7 +894,7 @@
 			baseConfigurationReference = F85F8EDCC90C6F5369D98E8A /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: QOOCC Information Technology Co., Ltd (Y52XLS57AB)";
+				CODE_SIGN_IDENTITY = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Marketing/Librarys/Alipay",
@@ -908,7 +908,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ddd.Marketing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "948d0efa-fcb5-4202-9928-82ce1bbf9045";
+				PROVISIONING_PROFILE = "c9cd00e5-5246-4a32-b5e0-1f201733954d";
 				SWIFT_OBJC_BRIDGING_HEADER = "Marketing/Marketing-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 			};

@@ -74,7 +74,7 @@ class OrderInfoViewController:  BaseViewController , UITableViewDataSource, UITa
             if good != nil {
                 self.good = good! 
                 self.priceLB.text = "￥\(self.good.discounted_price!)"
-                self.imgV.sd_setImageWithURL(NSURL(string: self.good.big_pic!), placeholderImage: UIImage(named: "nav_nearby1"), options: .ProgressiveDownload)
+                self.imgV.sd_setImageWithURL(NSURL(string: self.good.big_pic!), placeholderImage: UIImage(named: "avatar"), options: .ProgressiveDownload)
                 self.customTableView.reloadData()
             }else{
                  QNTool.showErrorPromptView(nil, error: error, errorMsg: errorMsg)

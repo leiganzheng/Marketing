@@ -109,7 +109,7 @@ class OrderDetailViewController: BaseViewController , UITableViewDataSource, UIT
                 if goods.count > 0{
                     let good = goods[0] as! NSDictionary
                     cell.name1.text = good["good_name"] as? String
-                    cell.imageV.sd_setImageWithURL(NSURL(string: (good["good_pic"] as? String)!), placeholderImage: UIImage(named: ""), options: .ProgressiveDownload)
+                    cell.imageV.sd_setImageWithURL(NSURL(string: (good["good_pic"] as? String)!), placeholderImage: UIImage(named: "avatar"), options: .ProgressiveDownload)
                     cell.detail.text = "消费：\((good["price"] as? String)!)"
                     cell.time.text = "时间：\(self.order.create_time!)"
                 }

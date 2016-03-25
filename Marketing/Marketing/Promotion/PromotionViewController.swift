@@ -44,7 +44,7 @@ class PromotionViewController: BaseViewController, UICollectionViewDataSource, U
                 cell.info.text = good.descriptionStr!
                 cell.buyNum.text = "\(good.buy_num!)人已购买"
                 cell.price.text  = "$\(good.price!)"
-                cell.pic.sd_setImageWithURL(NSURL(string: good.picture!), placeholderImage: UIImage(named: ""), options: .ProgressiveDownload)
+                cell.pic.sd_setImageWithURL(NSURL(string: good.picture!), placeholderImage: UIImage(named: "avatar"), options: .ProgressiveDownload)
         }
         return cell
     }

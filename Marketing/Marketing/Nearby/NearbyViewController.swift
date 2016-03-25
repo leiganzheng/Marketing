@@ -51,7 +51,7 @@ class NearbyViewController: BaseViewController, UICollectionViewDataSource, UICo
         cell.customView.layer.borderWidth = 0.5
         if self.titleArray.count != 0 {
             let buss = self.titleArray.objectAtIndex(indexPath.row) as! BusinessCategory
-            cell.pic.sd_setImageWithURL(NSURL(string: buss.picture!), placeholderImage: UIImage(named: ""), options: .ProgressiveDownload)
+            cell.pic.sd_setImageWithURL(NSURL(string: buss.picture!), placeholderImage: UIImage(named: "avatar"), options: .ProgressiveDownload)
             cell.name.text = buss.name
             cell.descr.text = buss.descriptionStr
         }
@@ -117,7 +117,7 @@ class NearbyViewController: BaseViewController, UICollectionViewDataSource, UICo
             imageView.backgroundColor = UIColor.redColor()
             let ad = self.adArray.objectAtIndex(index) as! AdModel
             let url = NSURL(string: ad.picture!)
-            imageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: ""), options: .ProgressiveDownload)
+            imageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "avatar"), options: .ProgressiveDownload)
             self.galleryScrollView.showsHorizontalScrollIndicator = false//不设置水平滚动条；
             self.galleryScrollView.addSubview(imageView)//把图片加入到ScrollView中去，实现轮播的效果；
         }
@@ -138,7 +138,7 @@ class NearbyViewController: BaseViewController, UICollectionViewDataSource, UICo
         if(page == self.adArray.count){   //循环；
             page = 0
         }else{
-            page++
+            page += 1
         }
         let x:CGFloat = CGFloat(page) * self.galleryScrollView.frame.size.width
         self.galleryScrollView.contentOffset = CGPointMake(x, 0)//注意：contentOffset就是设置ScrollView的偏移；

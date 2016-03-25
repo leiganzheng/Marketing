@@ -61,7 +61,7 @@ class UserViewController: BaseViewController , UITableViewDataSource, UITableVie
             img.layer.masksToBounds = true
             img.layer.cornerRadius = img.bounds.size.width/2
             if g_user?.picture != nil {
-                img.sd_setImageWithURL(NSURL(string: (g_user?.picture)!), placeholderImage: nil)
+                img.sd_setImageWithURL(NSURL(string: (g_user?.picture)!), placeholderImage: UIImage(named: "avatar"))
             }
             let name = cell.viewWithTag(101) as! UILabel
             name.text = g_user?.nickname!

@@ -52,7 +52,7 @@ class GoodsListViewController: BaseViewController, UITableViewDataSource, UITabl
         if self.goods.count > 0 {
             let good = self.goods[indexPath.row] as Good
             cell.title.text = good.name
-            cell.imageV.sd_setImageWithURL(NSURL(string: good.picture!), placeholderImage: UIImage(named: ""), options: .ProgressiveDownload)
+            cell.imageV.sd_setImageWithURL(NSURL(string: good.picture!), placeholderImage: UIImage(named: "avatar"), options: .ProgressiveDownload)
             cell.price.text = "￥\(good.discounted_price!)"
             cell.buyNum.text = "\(good.buy_num!)个人购买"
         }

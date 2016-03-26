@@ -739,7 +739,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KrN-Qe-Hf2">
                                                     <rect key="frame" x="0.0" y="8" width="320" height="146"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aVa-jK-PfK">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="aVa-jK-PfK">
                                                             <rect key="frame" x="10" y="40" width="90" height="90"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
@@ -1986,6 +1986,7 @@
     </scenes>
     <resources>
         <image name="address" width="21" height="26"/>
+        <image name="avatar" width="250" height="250"/>
         <image name="list" width="15" height="11"/>
         <image name="mobile" width="21" height="26"/>
         <image name="mobile1" width="22" height="22"/>

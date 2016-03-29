@@ -119,6 +119,7 @@
 		714B0DF71C8BF55F00DD5EEB /* OrderDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailTableViewCell.swift; sourceTree = "<group>"; };
 		7172AFEC1C87347300E37337 /* ShopDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopDetailViewController.swift; sourceTree = "<group>"; };
 		7172AFEE1C8739DA00E37337 /* OrderDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailViewController.swift; sourceTree = "<group>"; };
+		719177E61CA6E955008464B1 /* IPAdress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IPAdress.h; sourceTree = "<group>"; };
 		7194D5A61C5A591700294A8A /* PersonInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonInfoViewController.swift; sourceTree = "<group>"; };
 		7198618F1C4B6EFC00803F26 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		719861901C4B6EFC00803F26 /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = read_me.txt; sourceTree = "<group>"; };
@@ -477,6 +478,7 @@
 		BB643BDD1C30EF0E00BE6790 /* Librarys */ = {
 			isa = PBXGroup;
 			children = (
+				719177E61CA6E955008464B1 /* IPAdress.h */,
 				71BD9BAC1C95B0B7006B6AE2 /* Alipay */,
 				BB11281F1C5868AA00297DAD /* AES */,
 				BB1128161C58517600297DAD /* PromptView */,
@@ -883,7 +885,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ddd.Marketing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c9cd00e5-5246-4a32-b5e0-1f201733954d";
+				PROVISIONING_PROFILE = "0d0c39c2-137d-44dc-a55b-322e2618b302";
 				SWIFT_OBJC_BRIDGING_HEADER = "Marketing/Marketing-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 			};
@@ -908,7 +910,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ddd.Marketing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c9cd00e5-5246-4a32-b5e0-1f201733954d";
+				PROVISIONING_PROFILE = "0d0c39c2-137d-44dc-a55b-322e2618b302";
 				SWIFT_OBJC_BRIDGING_HEADER = "Marketing/Marketing-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 			};

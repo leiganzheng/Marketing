@@ -72,6 +72,7 @@ class MyOrderViewController: BaseViewController , UITableViewDataSource, UITable
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let order = self.dataArray[indexPath.row] as! Order
         let vc = OrderDetailViewController.CreateFromStoryboard("Main") as! OrderDetailViewController
+        vc.order = order
         vc.hidesBottomBarWhenPushed = true
         vc.orderId = order.order_id
         self.navigationController?.pushViewController(vc, animated: true)

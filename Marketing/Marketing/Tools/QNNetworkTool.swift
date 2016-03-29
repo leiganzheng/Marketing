@@ -589,7 +589,7 @@ extension QNNetworkTool {
      :param: completion 完成的回调
      */
     class func orderAdd(shop_id:String, accesstoken: String,uid: String,receiver:String,receiver_phone:String,customer_address_id: String, order_goods: String,memo: String,good_id: String,total: String,  completion: (Order?, NSError?, String?) -> Void) {
-        requestGET(kServerAddress + "/Orderapi/orderAdd", parameters: ["shop_id" : shop_id,"uid" : uid,"receiver" : receiver,"receiver_phone" : receiver_phone,"customer_address_id" : customer_address_id,"accesstoken" : accesstoken,"order_goods" : order_goods,"memo" : memo,"good_id" : good_id,"total" : total]) { (_, _, _, dictionary, error) -> Void in
+        requestGET(kServerAddress + "/Orderapi/orderAdd", parameters: ["shop_id" : shop_id,"uid" : uid,"receiver" : receiver,"receiver_phone" : receiver_phone,"customer_address" : customer_address_id,"accesstoken" : accesstoken,"order_goods" : order_goods,"memo" : memo,"good_id" : good_id,"total" : total]) { (_, _, _, dictionary, error) -> Void in
             if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
                 let order = Order(dictionary!)
                 completion(order, error, nil)
@@ -738,7 +738,7 @@ extension QNNetworkTool {
 //                            * string prepayId 预付单
 //                                * int timeStamp 时间戳
 //                                    * string sign 签名
-            
+            print(dictionary)
             if dictionary != nil,let errorCode = dictionary?["ret"]?.integerValue where errorCode == 0  {
                 completion(dictionary, error,nil)
             }

@@ -68,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate ,WXApiDelegate{
 
     func submitOrder(dic: NSDictionary, vc: UIViewController){
 
-        WXApi.registerApp(dic["appId"] as! String, withDescription: "Test")
+        WXApi.registerApp("wx34eb3f707f547551", withDescription: "Test")
         let request = PayReq()
         request.partnerId = dic["partnerId"] as! String
         request.openID = dic["appId"] as! String

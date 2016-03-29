@@ -15,4 +15,5 @@
 #import <CommonCrypto/CommonDigest.h>   // MD5
 #import <AlipaySDK/AlipaySDK.h>
 #import "IPAdress.h"
+#import "ip.h"
 #endif /* Marketing_Bridging_Header_h */

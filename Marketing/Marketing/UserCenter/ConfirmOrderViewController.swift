@@ -16,30 +16,26 @@ class CityData: NSObject {
     private(set) var code: String?
 
 }
-class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UITableViewDelegate,QNInterceptorProtocol {
+class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UITableViewDelegate,QNInterceptorProtocol,UIGestureRecognizerDelegate {
 
     @IBOutlet weak var customTableView: UITableView!
     @IBOutlet weak var okButton: UIButton!
     var address:UILabel!
     var shopGood:ShopGood!
     
-    var total:String!
-    var reciever: String!
-    var mobiel:String!
-    var memo:String!
-    var addressDetail:String!
     
     var totalNumF: UITextField!
     var recieverF: UITextField!
     var mobielF: UITextField!
     var addressDetailF: UITextField!
-    var memoF: UITextField!
+    var memoF: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "确认订单"
         // 键盘消失
         let tap = UITapGestureRecognizer()
+        tap.delegate = self
         tap.rac_gestureSignal().subscribeNext { [weak self](tap) -> Void in
             self?.view.endEditing(true)
         }
@@ -77,12 +73,11 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
                 if cell == nil {
                     cell = TableViewCell1(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
                 }
-                self.total = cell.totalNum.text
+                self.totalNumF = cell.totalNum
                 //
                 cell.numAddBtn.rac_signalForControlEvents(.TouchUpInside).subscribeNext { [weak self](sender) -> Void in
                     if let strongSelf = self {
                         cell.totalNum.text = String(Int(cell.totalNum.text!)!+1)
-                        strongSelf.total = cell.totalNum.text
                     }
                 }
                 //
@@ -90,7 +85,6 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
                     if let strongSelf = self {
                         let num = Int(cell.totalNum.text!)!-1 <= 0 ? 0 : Int(cell.totalNum.text!)!-1
                         cell.totalNum.text = String(num)
-                        strongSelf.total = cell.totalNum.text
                     }
                 }
 
@@ -102,7 +96,7 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
                 if cell == nil {
                     cell = TableViewCell2(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
                 }
-                self.reciever = cell.reciverLb.text
+                self.recieverF = cell.reciverLb
                 return cell
             }else if(indexPath.row == 2){
                 let cellId = "TableViewCell3"
@@ -110,7 +104,7 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
                 if cell == nil {
                     cell = TableViewCell3(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
                 }
-                self.mobiel = cell.mobileLb.text
+                self.mobielF = cell.mobileLb
                 return cell
 
             }else if(indexPath.row == 3){
@@ -128,7 +122,7 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
                 if cell == nil {
                     cell = TableViewCell5(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
                 }
-                self.addressDetail = cell.addressLB.text
+                self.addressDetailF = cell.addressLB
                 return cell
 
             }
@@ -139,7 +133,7 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
             if cell == nil {
                 cell = TableViewCell6(style: UITableViewCellStyle.Default, reuseIdentifier: cellId)
             }
-            self.memo = cell.memoLb.text
+            self.memoF = cell.memoLb
             return cell
         }
     }
@@ -149,6 +143,14 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
             self.showPickerView()
         }
     }
+    //MARK: UIGestureRecognizerDelegate
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+        if (NSStringFromClass((touch.view?.classForCoder)!) == "UITableViewCellContentView") {
+            return false
+        }
+        return true
+    }
+
     //MARK: Action Method
     func regis(){
         self.totalNumF.resignFirstResponder()
@@ -241,7 +243,7 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
         self.fetchData()
     }
     //MARK: Private Method
-    private  func paramsToJsonDataParams(params: [String : AnyObject]) -> String {
+    private  func paramsToJsonDataParams(params: AnyObject) -> String {
         do {
             let jsonData = try NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions())
             let jsonDataString = NSString(data: jsonData, encoding: NSUTF8StringEncoding) as! String
@@ -253,8 +255,10 @@ class ConfirmOrderViewController: BaseViewController , UITableViewDataSource, UI
 
     func fetchData (){
         if self.shopGood == nil {return}
-        let goods = self.paramsToJsonDataParams(["good_id": self.shopGood.good_id, "total": self.total])
-        QNNetworkTool.orderAdd(self.shopGood.shop_id!, accesstoken: (g_user?.accesstoken)!, uid: (g_user?.uid)!, receiver:self.reciever,receiver_phone:self.mobiel, customer_address_id: (self.address.text! + self.addressDetail), order_goods: goods,memo: self.memo, good_id: self.shopGood.good_id, total: self.total) { (order, error, errorMsg) -> Void in
+        let array = NSMutableArray()
+        array.addObject(["good_id": self.shopGood.good_id, "total": self.totalNumF.text!])
+        let goods = self.paramsToJsonDataParams(array)
+        QNNetworkTool.orderAdd(self.shopGood.shop_id!, accesstoken: (g_user?.accesstoken)!, uid: (g_user?.uid)!, receiver:self.recieverF.text!,receiver_phone:self.mobielF.text!, customer_address_id: (self.address.text! + self.addressDetailF.text!), order_goods: goods,memo: self.memoF.text, good_id: self.shopGood.good_id, total: self.totalNumF.text!) { (order, error, errorMsg) -> Void in
             if order != nil {
                 QNTool.showPromptView("订单已经提交")
                 let vc = PayOrderViewController.CreateFromStoryboard("Main") as! PayOrderViewController

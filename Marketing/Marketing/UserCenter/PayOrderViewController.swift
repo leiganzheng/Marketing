@@ -7,7 +7,6 @@
 //
 
 import UIKit
-//import IPAdress.h
 
 class PayOrderViewController: BaseViewController , UITableViewDataSource, UITableViewDelegate,QNInterceptorProtocol {
     
@@ -87,9 +86,12 @@ class PayOrderViewController: BaseViewController , UITableViewDataSource, UITabl
     }
     //微信支付
     private func wxPayCheck(){
-        
+        var ipStr = IP().getDeviceIPAddress()
+        if ipStr == nil {
+            ipStr = NSUserDefaults.standardUserDefaults().objectForKey("deviceIP") as! String
+        }
 //        if WXApi.isWXAppInstalled() {
-            QNNetworkTool.weChatPay("测试微信", out_trade_no: self.order.order_id!, spbill_create_ip: ip_names[0], completion: { (dictionary, error, errorMsg) -> Void in
+            QNNetworkTool.weChatPay("测试微信", out_trade_no: self.order.order_id!, spbill_create_ip: ipStr, completion: { (dictionary, error, errorMsg) -> Void in
                 if dictionary != nil {
                     let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
                     delegate.submitOrder(dictionary!, vc: self)
@@ -130,7 +132,7 @@ class PayOrderViewController: BaseViewController , UITableViewDataSource, UITabl
         "ZZvqIGlo/IUDrnHr9Hr1zG1B8jidLzTkQEyWdqTlQWlU+RTWzrv/bs8I/C5L83Z0" +
         "OATH6/sqzxrCkIwoD3UDmkeUhCKU7pvCf/6CzJxXlpq0n3Nt5W3e"
         
-        let orderString = String(format: "partner=\"%@\"&seller_id=\"%@\"&out_trade_no=\"%@\"&subject=\"%@\"&body=\"\"%@&total_fee=\"%@\"&notify_url=\"%@\"&service=\"%@\"&payment_type=\"%@\"&_input_charset=\"%@\"&it_b_pay=\"%@\"&sign=\"%@\"&sign_type=\"%@\"", "2088121819111753" ,"2564064860@qq.com",self.order.order_id!,"测试","测试测试",self.order.order_price!,"http://cvsapi.1g9f.com/Alipayapi/AliPayNotify","mobile.securitypay.pay","1","utf-8","30m",sign,"RSA")
+        let orderString = String(format: "partner=\"%@\"&seller_id=\"%@\"&out_trade_no=\"%@\"&subject=\"%@\"&body=\"%@\"&total_fee=\"%@\"&notify_url=\"%@\"&service=\"%@\"&payment_type=\"%@\"&_input_charset=\"%@\"&it_b_pay=\"%@\"&sign=\"%@\"&sign_type=\"%@\"", "2088121819111753" ,"2564064860@qq.com",self.order.order_id!,"测试","测试测试",self.order.order_price!,"http://cvsapi.1g9f.com/Alipayapi/AliPayNotify","mobile.securitypay.pay","1","utf-8","30m",sign,"RSA")
         print(orderString)
         //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
         let appScheme: String = "alipayForMarket"

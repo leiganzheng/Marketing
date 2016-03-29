@@ -57,6 +57,7 @@
 		BB11281E1C58582200297DAD /* LyPrompt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB11281C1C58582200297DAD /* LyPrompt.swift */; };
 		BB1128241C5868AA00297DAD /* NSData+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1128211C5868AA00297DAD /* NSData+AES.m */; };
 		BB1128251C5868AA00297DAD /* NSString+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = BB1128231C5868AA00297DAD /* NSString+AES.m */; };
+		BB2896B91CAA532400AB70FA /* IP.m in Sources */ = {isa = PBXBuildFile; fileRef = BB2896B81CAA532400AB70FA /* IP.m */; };
 		BB47B29F1C8E736D00323AD5 /* CustomPickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB47B29E1C8E736D00323AD5 /* CustomPickView.swift */; };
 		BB47B2A31C8E94F300323AD5 /* address.db in Resources */ = {isa = PBXBuildFile; fileRef = BB47B2A21C8E94F300323AD5 /* address.db */; };
 		BB52E9711C47328200E0D1EC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB52E9701C47328200E0D1EC /* User.swift */; };
@@ -164,6 +165,8 @@
 		BB1128221C5868AA00297DAD /* NSString+AES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+AES.h"; sourceTree = "<group>"; };
 		BB1128231C5868AA00297DAD /* NSString+AES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+AES.m"; sourceTree = "<group>"; };
 		BB1128271C586A8800297DAD /* Marketing-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Marketing-Bridging-Header.h"; sourceTree = "<group>"; };
+		BB2896B71CAA532400AB70FA /* IP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IP.h; sourceTree = "<group>"; };
+		BB2896B81CAA532400AB70FA /* IP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IP.m; sourceTree = "<group>"; };
 		BB47B29E1C8E736D00323AD5 /* CustomPickView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPickView.swift; sourceTree = "<group>"; };
 		BB47B2A21C8E94F300323AD5 /* address.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = address.db; sourceTree = "<group>"; };
 		BB52E9701C47328200E0D1EC /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -483,6 +486,8 @@
 				BB11281F1C5868AA00297DAD /* AES */,
 				BB1128161C58517600297DAD /* PromptView */,
 				7198618E1C4B6EFC00803F26 /* Weixin */,
+				BB2896B71CAA532400AB70FA /* IP.h */,
+				BB2896B81CAA532400AB70FA /* IP.m */,
 			);
 			path = Librarys;
 			sourceTree = "<group>";
@@ -721,6 +726,7 @@
 				BB47B29F1C8E736D00323AD5 /* CustomPickView.swift in Sources */,
 				7194D5A71C5A591700294A8A /* PersonInfoViewController.swift in Sources */,
 				71C3A4251C3185000042F851 /* NearbyViewController.swift in Sources */,
+				BB2896B91CAA532400AB70FA /* IP.m in Sources */,
 				BB643BEA1C30EF0E00BE6790 /* UIViewExtension.swift in Sources */,
 				7172AFED1C87347300E37337 /* ShopDetailViewController.swift in Sources */,
 				BB643BE41C30EF0E00BE6790 /* QNTabBarController.swift in Sources */,
@@ -885,7 +891,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ddd.Marketing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0d0c39c2-137d-44dc-a55b-322e2618b302";
+				PROVISIONING_PROFILE = "c9cd00e5-5246-4a32-b5e0-1f201733954d";
 				SWIFT_OBJC_BRIDGING_HEADER = "Marketing/Marketing-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 			};
@@ -910,7 +916,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = ddd.Marketing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0d0c39c2-137d-44dc-a55b-322e2618b302";
+				PROVISIONING_PROFILE = "c9cd00e5-5246-4a32-b5e0-1f201733954d";
 				SWIFT_OBJC_BRIDGING_HEADER = "Marketing/Marketing-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 			};
